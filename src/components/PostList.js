@@ -6,6 +6,10 @@ export default class IndexPage extends React.Component {
   render() {
     const { posts, title } = this.props
 
+    if (!posts || !posts.length) {
+      return null;
+    }
+
     return (
       <section className="section">
         <div className="container">
