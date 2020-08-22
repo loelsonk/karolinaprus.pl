@@ -1,6 +1,11 @@
 [build]
   publish = "public"
-  command = "npm run build"
+  command = "yarn build"
 [build.environment]
   YARN_VERSION = "1.3.2"
   YARN_FLAGS = "--no-ignore-optional"
+[[redirects]]
+  from = "REDIRECT_FROM"
+  to = "REDIRECT_TO"
+  status = 301
+  force = true
