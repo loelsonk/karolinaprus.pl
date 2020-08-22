@@ -37,7 +37,6 @@
   "scripts": {
     "start": "npm run develop",
     "clean": "rimraf .cache public",
-    "prebuild": "sed -i 's/REDIRECT_FROM/${REDIRECT_FROM}/g; s/REDIRECT_TO/${REDIRECT_TO}/g' netlify.toml && echo \"$(cat netlify.toml)\"",
     "build": "npm run clean && gatsby build",
     "develop": "npm run clean && gatsby develop",
     "serve": "gatsby serve",
