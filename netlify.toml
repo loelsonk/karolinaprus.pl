@@ -1,20 +1,13 @@
-[context.production.environment]
-  REDIRECT_FROM = "https://karolinaprus.netlify.app"
-  REDIRECT_TO = "https://karolinaprus.pl"
-[context.deploy-preview.environment]
-  REDIRECT_FROM = "https://karolinaprus.netlify.app"
-  REDIRECT_TO = "https://karolinaprus.pl"
-[context.branch-deploy.environment]
-  REDIRECT_FROM = "https://karolinaprus.netlify.app"
-  REDIRECT_TO = "https://karolinaprus.pl"
 [build]
   publish = "public"
-  command = "sed -i 's/REDIRECT_FROM/${REDIRECT_FROM}/g; s/REDIRECT_TO/${REDIRECT_TO}/g' netlify.toml && yarn build"
+  command = "yarn build"
+
 [build.environment]
   YARN_VERSION = "1.3.2"
   YARN_FLAGS = "--no-ignore-optional"
+
 [[redirects]]
-  from = "REDIRECT_FROM"
-  to = "REDIRECT_TO"
+  from = "https://karolinaprus.netlify.app"
+  to = "https://karolinaprus.pl"
   status = 301
   force = true
