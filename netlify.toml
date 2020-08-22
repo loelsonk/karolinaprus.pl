@@ -9,3 +9,4 @@
   to = "REDIRECT_TO"
   status = 301
   force = true
+
