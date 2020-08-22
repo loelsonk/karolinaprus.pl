@@ -7,7 +7,7 @@
   YARN_FLAGS = "--no-ignore-optional"
 
 [[redirects]]
-  from = "https://karolinaprus.netlify.app"
-  to = "https://karolinaprus.pl"
+  from = "https://karolinaprus.netlify.app/*"
+  to = "https://karolinaprus.pl/:splat"
   status = 301
   force = true
