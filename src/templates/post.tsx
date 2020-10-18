@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin-top: 20px;
-  background-color: ${props => props.theme.palette.navy};
+  background-color: red;
 `;
 
 export const BlogPostTemplate = ({

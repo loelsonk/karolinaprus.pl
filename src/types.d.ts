@@ -32,57 +32,49 @@ export type DateQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars['Date']>>>;
 };
 
-export type DuotoneGradient = {
-  highlight: Scalars['String'];
-  shadow: Scalars['String'];
-  opacity?: Maybe<Scalars['Int']>;
-};
-
-export type File = Node & {
-  __typename?: 'File';
+export type Directory = Node & {
+  __typename?: 'Directory';
+  sourceInstanceName: Scalars['String'];
+  absolutePath: Scalars['String'];
+  relativePath: Scalars['String'];
+  extension: Scalars['String'];
+  size: Scalars['Int'];
+  prettySize: Scalars['String'];
+  modifiedTime: Scalars['Date'];
+  accessTime: Scalars['Date'];
+  changeTime: Scalars['Date'];
+  birthTime: Scalars['Date'];
+  root: Scalars['String'];
+  dir: Scalars['String'];
+  base: Scalars['String'];
+  ext: Scalars['String'];
+  name: Scalars['String'];
+  relativeDirectory: Scalars['String'];
+  dev: Scalars['Int'];
+  mode: Scalars['Int'];
+  nlink: Scalars['Int'];
+  uid: Scalars['Int'];
+  gid: Scalars['Int'];
+  rdev: Scalars['Int'];
+  ino: Scalars['Float'];
+  atimeMs: Scalars['Float'];
+  mtimeMs: Scalars['Float'];
+  ctimeMs: Scalars['Float'];
+  atime: Scalars['Date'];
+  mtime: Scalars['Date'];
+  ctime: Scalars['Date'];
+  /** @deprecated Use `birthTime` instead */
+  birthtime?: Maybe<Scalars['Date']>;
+  /** @deprecated Use `birthTime` instead */
+  birthtimeMs?: Maybe<Scalars['Float']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
-  sourceInstanceName?: Maybe<Scalars['String']>;
-  absolutePath?: Maybe<Scalars['String']>;
-  relativePath?: Maybe<Scalars['String']>;
-  extension?: Maybe<Scalars['String']>;
-  size?: Maybe<Scalars['Int']>;
-  prettySize?: Maybe<Scalars['String']>;
-  modifiedTime?: Maybe<Scalars['Date']>;
-  accessTime?: Maybe<Scalars['Date']>;
-  changeTime?: Maybe<Scalars['Date']>;
-  birthTime?: Maybe<Scalars['Date']>;
-  root?: Maybe<Scalars['String']>;
-  dir?: Maybe<Scalars['String']>;
-  base?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  relativeDirectory?: Maybe<Scalars['String']>;
-  dev?: Maybe<Scalars['Int']>;
-  mode?: Maybe<Scalars['Int']>;
-  nlink?: Maybe<Scalars['Int']>;
-  uid?: Maybe<Scalars['Int']>;
-  gid?: Maybe<Scalars['Int']>;
-  rdev?: Maybe<Scalars['Int']>;
-  blksize?: Maybe<Scalars['Int']>;
-  ino?: Maybe<Scalars['Int']>;
-  blocks?: Maybe<Scalars['Int']>;
-  atimeMs?: Maybe<Scalars['Float']>;
-  mtimeMs?: Maybe<Scalars['Float']>;
-  ctimeMs?: Maybe<Scalars['Float']>;
-  birthtimeMs?: Maybe<Scalars['Float']>;
-  atime?: Maybe<Scalars['Date']>;
-  mtime?: Maybe<Scalars['Date']>;
-  ctime?: Maybe<Scalars['Date']>;
-  birthtime?: Maybe<Scalars['Date']>;
-  url?: Maybe<Scalars['String']>;
-  childImageSharp?: Maybe<ImageSharp>;
 };
 
 
-export type FileModifiedTimeArgs = {
+export type DirectoryModifiedTimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -90,7 +82,7 @@ export type FileModifiedTimeArgs = {
 };
 
 
-export type FileAccessTimeArgs = {
+export type DirectoryAccessTimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -98,7 +90,7 @@ export type FileAccessTimeArgs = {
 };
 
 
-export type FileChangeTimeArgs = {
+export type DirectoryChangeTimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -106,7 +98,7 @@ export type FileChangeTimeArgs = {
 };
 
 
-export type FileBirthTimeArgs = {
+export type DirectoryBirthTimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -114,7 +106,7 @@ export type FileBirthTimeArgs = {
 };
 
 
-export type FileAtimeArgs = {
+export type DirectoryAtimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -122,7 +114,7 @@ export type FileAtimeArgs = {
 };
 
 
-export type FileMtimeArgs = {
+export type DirectoryMtimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
@@ -130,51 +122,74 @@ export type FileMtimeArgs = {
 };
 
 
-export type FileCtimeArgs = {
+export type DirectoryCtimeArgs = {
   formatString?: Maybe<Scalars['String']>;
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-
-export type FileBirthtimeArgs = {
-  formatString?: Maybe<Scalars['String']>;
-  fromNow?: Maybe<Scalars['Boolean']>;
-  difference?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type FileConnection = {
-  __typename?: 'FileConnection';
+export type DirectoryConnection = {
+  __typename?: 'DirectoryConnection';
   totalCount: Scalars['Int'];
-  edges: Array<FileEdge>;
-  nodes: Array<File>;
+  edges: Array<DirectoryEdge>;
+  nodes: Array<Directory>;
   pageInfo: PageInfo;
   distinct: Array<Scalars['String']>;
-  group: Array<FileGroupConnection>;
+  group: Array<DirectoryGroupConnection>;
 };
 
 
-export type FileConnectionDistinctArgs = {
-  field: FileFieldsEnum;
+export type DirectoryConnectionDistinctArgs = {
+  field: DirectoryFieldsEnum;
 };
 
 
-export type FileConnectionGroupArgs = {
+export type DirectoryConnectionGroupArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
-  field: FileFieldsEnum;
+  field: DirectoryFieldsEnum;
 };
 
-export type FileEdge = {
-  __typename?: 'FileEdge';
-  next?: Maybe<File>;
-  node: File;
-  previous?: Maybe<File>;
+export type DirectoryEdge = {
+  __typename?: 'DirectoryEdge';
+  next?: Maybe<Directory>;
+  node: Directory;
+  previous?: Maybe<Directory>;
 };
 
-export enum FileFieldsEnum {
+export enum DirectoryFieldsEnum {
+  SourceInstanceName = 'sourceInstanceName',
+  AbsolutePath = 'absolutePath',
+  RelativePath = 'relativePath',
+  Extension = 'extension',
+  Size = 'size',
+  PrettySize = 'prettySize',
+  ModifiedTime = 'modifiedTime',
+  AccessTime = 'accessTime',
+  ChangeTime = 'changeTime',
+  BirthTime = 'birthTime',
+  Root = 'root',
+  Dir = 'dir',
+  Base = 'base',
+  Ext = 'ext',
+  Name = 'name',
+  RelativeDirectory = 'relativeDirectory',
+  Dev = 'dev',
+  Mode = 'mode',
+  Nlink = 'nlink',
+  Uid = 'uid',
+  Gid = 'gid',
+  Rdev = 'rdev',
+  Ino = 'ino',
+  AtimeMs = 'atimeMs',
+  MtimeMs = 'mtimeMs',
+  CtimeMs = 'ctimeMs',
+  Atime = 'atime',
+  Mtime = 'mtime',
+  Ctime = 'ctime',
+  Birthtime = 'birthtime',
+  BirthtimeMs = 'birthtimeMs',
   Id = 'id',
   ParentId = 'parent___id',
   ParentParentId = 'parent___parent___id',
@@ -260,7 +275,199 @@ export enum FileFieldsEnum {
   InternalIgnoreType = 'internal___ignoreType',
   InternalMediaType = 'internal___mediaType',
   InternalOwner = 'internal___owner',
-  InternalType = 'internal___type',
+  InternalType = 'internal___type'
+}
+
+export type DirectoryFilterInput = {
+  sourceInstanceName?: Maybe<StringQueryOperatorInput>;
+  absolutePath?: Maybe<StringQueryOperatorInput>;
+  relativePath?: Maybe<StringQueryOperatorInput>;
+  extension?: Maybe<StringQueryOperatorInput>;
+  size?: Maybe<IntQueryOperatorInput>;
+  prettySize?: Maybe<StringQueryOperatorInput>;
+  modifiedTime?: Maybe<DateQueryOperatorInput>;
+  accessTime?: Maybe<DateQueryOperatorInput>;
+  changeTime?: Maybe<DateQueryOperatorInput>;
+  birthTime?: Maybe<DateQueryOperatorInput>;
+  root?: Maybe<StringQueryOperatorInput>;
+  dir?: Maybe<StringQueryOperatorInput>;
+  base?: Maybe<StringQueryOperatorInput>;
+  ext?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  relativeDirectory?: Maybe<StringQueryOperatorInput>;
+  dev?: Maybe<IntQueryOperatorInput>;
+  mode?: Maybe<IntQueryOperatorInput>;
+  nlink?: Maybe<IntQueryOperatorInput>;
+  uid?: Maybe<IntQueryOperatorInput>;
+  gid?: Maybe<IntQueryOperatorInput>;
+  rdev?: Maybe<IntQueryOperatorInput>;
+  ino?: Maybe<FloatQueryOperatorInput>;
+  atimeMs?: Maybe<FloatQueryOperatorInput>;
+  mtimeMs?: Maybe<FloatQueryOperatorInput>;
+  ctimeMs?: Maybe<FloatQueryOperatorInput>;
+  atime?: Maybe<DateQueryOperatorInput>;
+  mtime?: Maybe<DateQueryOperatorInput>;
+  ctime?: Maybe<DateQueryOperatorInput>;
+  birthtime?: Maybe<DateQueryOperatorInput>;
+  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type DirectoryGroupConnection = {
+  __typename?: 'DirectoryGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<DirectoryEdge>;
+  nodes: Array<Directory>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type DirectorySortInput = {
+  fields?: Maybe<Array<Maybe<DirectoryFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type DuotoneGradient = {
+  highlight: Scalars['String'];
+  shadow: Scalars['String'];
+  opacity?: Maybe<Scalars['Int']>;
+};
+
+export type File = Node & {
+  __typename?: 'File';
+  sourceInstanceName: Scalars['String'];
+  absolutePath: Scalars['String'];
+  relativePath: Scalars['String'];
+  extension: Scalars['String'];
+  size: Scalars['Int'];
+  prettySize: Scalars['String'];
+  modifiedTime: Scalars['Date'];
+  accessTime: Scalars['Date'];
+  changeTime: Scalars['Date'];
+  birthTime: Scalars['Date'];
+  root: Scalars['String'];
+  dir: Scalars['String'];
+  base: Scalars['String'];
+  ext: Scalars['String'];
+  name: Scalars['String'];
+  relativeDirectory: Scalars['String'];
+  dev: Scalars['Int'];
+  mode: Scalars['Int'];
+  nlink: Scalars['Int'];
+  uid: Scalars['Int'];
+  gid: Scalars['Int'];
+  rdev: Scalars['Int'];
+  ino: Scalars['Float'];
+  atimeMs: Scalars['Float'];
+  mtimeMs: Scalars['Float'];
+  ctimeMs: Scalars['Float'];
+  atime: Scalars['Date'];
+  mtime: Scalars['Date'];
+  ctime: Scalars['Date'];
+  /** @deprecated Use `birthTime` instead */
+  birthtime?: Maybe<Scalars['Date']>;
+  /** @deprecated Use `birthTime` instead */
+  birthtimeMs?: Maybe<Scalars['Float']>;
+  blksize?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Scalars['Int']>;
+  url?: Maybe<Scalars['String']>;
+  childImageSharp?: Maybe<ImageSharp>;
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type FileModifiedTimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FileAccessTimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FileChangeTimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FileBirthTimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FileAtimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FileMtimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FileCtimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FileConnection = {
+  __typename?: 'FileConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<FileEdge>;
+  nodes: Array<File>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<FileGroupConnection>;
+};
+
+
+export type FileConnectionDistinctArgs = {
+  field: FileFieldsEnum;
+};
+
+
+export type FileConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: FileFieldsEnum;
+};
+
+export type FileEdge = {
+  __typename?: 'FileEdge';
+  next?: Maybe<File>;
+  node: File;
+  previous?: Maybe<File>;
+};
+
+export enum FileFieldsEnum {
   SourceInstanceName = 'sourceInstanceName',
   AbsolutePath = 'absolutePath',
   RelativePath = 'relativePath',
@@ -283,17 +490,17 @@ export enum FileFieldsEnum {
   Uid = 'uid',
   Gid = 'gid',
   Rdev = 'rdev',
-  Blksize = 'blksize',
   Ino = 'ino',
-  Blocks = 'blocks',
   AtimeMs = 'atimeMs',
   MtimeMs = 'mtimeMs',
   CtimeMs = 'ctimeMs',
-  BirthtimeMs = 'birthtimeMs',
   Atime = 'atime',
   Mtime = 'mtime',
   Ctime = 'ctime',
   Birthtime = 'birthtime',
+  BirthtimeMs = 'birthtimeMs',
+  Blksize = 'blksize',
+  Blocks = 'blocks',
   Url = 'url',
   ChildImageSharpFixedBase64 = 'childImageSharp___fixed___base64',
   ChildImageSharpFixedTracedSvg = 'childImageSharp___fixed___tracedSVG',
@@ -385,14 +592,96 @@ export enum FileFieldsEnum {
   ChildImageSharpInternalIgnoreType = 'childImageSharp___internal___ignoreType',
   ChildImageSharpInternalMediaType = 'childImageSharp___internal___mediaType',
   ChildImageSharpInternalOwner = 'childImageSharp___internal___owner',
-  ChildImageSharpInternalType = 'childImageSharp___internal___type'
+  ChildImageSharpInternalType = 'childImageSharp___internal___type',
+  Id = 'id',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
+  Children = 'children',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type'
 }
 
 export type FileFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
   sourceInstanceName?: Maybe<StringQueryOperatorInput>;
   absolutePath?: Maybe<StringQueryOperatorInput>;
   relativePath?: Maybe<StringQueryOperatorInput>;
@@ -415,19 +704,23 @@ export type FileFilterInput = {
   uid?: Maybe<IntQueryOperatorInput>;
   gid?: Maybe<IntQueryOperatorInput>;
   rdev?: Maybe<IntQueryOperatorInput>;
-  blksize?: Maybe<IntQueryOperatorInput>;
-  ino?: Maybe<IntQueryOperatorInput>;
-  blocks?: Maybe<IntQueryOperatorInput>;
+  ino?: Maybe<FloatQueryOperatorInput>;
   atimeMs?: Maybe<FloatQueryOperatorInput>;
   mtimeMs?: Maybe<FloatQueryOperatorInput>;
   ctimeMs?: Maybe<FloatQueryOperatorInput>;
-  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   atime?: Maybe<DateQueryOperatorInput>;
   mtime?: Maybe<DateQueryOperatorInput>;
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
+  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type FileGroupConnection = {
@@ -473,7 +766,9 @@ export enum ImageCropFocus {
 export enum ImageFit {
   Cover = 'COVER',
   Contain = 'CONTAIN',
-  Fill = 'FILL'
+  Fill = 'FILL',
+  Inside = 'INSIDE',
+  Outside = 'OUTSIDE'
 }
 
 export enum ImageFormat {
@@ -807,10 +1102,10 @@ export type ImageSharpFixed = {
   base64?: Maybe<Scalars['String']>;
   tracedSVG?: Maybe<Scalars['String']>;
   aspectRatio?: Maybe<Scalars['Float']>;
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  src?: Maybe<Scalars['String']>;
-  srcSet?: Maybe<Scalars['String']>;
+  width: Scalars['Float'];
+  height: Scalars['Float'];
+  src: Scalars['String'];
+  srcSet: Scalars['String'];
   srcWebp?: Maybe<Scalars['String']>;
   srcSetWebp?: Maybe<Scalars['String']>;
   originalName?: Maybe<Scalars['String']>;
@@ -833,16 +1128,16 @@ export type ImageSharpFluid = {
   __typename?: 'ImageSharpFluid';
   base64?: Maybe<Scalars['String']>;
   tracedSVG?: Maybe<Scalars['String']>;
-  aspectRatio?: Maybe<Scalars['Float']>;
-  src?: Maybe<Scalars['String']>;
-  srcSet?: Maybe<Scalars['String']>;
+  aspectRatio: Scalars['Float'];
+  src: Scalars['String'];
+  srcSet: Scalars['String'];
   srcWebp?: Maybe<Scalars['String']>;
   srcSetWebp?: Maybe<Scalars['String']>;
-  sizes?: Maybe<Scalars['String']>;
+  sizes: Scalars['String'];
   originalImg?: Maybe<Scalars['String']>;
   originalName?: Maybe<Scalars['String']>;
-  presentationWidth?: Maybe<Scalars['Int']>;
-  presentationHeight?: Maybe<Scalars['Int']>;
+  presentationWidth: Scalars['Int'];
+  presentationHeight: Scalars['Int'];
 };
 
 export type ImageSharpFluidFilterInput = {
@@ -907,10 +1202,10 @@ export type ImageSharpResolutions = {
   base64?: Maybe<Scalars['String']>;
   tracedSVG?: Maybe<Scalars['String']>;
   aspectRatio?: Maybe<Scalars['Float']>;
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  src?: Maybe<Scalars['String']>;
-  srcSet?: Maybe<Scalars['String']>;
+  width: Scalars['Float'];
+  height: Scalars['Float'];
+  src: Scalars['String'];
+  srcSet: Scalars['String'];
   srcWebp?: Maybe<Scalars['String']>;
   srcSetWebp?: Maybe<Scalars['String']>;
   originalName?: Maybe<Scalars['String']>;
@@ -933,16 +1228,16 @@ export type ImageSharpSizes = {
   __typename?: 'ImageSharpSizes';
   base64?: Maybe<Scalars['String']>;
   tracedSVG?: Maybe<Scalars['String']>;
-  aspectRatio?: Maybe<Scalars['Float']>;
-  src?: Maybe<Scalars['String']>;
-  srcSet?: Maybe<Scalars['String']>;
+  aspectRatio: Scalars['Float'];
+  src: Scalars['String'];
+  srcSet: Scalars['String'];
   srcWebp?: Maybe<Scalars['String']>;
   srcSetWebp?: Maybe<Scalars['String']>;
-  sizes?: Maybe<Scalars['String']>;
+  sizes: Scalars['String'];
   originalImg?: Maybe<Scalars['String']>;
   originalName?: Maybe<Scalars['String']>;
-  presentationWidth?: Maybe<Scalars['Int']>;
-  presentationHeight?: Maybe<Scalars['Int']>;
+  presentationWidth: Scalars['Int'];
+  presentationHeight: Scalars['Int'];
 };
 
 export type ImageSharpSizesFilterInput = {
@@ -1027,6 +1322,7 @@ export type PageInfo = {
   itemCount: Scalars['Int'];
   pageCount: Scalars['Int'];
   perPage?: Maybe<Scalars['Int']>;
+  totalCount: Scalars['Int'];
 };
 
 export type Potrace = {
@@ -1052,64 +1348,212 @@ export enum PotraceTurnPolicy {
 
 export type Query = {
   __typename?: 'Query';
-  imageSharp?: Maybe<ImageSharp>;
-  allImageSharp: ImageSharpConnection;
   file?: Maybe<File>;
   allFile: FileConnection;
-  sitePage?: Maybe<SitePage>;
-  allSitePage: SitePageConnection;
-  sitePlugin?: Maybe<SitePlugin>;
-  allSitePlugin: SitePluginConnection;
+  directory?: Maybe<Directory>;
+  allDirectory: DirectoryConnection;
   site?: Maybe<Site>;
   allSite: SiteConnection;
-  wordpressSiteMetadata?: Maybe<Wordpress__Site_Metadata>;
-  allWordpressSiteMetadata: Wordpress__Site_MetadataConnection;
-  wordpressAcfPosts?: Maybe<Wordpress__Acf_Posts>;
-  allWordpressAcfPosts: Wordpress__Acf_PostsConnection;
-  wordpressAcfPages?: Maybe<Wordpress__Acf_Pages>;
-  allWordpressAcfPages: Wordpress__Acf_PagesConnection;
-  wordpressAcfMedia?: Maybe<Wordpress__Acf_Media>;
-  allWordpressAcfMedia: Wordpress__Acf_MediaConnection;
-  wordpressAcfActionMonitor?: Maybe<Wordpress__Acf_Action_Monitor>;
-  allWordpressAcfActionMonitor: Wordpress__Acf_Action_MonitorConnection;
-  wordpressAcfCategories?: Maybe<Wordpress__Acf_Categories>;
-  allWordpressAcfCategories: Wordpress__Acf_CategoriesConnection;
-  wordpressAcfComments?: Maybe<Wordpress__Acf_Comments>;
-  allWordpressAcfComments: Wordpress__Acf_CommentsConnection;
-  wordpressAcfUsers?: Maybe<Wordpress__Acf_Users>;
-  allWordpressAcfUsers: Wordpress__Acf_UsersConnection;
-  wordpressWpApiMenusMenus?: Maybe<Wordpress__Wp_Api_Menus_Menus>;
-  allWordpressWpApiMenusMenus: Wordpress__Wp_Api_Menus_MenusConnection;
-  wordpressWpApiMenusMenusItems?: Maybe<Wordpress__Wp_Api_Menus_Menus_Items>;
-  allWordpressWpApiMenusMenusItems: Wordpress__Wp_Api_Menus_Menus_ItemsConnection;
-  wordpressWpApiMenusMenuLocations?: Maybe<Wordpress__Wp_Api_Menus_Menu_Locations>;
-  allWordpressWpApiMenusMenuLocations: Wordpress__Wp_Api_Menus_Menu_LocationsConnection;
-  wordpressPost?: Maybe<Wordpress__Post>;
-  allWordpressPost: Wordpress__PostConnection;
-  wordpressPage?: Maybe<Wordpress__Page>;
-  allWordpressPage: Wordpress__PageConnection;
-  wordpressWpMedia?: Maybe<Wordpress__Wp_Media>;
-  allWordpressWpMedia: Wordpress__Wp_MediaConnection;
-  wordpressWpActionMonitor?: Maybe<Wordpress__Wp_Action_Monitor>;
-  allWordpressWpActionMonitor: Wordpress__Wp_Action_MonitorConnection;
-  wordpressWpTypes?: Maybe<Wordpress__Wp_Types>;
-  allWordpressWpTypes: Wordpress__Wp_TypesConnection;
-  wordpressWpStatuses?: Maybe<Wordpress__Wp_Statuses>;
-  allWordpressWpStatuses: Wordpress__Wp_StatusesConnection;
-  wordpressWpTaxonomies?: Maybe<Wordpress__Wp_Taxonomies>;
-  allWordpressWpTaxonomies: Wordpress__Wp_TaxonomiesConnection;
-  wordpressCategory?: Maybe<Wordpress__Category>;
-  allWordpressCategory: Wordpress__CategoryConnection;
-  wordpressTag?: Maybe<Wordpress__Tag>;
-  allWordpressTag: Wordpress__TagConnection;
-  wordpressWpUsers?: Maybe<Wordpress__Wp_Users>;
-  allWordpressWpUsers: Wordpress__Wp_UsersConnection;
-  wordpressWpComments?: Maybe<Wordpress__Wp_Comments>;
-  allWordpressWpComments: Wordpress__Wp_CommentsConnection;
-  wordpressWpSearch?: Maybe<Wordpress__Wp_Search>;
-  allWordpressWpSearch: Wordpress__Wp_SearchConnection;
+  sitePage?: Maybe<SitePage>;
+  allSitePage: SitePageConnection;
+  imageSharp?: Maybe<ImageSharp>;
+  allImageSharp: ImageSharpConnection;
   wordpressAcfOptions?: Maybe<Wordpress__Acf_Options>;
   allWordpressAcfOptions: Wordpress__Acf_OptionsConnection;
+  wordpressWpSearch?: Maybe<Wordpress__Wp_Search>;
+  allWordpressWpSearch: Wordpress__Wp_SearchConnection;
+  wordpressWpComments?: Maybe<Wordpress__Wp_Comments>;
+  allWordpressWpComments: Wordpress__Wp_CommentsConnection;
+  wordpressWpUsers?: Maybe<Wordpress__Wp_Users>;
+  allWordpressWpUsers: Wordpress__Wp_UsersConnection;
+  wordpressTag?: Maybe<Wordpress__Tag>;
+  allWordpressTag: Wordpress__TagConnection;
+  wordpressCategory?: Maybe<Wordpress__Category>;
+  allWordpressCategory: Wordpress__CategoryConnection;
+  wordpressWpTaxonomies?: Maybe<Wordpress__Wp_Taxonomies>;
+  allWordpressWpTaxonomies: Wordpress__Wp_TaxonomiesConnection;
+  wordpressWpStatuses?: Maybe<Wordpress__Wp_Statuses>;
+  allWordpressWpStatuses: Wordpress__Wp_StatusesConnection;
+  wordpressWpTypes?: Maybe<Wordpress__Wp_Types>;
+  allWordpressWpTypes: Wordpress__Wp_TypesConnection;
+  wordpressWpActionMonitor?: Maybe<Wordpress__Wp_Action_Monitor>;
+  allWordpressWpActionMonitor: Wordpress__Wp_Action_MonitorConnection;
+  wordpressWpMedia?: Maybe<Wordpress__Wp_Media>;
+  allWordpressWpMedia: Wordpress__Wp_MediaConnection;
+  wordpressPage?: Maybe<Wordpress__Page>;
+  allWordpressPage: Wordpress__PageConnection;
+  wordpressPost?: Maybe<Wordpress__Post>;
+  allWordpressPost: Wordpress__PostConnection;
+  wordpressWpApiMenusMenuLocations?: Maybe<Wordpress__Wp_Api_Menus_Menu_Locations>;
+  allWordpressWpApiMenusMenuLocations: Wordpress__Wp_Api_Menus_Menu_LocationsConnection;
+  wordpressWpApiMenusMenusItems?: Maybe<Wordpress__Wp_Api_Menus_Menus_Items>;
+  allWordpressWpApiMenusMenusItems: Wordpress__Wp_Api_Menus_Menus_ItemsConnection;
+  wordpressWpApiMenusMenus?: Maybe<Wordpress__Wp_Api_Menus_Menus>;
+  allWordpressWpApiMenusMenus: Wordpress__Wp_Api_Menus_MenusConnection;
+  wordpressAcfUsers?: Maybe<Wordpress__Acf_Users>;
+  allWordpressAcfUsers: Wordpress__Acf_UsersConnection;
+  wordpressAcfComments?: Maybe<Wordpress__Acf_Comments>;
+  allWordpressAcfComments: Wordpress__Acf_CommentsConnection;
+  wordpressAcfCategories?: Maybe<Wordpress__Acf_Categories>;
+  allWordpressAcfCategories: Wordpress__Acf_CategoriesConnection;
+  wordpressAcfActionMonitor?: Maybe<Wordpress__Acf_Action_Monitor>;
+  allWordpressAcfActionMonitor: Wordpress__Acf_Action_MonitorConnection;
+  wordpressAcfMedia?: Maybe<Wordpress__Acf_Media>;
+  allWordpressAcfMedia: Wordpress__Acf_MediaConnection;
+  wordpressAcfPages?: Maybe<Wordpress__Acf_Pages>;
+  allWordpressAcfPages: Wordpress__Acf_PagesConnection;
+  wordpressAcfPosts?: Maybe<Wordpress__Acf_Posts>;
+  allWordpressAcfPosts: Wordpress__Acf_PostsConnection;
+  wordpressSiteMetadata?: Maybe<Wordpress__Site_Metadata>;
+  allWordpressSiteMetadata: Wordpress__Site_MetadataConnection;
+  siteBuildMetadata?: Maybe<SiteBuildMetadata>;
+  allSiteBuildMetadata: SiteBuildMetadataConnection;
+  sitePlugin?: Maybe<SitePlugin>;
+  allSitePlugin: SitePluginConnection;
+};
+
+
+export type QueryFileArgs = {
+  sourceInstanceName?: Maybe<StringQueryOperatorInput>;
+  absolutePath?: Maybe<StringQueryOperatorInput>;
+  relativePath?: Maybe<StringQueryOperatorInput>;
+  extension?: Maybe<StringQueryOperatorInput>;
+  size?: Maybe<IntQueryOperatorInput>;
+  prettySize?: Maybe<StringQueryOperatorInput>;
+  modifiedTime?: Maybe<DateQueryOperatorInput>;
+  accessTime?: Maybe<DateQueryOperatorInput>;
+  changeTime?: Maybe<DateQueryOperatorInput>;
+  birthTime?: Maybe<DateQueryOperatorInput>;
+  root?: Maybe<StringQueryOperatorInput>;
+  dir?: Maybe<StringQueryOperatorInput>;
+  base?: Maybe<StringQueryOperatorInput>;
+  ext?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  relativeDirectory?: Maybe<StringQueryOperatorInput>;
+  dev?: Maybe<IntQueryOperatorInput>;
+  mode?: Maybe<IntQueryOperatorInput>;
+  nlink?: Maybe<IntQueryOperatorInput>;
+  uid?: Maybe<IntQueryOperatorInput>;
+  gid?: Maybe<IntQueryOperatorInput>;
+  rdev?: Maybe<IntQueryOperatorInput>;
+  ino?: Maybe<FloatQueryOperatorInput>;
+  atimeMs?: Maybe<FloatQueryOperatorInput>;
+  mtimeMs?: Maybe<FloatQueryOperatorInput>;
+  ctimeMs?: Maybe<FloatQueryOperatorInput>;
+  atime?: Maybe<DateQueryOperatorInput>;
+  mtime?: Maybe<DateQueryOperatorInput>;
+  ctime?: Maybe<DateQueryOperatorInput>;
+  birthtime?: Maybe<DateQueryOperatorInput>;
+  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  childImageSharp?: Maybe<ImageSharpFilterInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllFileArgs = {
+  filter?: Maybe<FileFilterInput>;
+  sort?: Maybe<FileSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryDirectoryArgs = {
+  sourceInstanceName?: Maybe<StringQueryOperatorInput>;
+  absolutePath?: Maybe<StringQueryOperatorInput>;
+  relativePath?: Maybe<StringQueryOperatorInput>;
+  extension?: Maybe<StringQueryOperatorInput>;
+  size?: Maybe<IntQueryOperatorInput>;
+  prettySize?: Maybe<StringQueryOperatorInput>;
+  modifiedTime?: Maybe<DateQueryOperatorInput>;
+  accessTime?: Maybe<DateQueryOperatorInput>;
+  changeTime?: Maybe<DateQueryOperatorInput>;
+  birthTime?: Maybe<DateQueryOperatorInput>;
+  root?: Maybe<StringQueryOperatorInput>;
+  dir?: Maybe<StringQueryOperatorInput>;
+  base?: Maybe<StringQueryOperatorInput>;
+  ext?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  relativeDirectory?: Maybe<StringQueryOperatorInput>;
+  dev?: Maybe<IntQueryOperatorInput>;
+  mode?: Maybe<IntQueryOperatorInput>;
+  nlink?: Maybe<IntQueryOperatorInput>;
+  uid?: Maybe<IntQueryOperatorInput>;
+  gid?: Maybe<IntQueryOperatorInput>;
+  rdev?: Maybe<IntQueryOperatorInput>;
+  ino?: Maybe<FloatQueryOperatorInput>;
+  atimeMs?: Maybe<FloatQueryOperatorInput>;
+  mtimeMs?: Maybe<FloatQueryOperatorInput>;
+  ctimeMs?: Maybe<FloatQueryOperatorInput>;
+  atime?: Maybe<DateQueryOperatorInput>;
+  mtime?: Maybe<DateQueryOperatorInput>;
+  ctime?: Maybe<DateQueryOperatorInput>;
+  birthtime?: Maybe<DateQueryOperatorInput>;
+  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllDirectoryArgs = {
+  filter?: Maybe<DirectoryFilterInput>;
+  sort?: Maybe<DirectorySortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QuerySiteArgs = {
+  buildTime?: Maybe<DateQueryOperatorInput>;
+  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllSiteArgs = {
+  filter?: Maybe<SiteFilterInput>;
+  sort?: Maybe<SiteSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QuerySitePageArgs = {
+  path?: Maybe<StringQueryOperatorInput>;
+  component?: Maybe<StringQueryOperatorInput>;
+  internalComponentName?: Maybe<StringQueryOperatorInput>;
+  componentChunkName?: Maybe<StringQueryOperatorInput>;
+  matchPath?: Maybe<StringQueryOperatorInput>;
+  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
+  context?: Maybe<SitePageContextFilterInput>;
+  pluginCreator?: Maybe<SitePluginFilterInput>;
+  pluginCreatorId?: Maybe<StringQueryOperatorInput>;
+  componentPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllSitePageArgs = {
+  filter?: Maybe<SitePageFilterInput>;
+  sort?: Maybe<SitePageSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
 };
 
 
@@ -1135,338 +1579,226 @@ export type QueryAllImageSharpArgs = {
 };
 
 
-export type QueryFileArgs = {
+export type QueryWordpressAcfOptionsArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  sourceInstanceName?: Maybe<StringQueryOperatorInput>;
-  absolutePath?: Maybe<StringQueryOperatorInput>;
-  relativePath?: Maybe<StringQueryOperatorInput>;
-  extension?: Maybe<StringQueryOperatorInput>;
-  size?: Maybe<IntQueryOperatorInput>;
-  prettySize?: Maybe<StringQueryOperatorInput>;
-  modifiedTime?: Maybe<DateQueryOperatorInput>;
-  accessTime?: Maybe<DateQueryOperatorInput>;
-  changeTime?: Maybe<DateQueryOperatorInput>;
-  birthTime?: Maybe<DateQueryOperatorInput>;
-  root?: Maybe<StringQueryOperatorInput>;
-  dir?: Maybe<StringQueryOperatorInput>;
-  base?: Maybe<StringQueryOperatorInput>;
-  ext?: Maybe<StringQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  relativeDirectory?: Maybe<StringQueryOperatorInput>;
-  dev?: Maybe<IntQueryOperatorInput>;
-  mode?: Maybe<IntQueryOperatorInput>;
-  nlink?: Maybe<IntQueryOperatorInput>;
-  uid?: Maybe<IntQueryOperatorInput>;
-  gid?: Maybe<IntQueryOperatorInput>;
-  rdev?: Maybe<IntQueryOperatorInput>;
-  blksize?: Maybe<IntQueryOperatorInput>;
-  ino?: Maybe<IntQueryOperatorInput>;
-  blocks?: Maybe<IntQueryOperatorInput>;
-  atimeMs?: Maybe<FloatQueryOperatorInput>;
-  mtimeMs?: Maybe<FloatQueryOperatorInput>;
-  ctimeMs?: Maybe<FloatQueryOperatorInput>;
-  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
-  atime?: Maybe<DateQueryOperatorInput>;
-  mtime?: Maybe<DateQueryOperatorInput>;
-  ctime?: Maybe<DateQueryOperatorInput>;
-  birthtime?: Maybe<DateQueryOperatorInput>;
+  wordpress_id?: Maybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfOptionsArgs = {
+  filter?: Maybe<Wordpress__Acf_OptionsFilterInput>;
+  sort?: Maybe<Wordpress__Acf_OptionsSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressWpSearchArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
-  childImageSharp?: Maybe<ImageSharpFilterInput>;
+  type?: Maybe<StringQueryOperatorInput>;
+  subtype?: Maybe<StringQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Wp_Search_LinksFilterInput>;
 };
 
 
-export type QueryAllFileArgs = {
-  filter?: Maybe<FileFilterInput>;
-  sort?: Maybe<FileSortInput>;
+export type QueryAllWordpressWpSearchArgs = {
+  filter?: Maybe<Wordpress__Wp_SearchFilterInput>;
+  sort?: Maybe<Wordpress__Wp_SearchSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QuerySitePageArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  internalComponentName?: Maybe<StringQueryOperatorInput>;
-  component?: Maybe<StringQueryOperatorInput>;
-  componentChunkName?: Maybe<StringQueryOperatorInput>;
-  isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
-  context?: Maybe<SitePageContextFilterInput>;
-  pluginCreator?: Maybe<SitePluginFilterInput>;
-  pluginCreatorId?: Maybe<StringQueryOperatorInput>;
-  componentPath?: Maybe<StringQueryOperatorInput>;
-};
-
-
-export type QueryAllSitePageArgs = {
-  filter?: Maybe<SitePageFilterInput>;
-  sort?: Maybe<SitePageSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QuerySitePluginArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  resolve?: Maybe<StringQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  version?: Maybe<StringQueryOperatorInput>;
-  pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
-  nodeAPIs?: Maybe<StringQueryOperatorInput>;
-  ssrAPIs?: Maybe<StringQueryOperatorInput>;
-  pluginFilepath?: Maybe<StringQueryOperatorInput>;
-  packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
-};
-
-
-export type QueryAllSitePluginArgs = {
-  filter?: Maybe<SitePluginFilterInput>;
-  sort?: Maybe<SitePluginSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QuerySiteArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
-  polyfill?: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix?: Maybe<StringQueryOperatorInput>;
-  buildTime?: Maybe<DateQueryOperatorInput>;
-};
-
-
-export type QueryAllSiteArgs = {
-  filter?: Maybe<SiteFilterInput>;
-  sort?: Maybe<SiteSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressSiteMetadataArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  url?: Maybe<StringQueryOperatorInput>;
-  home?: Maybe<StringQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressSiteMetadataArgs = {
-  filter?: Maybe<Wordpress__Site_MetadataFilterInput>;
-  sort?: Maybe<Wordpress__Site_MetadataSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfPostsArgs = {
+export type QueryWordpressWpCommentsArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfPostsArgs = {
-  filter?: Maybe<Wordpress__Acf_PostsFilterInput>;
-  sort?: Maybe<Wordpress__Acf_PostsSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfPagesArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfPagesArgs = {
-  filter?: Maybe<Wordpress__Acf_PagesFilterInput>;
-  sort?: Maybe<Wordpress__Acf_PagesSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfMediaArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfMediaArgs = {
-  filter?: Maybe<Wordpress__Acf_MediaFilterInput>;
-  sort?: Maybe<Wordpress__Acf_MediaSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfActionMonitorArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfActionMonitorArgs = {
-  filter?: Maybe<Wordpress__Acf_Action_MonitorFilterInput>;
-  sort?: Maybe<Wordpress__Acf_Action_MonitorSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfCategoriesArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfCategoriesArgs = {
-  filter?: Maybe<Wordpress__Acf_CategoriesFilterInput>;
-  sort?: Maybe<Wordpress__Acf_CategoriesSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfCommentsArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfCommentsArgs = {
-  filter?: Maybe<Wordpress__Acf_CommentsFilterInput>;
-  sort?: Maybe<Wordpress__Acf_CommentsSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressAcfUsersArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressAcfUsersArgs = {
-  filter?: Maybe<Wordpress__Acf_UsersFilterInput>;
-  sort?: Maybe<Wordpress__Acf_UsersSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressWpApiMenusMenusArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  term_id?: Maybe<IntQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  term_group?: Maybe<IntQueryOperatorInput>;
-  term_taxonomy_id?: Maybe<IntQueryOperatorInput>;
-  taxonomy?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
+  post?: Maybe<IntQueryOperatorInput>;
   wordpress_parent?: Maybe<IntQueryOperatorInput>;
-  count?: Maybe<IntQueryOperatorInput>;
-  filter?: Maybe<StringQueryOperatorInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-  meta?: Maybe<Wordpress__Wp_Api_Menus_MenusMetaFilterInput>;
+  author?: Maybe<IntQueryOperatorInput>;
+  author_name?: Maybe<StringQueryOperatorInput>;
+  author_url?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  content?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  type?: Maybe<StringQueryOperatorInput>;
+  author_avatar_urls?: Maybe<Wordpress__Wp_CommentsAuthor_Avatar_UrlsFilterInput>;
+  _links?: Maybe<Wordpress__Wp_Comments_LinksFilterInput>;
+  path?: Maybe<StringQueryOperatorInput>;
 };
 
 
-export type QueryAllWordpressWpApiMenusMenusArgs = {
-  filter?: Maybe<Wordpress__Wp_Api_Menus_MenusFilterInput>;
-  sort?: Maybe<Wordpress__Wp_Api_Menus_MenusSortInput>;
+export type QueryAllWordpressWpCommentsArgs = {
+  filter?: Maybe<Wordpress__Wp_CommentsFilterInput>;
+  sort?: Maybe<Wordpress__Wp_CommentsSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressWpApiMenusMenusItemsArgs = {
+export type QueryWordpressWpUsersArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   wordpress_id?: Maybe<IntQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
-  count?: Maybe<IntQueryOperatorInput>;
-  items?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsItemsFilterListInput>;
-  meta?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsMetaFilterInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  avatar_urls?: Maybe<Wordpress__Wp_UsersAvatar_UrlsFilterInput>;
+  _links?: Maybe<Wordpress__Wp_Users_LinksFilterInput>;
+  authored_wordpress__PAGE?: Maybe<Wordpress__PageFilterListInput>;
+  authored_wordpress__wp_media?: Maybe<Wordpress__Wp_MediaFilterListInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+  authored_wordpress__POST?: Maybe<Wordpress__PostFilterListInput>;
 };
 
 
-export type QueryAllWordpressWpApiMenusMenusItemsArgs = {
-  filter?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsFilterInput>;
-  sort?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsSortInput>;
+export type QueryAllWordpressWpUsersArgs = {
+  filter?: Maybe<Wordpress__Wp_UsersFilterInput>;
+  sort?: Maybe<Wordpress__Wp_UsersSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressWpApiMenusMenuLocationsArgs = {
+export type QueryWordpressTagArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   wordpress_id?: Maybe<IntQueryOperatorInput>;
-  label?: Maybe<StringQueryOperatorInput>;
-  meta?: Maybe<Wordpress__Wp_Api_Menus_Menu_LocationsMetaFilterInput>;
+  count?: Maybe<IntQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Tag_LinksFilterInput>;
+  taxonomy?: Maybe<Wordpress__Wp_TaxonomiesFilterInput>;
+  path?: Maybe<StringQueryOperatorInput>;
 };
 
 
-export type QueryAllWordpressWpApiMenusMenuLocationsArgs = {
-  filter?: Maybe<Wordpress__Wp_Api_Menus_Menu_LocationsFilterInput>;
-  sort?: Maybe<Wordpress__Wp_Api_Menus_Menu_LocationsSortInput>;
+export type QueryAllWordpressTagArgs = {
+  filter?: Maybe<Wordpress__TagFilterInput>;
+  sort?: Maybe<Wordpress__TagSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressPostArgs = {
+export type QueryWordpressCategoryArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+  count?: Maybe<IntQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  wordpress_parent?: Maybe<IntQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Category_LinksFilterInput>;
+  taxonomy?: Maybe<Wordpress__Wp_TaxonomiesFilterInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressCategoryArgs = {
+  filter?: Maybe<Wordpress__CategoryFilterInput>;
+  sort?: Maybe<Wordpress__CategorySortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressWpTaxonomiesArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  types?: Maybe<StringQueryOperatorInput>;
+  hierarchical?: Maybe<BooleanQueryOperatorInput>;
+  rest_base?: Maybe<StringQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Wp_Taxonomies_LinksFilterInput>;
+};
+
+
+export type QueryAllWordpressWpTaxonomiesArgs = {
+  filter?: Maybe<Wordpress__Wp_TaxonomiesFilterInput>;
+  sort?: Maybe<Wordpress__Wp_TaxonomiesSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressWpStatusesArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  public?: Maybe<BooleanQueryOperatorInput>;
+  queryable?: Maybe<BooleanQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  date_floating?: Maybe<BooleanQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Wp_Statuses_LinksFilterInput>;
+};
+
+
+export type QueryAllWordpressWpStatusesArgs = {
+  filter?: Maybe<Wordpress__Wp_StatusesFilterInput>;
+  sort?: Maybe<Wordpress__Wp_StatusesSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressWpTypesArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  hierarchical?: Maybe<BooleanQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  taxonomies?: Maybe<StringQueryOperatorInput>;
+  rest_base?: Maybe<StringQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Wp_Types_LinksFilterInput>;
+};
+
+
+export type QueryAllWordpressWpTypesArgs = {
+  filter?: Maybe<Wordpress__Wp_TypesFilterInput>;
+  sort?: Maybe<Wordpress__Wp_TypesSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressWpActionMonitorArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1480,26 +1812,54 @@ export type QueryWordpressPostArgs = {
   type?: Maybe<StringQueryOperatorInput>;
   link?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
-  content?: Maybe<StringQueryOperatorInput>;
-  excerpt?: Maybe<StringQueryOperatorInput>;
-  comment_status?: Maybe<StringQueryOperatorInput>;
-  ping_status?: Maybe<StringQueryOperatorInput>;
-  sticky?: Maybe<BooleanQueryOperatorInput>;
   template?: Maybe<StringQueryOperatorInput>;
-  format?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Post_LinksFilterInput>;
-  author?: Maybe<Wordpress__Wp_UsersFilterInput>;
-  tags?: Maybe<Wordpress__TagFilterListInput>;
-  categories?: Maybe<Wordpress__CategoryFilterListInput>;
-  featured_media?: Maybe<Wordpress__Wp_MediaFilterInput>;
-  jetpack_featured_media_url?: Maybe<Wordpress__Wp_MediaFilterInput>;
+  _links?: Maybe<Wordpress__Wp_Action_Monitor_LinksFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
 };
 
 
-export type QueryAllWordpressPostArgs = {
-  filter?: Maybe<Wordpress__PostFilterInput>;
-  sort?: Maybe<Wordpress__PostSortInput>;
+export type QueryAllWordpressWpActionMonitorArgs = {
+  filter?: Maybe<Wordpress__Wp_Action_MonitorFilterInput>;
+  sort?: Maybe<Wordpress__Wp_Action_MonitorSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressWpMediaArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+  date?: Maybe<DateQueryOperatorInput>;
+  modified?: Maybe<DateQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  status?: Maybe<StringQueryOperatorInput>;
+  type?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  comment_status?: Maybe<StringQueryOperatorInput>;
+  ping_status?: Maybe<StringQueryOperatorInput>;
+  template?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  caption?: Maybe<StringQueryOperatorInput>;
+  alt_text?: Maybe<StringQueryOperatorInput>;
+  media_type?: Maybe<StringQueryOperatorInput>;
+  mime_type?: Maybe<StringQueryOperatorInput>;
+  media_details?: Maybe<Wordpress__Wp_MediaMedia_DetailsFilterInput>;
+  source_url?: Maybe<StringQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Wp_Media_LinksFilterInput>;
+  author?: Maybe<Wordpress__Wp_UsersFilterInput>;
+  guid?: Maybe<Wordpress__Wp_MediaFilterInput>;
+  localFile?: Maybe<FileFilterInput>;
+  path?: Maybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressWpMediaArgs = {
+  filter?: Maybe<Wordpress__Wp_MediaFilterInput>;
+  sort?: Maybe<Wordpress__Wp_MediaSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -1540,7 +1900,7 @@ export type QueryAllWordpressPageArgs = {
 };
 
 
-export type QueryWordpressWpMediaArgs = {
+export type QueryWordpressPostArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1554,289 +1914,291 @@ export type QueryWordpressWpMediaArgs = {
   type?: Maybe<StringQueryOperatorInput>;
   link?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
+  content?: Maybe<StringQueryOperatorInput>;
+  excerpt?: Maybe<StringQueryOperatorInput>;
   comment_status?: Maybe<StringQueryOperatorInput>;
   ping_status?: Maybe<StringQueryOperatorInput>;
+  sticky?: Maybe<BooleanQueryOperatorInput>;
   template?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  caption?: Maybe<StringQueryOperatorInput>;
-  alt_text?: Maybe<StringQueryOperatorInput>;
-  media_type?: Maybe<StringQueryOperatorInput>;
-  mime_type?: Maybe<StringQueryOperatorInput>;
-  media_details?: Maybe<Wordpress__Wp_MediaMedia_DetailsFilterInput>;
-  source_url?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Wp_Media_LinksFilterInput>;
+  format?: Maybe<StringQueryOperatorInput>;
+  _links?: Maybe<Wordpress__Post_LinksFilterInput>;
   author?: Maybe<Wordpress__Wp_UsersFilterInput>;
-  localFile?: Maybe<FileFilterInput>;
+  categories?: Maybe<Wordpress__CategoryFilterListInput>;
+  featured_media?: Maybe<Wordpress__Wp_MediaFilterInput>;
+  jetpack_featured_media_url?: Maybe<Wordpress__Wp_MediaFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<Wordpress__TagFilterListInput>;
 };
 
 
-export type QueryAllWordpressWpMediaArgs = {
-  filter?: Maybe<Wordpress__Wp_MediaFilterInput>;
-  sort?: Maybe<Wordpress__Wp_MediaSortInput>;
+export type QueryAllWordpressPostArgs = {
+  filter?: Maybe<Wordpress__PostFilterInput>;
+  sort?: Maybe<Wordpress__PostSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressWpActionMonitorArgs = {
+export type QueryWordpressWpApiMenusMenuLocationsArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   wordpress_id?: Maybe<IntQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  guid?: Maybe<StringQueryOperatorInput>;
-  modified?: Maybe<DateQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  type?: Maybe<StringQueryOperatorInput>;
-  link?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  template?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Wp_Action_Monitor_LinksFilterInput>;
-  path?: Maybe<StringQueryOperatorInput>;
+  label?: Maybe<StringQueryOperatorInput>;
+  meta?: Maybe<Wordpress__Wp_Api_Menus_Menu_LocationsMetaFilterInput>;
 };
 
 
-export type QueryAllWordpressWpActionMonitorArgs = {
-  filter?: Maybe<Wordpress__Wp_Action_MonitorFilterInput>;
-  sort?: Maybe<Wordpress__Wp_Action_MonitorSortInput>;
+export type QueryAllWordpressWpApiMenusMenuLocationsArgs = {
+  filter?: Maybe<Wordpress__Wp_Api_Menus_Menu_LocationsFilterInput>;
+  sort?: Maybe<Wordpress__Wp_Api_Menus_Menu_LocationsSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressWpTypesArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  hierarchical?: Maybe<BooleanQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  taxonomies?: Maybe<StringQueryOperatorInput>;
-  rest_base?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Wp_Types_LinksFilterInput>;
-};
-
-
-export type QueryAllWordpressWpTypesArgs = {
-  filter?: Maybe<Wordpress__Wp_TypesFilterInput>;
-  sort?: Maybe<Wordpress__Wp_TypesSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressWpStatusesArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<StringQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  public?: Maybe<BooleanQueryOperatorInput>;
-  queryable?: Maybe<BooleanQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  date_floating?: Maybe<BooleanQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Wp_Statuses_LinksFilterInput>;
-};
-
-
-export type QueryAllWordpressWpStatusesArgs = {
-  filter?: Maybe<Wordpress__Wp_StatusesFilterInput>;
-  sort?: Maybe<Wordpress__Wp_StatusesSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressWpTaxonomiesArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<StringQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  types?: Maybe<StringQueryOperatorInput>;
-  hierarchical?: Maybe<BooleanQueryOperatorInput>;
-  rest_base?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Wp_Taxonomies_LinksFilterInput>;
-};
-
-
-export type QueryAllWordpressWpTaxonomiesArgs = {
-  filter?: Maybe<Wordpress__Wp_TaxonomiesFilterInput>;
-  sort?: Maybe<Wordpress__Wp_TaxonomiesSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressCategoryArgs = {
+export type QueryWordpressWpApiMenusMenusItemsArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   wordpress_id?: Maybe<IntQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
   count?: Maybe<IntQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  link?: Maybe<StringQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  wordpress_parent?: Maybe<IntQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Category_LinksFilterInput>;
-  taxonomy?: Maybe<Wordpress__Wp_TaxonomiesFilterInput>;
-  path?: Maybe<StringQueryOperatorInput>;
+  items?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsItemsFilterListInput>;
+  meta?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsMetaFilterInput>;
 };
 
 
-export type QueryAllWordpressCategoryArgs = {
-  filter?: Maybe<Wordpress__CategoryFilterInput>;
-  sort?: Maybe<Wordpress__CategorySortInput>;
+export type QueryAllWordpressWpApiMenusMenusItemsArgs = {
+  filter?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsFilterInput>;
+  sort?: Maybe<Wordpress__Wp_Api_Menus_Menus_ItemsSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressTagArgs = {
+export type QueryWordpressWpApiMenusMenusArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
+  term_id?: Maybe<IntQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
+  term_group?: Maybe<IntQueryOperatorInput>;
+  term_taxonomy_id?: Maybe<IntQueryOperatorInput>;
+  taxonomy?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  wordpress_parent?: Maybe<IntQueryOperatorInput>;
   count?: Maybe<IntQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  link?: Maybe<StringQueryOperatorInput>;
+  filter?: Maybe<StringQueryOperatorInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+  meta?: Maybe<Wordpress__Wp_Api_Menus_MenusMetaFilterInput>;
+};
+
+
+export type QueryAllWordpressWpApiMenusMenusArgs = {
+  filter?: Maybe<Wordpress__Wp_Api_Menus_MenusFilterInput>;
+  sort?: Maybe<Wordpress__Wp_Api_Menus_MenusSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfUsersArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfUsersArgs = {
+  filter?: Maybe<Wordpress__Acf_UsersFilterInput>;
+  sort?: Maybe<Wordpress__Acf_UsersSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfCommentsArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfCommentsArgs = {
+  filter?: Maybe<Wordpress__Acf_CommentsFilterInput>;
+  sort?: Maybe<Wordpress__Acf_CommentsSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfCategoriesArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfCategoriesArgs = {
+  filter?: Maybe<Wordpress__Acf_CategoriesFilterInput>;
+  sort?: Maybe<Wordpress__Acf_CategoriesSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfActionMonitorArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfActionMonitorArgs = {
+  filter?: Maybe<Wordpress__Acf_Action_MonitorFilterInput>;
+  sort?: Maybe<Wordpress__Acf_Action_MonitorSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfMediaArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfMediaArgs = {
+  filter?: Maybe<Wordpress__Acf_MediaFilterInput>;
+  sort?: Maybe<Wordpress__Acf_MediaSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfPagesArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfPagesArgs = {
+  filter?: Maybe<Wordpress__Acf_PagesFilterInput>;
+  sort?: Maybe<Wordpress__Acf_PagesSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressAcfPostsArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  wordpress_id?: Maybe<IntQueryOperatorInput>;
+};
+
+
+export type QueryAllWordpressAcfPostsArgs = {
+  filter?: Maybe<Wordpress__Acf_PostsFilterInput>;
+  sort?: Maybe<Wordpress__Acf_PostsSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWordpressSiteMetadataArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
   name?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Tag_LinksFilterInput>;
-  taxonomy?: Maybe<Wordpress__Wp_TaxonomiesFilterInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressTagArgs = {
-  filter?: Maybe<Wordpress__TagFilterInput>;
-  sort?: Maybe<Wordpress__TagSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressWpUsersArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  url?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
-  link?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
-  avatar_urls?: Maybe<Wordpress__Wp_UsersAvatar_UrlsFilterInput>;
-  _links?: Maybe<Wordpress__Wp_Users_LinksFilterInput>;
-  authored_wordpress__PAGE?: Maybe<Wordpress__PageFilterListInput>;
-  authored_wordpress__wp_media?: Maybe<Wordpress__Wp_MediaFilterListInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-  authored_wordpress__POST?: Maybe<Wordpress__PostFilterListInput>;
-};
-
-
-export type QueryAllWordpressWpUsersArgs = {
-  filter?: Maybe<Wordpress__Wp_UsersFilterInput>;
-  sort?: Maybe<Wordpress__Wp_UsersSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressWpCommentsArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-  post?: Maybe<IntQueryOperatorInput>;
-  wordpress_parent?: Maybe<IntQueryOperatorInput>;
-  author?: Maybe<IntQueryOperatorInput>;
-  author_name?: Maybe<StringQueryOperatorInput>;
-  author_url?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<DateQueryOperatorInput>;
-  content?: Maybe<StringQueryOperatorInput>;
-  link?: Maybe<StringQueryOperatorInput>;
-  status?: Maybe<StringQueryOperatorInput>;
-  type?: Maybe<StringQueryOperatorInput>;
-  author_avatar_urls?: Maybe<Wordpress__Wp_CommentsAuthor_Avatar_UrlsFilterInput>;
-  _links?: Maybe<Wordpress__Wp_Comments_LinksFilterInput>;
-  path?: Maybe<StringQueryOperatorInput>;
-};
-
-
-export type QueryAllWordpressWpCommentsArgs = {
-  filter?: Maybe<Wordpress__Wp_CommentsFilterInput>;
-  sort?: Maybe<Wordpress__Wp_CommentsSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryWordpressWpSearchArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<IntQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
-  type?: Maybe<StringQueryOperatorInput>;
-  subtype?: Maybe<StringQueryOperatorInput>;
-  _links?: Maybe<Wordpress__Wp_Search_LinksFilterInput>;
+  home?: Maybe<StringQueryOperatorInput>;
 };
 
 
-export type QueryAllWordpressWpSearchArgs = {
-  filter?: Maybe<Wordpress__Wp_SearchFilterInput>;
-  sort?: Maybe<Wordpress__Wp_SearchSortInput>;
+export type QueryAllWordpressSiteMetadataArgs = {
+  filter?: Maybe<Wordpress__Site_MetadataFilterInput>;
+  sort?: Maybe<Wordpress__Site_MetadataSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 
-export type QueryWordpressAcfOptionsArgs = {
+export type QuerySiteBuildMetadataArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  wordpress_id?: Maybe<StringQueryOperatorInput>;
+  buildTime?: Maybe<DateQueryOperatorInput>;
 };
 
 
-export type QueryAllWordpressAcfOptionsArgs = {
-  filter?: Maybe<Wordpress__Acf_OptionsFilterInput>;
-  sort?: Maybe<Wordpress__Acf_OptionsSortInput>;
+export type QueryAllSiteBuildMetadataArgs = {
+  filter?: Maybe<SiteBuildMetadataFilterInput>;
+  sort?: Maybe<SiteBuildMetadataSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QuerySitePluginArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  resolve?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  version?: Maybe<StringQueryOperatorInput>;
+  pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
+  nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
+  ssrAPIs?: Maybe<StringQueryOperatorInput>;
+  pluginFilepath?: Maybe<StringQueryOperatorInput>;
+  packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
+};
+
+
+export type QueryAllSitePluginArgs = {
+  filter?: Maybe<SitePluginFilterInput>;
+  sort?: Maybe<SitePluginSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
 
 export type Site = Node & {
   __typename?: 'Site';
+  buildTime?: Maybe<Scalars['Date']>;
+  siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
-  siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Int']>;
-  host?: Maybe<Scalars['String']>;
-  polyfill?: Maybe<Scalars['Boolean']>;
-  pathPrefix?: Maybe<Scalars['String']>;
-  buildTime?: Maybe<Scalars['Date']>;
 };
 
 
@@ -1847,36 +2209,53 @@ export type SiteBuildTimeArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type SiteConnection = {
-  __typename?: 'SiteConnection';
+export type SiteBuildMetadata = Node & {
+  __typename?: 'SiteBuildMetadata';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  buildTime?: Maybe<Scalars['Date']>;
+};
+
+
+export type SiteBuildMetadataBuildTimeArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SiteBuildMetadataConnection = {
+  __typename?: 'SiteBuildMetadataConnection';
   totalCount: Scalars['Int'];
-  edges: Array<SiteEdge>;
-  nodes: Array<Site>;
+  edges: Array<SiteBuildMetadataEdge>;
+  nodes: Array<SiteBuildMetadata>;
   pageInfo: PageInfo;
   distinct: Array<Scalars['String']>;
-  group: Array<SiteGroupConnection>;
+  group: Array<SiteBuildMetadataGroupConnection>;
 };
 
 
-export type SiteConnectionDistinctArgs = {
-  field: SiteFieldsEnum;
+export type SiteBuildMetadataConnectionDistinctArgs = {
+  field: SiteBuildMetadataFieldsEnum;
 };
 
 
-export type SiteConnectionGroupArgs = {
+export type SiteBuildMetadataConnectionGroupArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
-  field: SiteFieldsEnum;
+  field: SiteBuildMetadataFieldsEnum;
 };
 
-export type SiteEdge = {
-  __typename?: 'SiteEdge';
-  next?: Maybe<Site>;
-  node: Site;
-  previous?: Maybe<Site>;
+export type SiteBuildMetadataEdge = {
+  __typename?: 'SiteBuildMetadataEdge';
+  next?: Maybe<SiteBuildMetadata>;
+  node: SiteBuildMetadata;
+  previous?: Maybe<SiteBuildMetadata>;
 };
 
-export enum SiteFieldsEnum {
+export enum SiteBuildMetadataFieldsEnum {
   Id = 'id',
   ParentId = 'parent___id',
   ParentParentId = 'parent___parent___id',
@@ -1963,25 +2342,164 @@ export enum SiteFieldsEnum {
   InternalMediaType = 'internal___mediaType',
   InternalOwner = 'internal___owner',
   InternalType = 'internal___type',
-  SiteMetadataTitle = 'siteMetadata___title',
-  Port = 'port',
-  Host = 'host',
-  Polyfill = 'polyfill',
-  PathPrefix = 'pathPrefix',
   BuildTime = 'buildTime'
 }
 
-export type SiteFilterInput = {
+export type SiteBuildMetadataFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
+  buildTime?: Maybe<DateQueryOperatorInput>;
+};
+
+export type SiteBuildMetadataGroupConnection = {
+  __typename?: 'SiteBuildMetadataGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<SiteBuildMetadataEdge>;
+  nodes: Array<SiteBuildMetadata>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type SiteBuildMetadataSortInput = {
+  fields?: Maybe<Array<Maybe<SiteBuildMetadataFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type SiteConnection = {
+  __typename?: 'SiteConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<SiteEdge>;
+  nodes: Array<Site>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<SiteGroupConnection>;
+};
+
+
+export type SiteConnectionDistinctArgs = {
+  field: SiteFieldsEnum;
+};
+
+
+export type SiteConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: SiteFieldsEnum;
+};
+
+export type SiteEdge = {
+  __typename?: 'SiteEdge';
+  next?: Maybe<Site>;
+  node: Site;
+  previous?: Maybe<Site>;
+};
+
+export enum SiteFieldsEnum {
+  BuildTime = 'buildTime',
+  SiteMetadataTitle = 'siteMetadata___title',
+  SiteMetadataDescription = 'siteMetadata___description',
+  Port = 'port',
+  Host = 'host',
+  Id = 'id',
+  ParentId = 'parent___id',
+  ParentParentId = 'parent___parent___id',
+  ParentParentParentId = 'parent___parent___parent___id',
+  ParentParentParentChildren = 'parent___parent___parent___children',
+  ParentParentChildren = 'parent___parent___children',
+  ParentParentChildrenId = 'parent___parent___children___id',
+  ParentParentChildrenChildren = 'parent___parent___children___children',
+  ParentParentInternalContent = 'parent___parent___internal___content',
+  ParentParentInternalContentDigest = 'parent___parent___internal___contentDigest',
+  ParentParentInternalDescription = 'parent___parent___internal___description',
+  ParentParentInternalFieldOwners = 'parent___parent___internal___fieldOwners',
+  ParentParentInternalIgnoreType = 'parent___parent___internal___ignoreType',
+  ParentParentInternalMediaType = 'parent___parent___internal___mediaType',
+  ParentParentInternalOwner = 'parent___parent___internal___owner',
+  ParentParentInternalType = 'parent___parent___internal___type',
+  ParentChildren = 'parent___children',
+  ParentChildrenId = 'parent___children___id',
+  ParentChildrenParentId = 'parent___children___parent___id',
+  ParentChildrenParentChildren = 'parent___children___parent___children',
+  ParentChildrenChildren = 'parent___children___children',
+  ParentChildrenChildrenId = 'parent___children___children___id',
+  ParentChildrenChildrenChildren = 'parent___children___children___children',
+  ParentChildrenInternalContent = 'parent___children___internal___content',
+  ParentChildrenInternalContentDigest = 'parent___children___internal___contentDigest',
+  ParentChildrenInternalDescription = 'parent___children___internal___description',
+  ParentChildrenInternalFieldOwners = 'parent___children___internal___fieldOwners',
+  ParentChildrenInternalIgnoreType = 'parent___children___internal___ignoreType',
+  ParentChildrenInternalMediaType = 'parent___children___internal___mediaType',
+  ParentChildrenInternalOwner = 'parent___children___internal___owner',
+  ParentChildrenInternalType = 'parent___children___internal___type',
+  ParentInternalContent = 'parent___internal___content',
+  ParentInternalContentDigest = 'parent___internal___contentDigest',
+  ParentInternalDescription = 'parent___internal___description',
+  ParentInternalFieldOwners = 'parent___internal___fieldOwners',
+  ParentInternalIgnoreType = 'parent___internal___ignoreType',
+  ParentInternalMediaType = 'parent___internal___mediaType',
+  ParentInternalOwner = 'parent___internal___owner',
+  ParentInternalType = 'parent___internal___type',
+  Children = 'children',
+  ChildrenId = 'children___id',
+  ChildrenParentId = 'children___parent___id',
+  ChildrenParentParentId = 'children___parent___parent___id',
+  ChildrenParentParentChildren = 'children___parent___parent___children',
+  ChildrenParentChildren = 'children___parent___children',
+  ChildrenParentChildrenId = 'children___parent___children___id',
+  ChildrenParentChildrenChildren = 'children___parent___children___children',
+  ChildrenParentInternalContent = 'children___parent___internal___content',
+  ChildrenParentInternalContentDigest = 'children___parent___internal___contentDigest',
+  ChildrenParentInternalDescription = 'children___parent___internal___description',
+  ChildrenParentInternalFieldOwners = 'children___parent___internal___fieldOwners',
+  ChildrenParentInternalIgnoreType = 'children___parent___internal___ignoreType',
+  ChildrenParentInternalMediaType = 'children___parent___internal___mediaType',
+  ChildrenParentInternalOwner = 'children___parent___internal___owner',
+  ChildrenParentInternalType = 'children___parent___internal___type',
+  ChildrenChildren = 'children___children',
+  ChildrenChildrenId = 'children___children___id',
+  ChildrenChildrenParentId = 'children___children___parent___id',
+  ChildrenChildrenParentChildren = 'children___children___parent___children',
+  ChildrenChildrenChildren = 'children___children___children',
+  ChildrenChildrenChildrenId = 'children___children___children___id',
+  ChildrenChildrenChildrenChildren = 'children___children___children___children',
+  ChildrenChildrenInternalContent = 'children___children___internal___content',
+  ChildrenChildrenInternalContentDigest = 'children___children___internal___contentDigest',
+  ChildrenChildrenInternalDescription = 'children___children___internal___description',
+  ChildrenChildrenInternalFieldOwners = 'children___children___internal___fieldOwners',
+  ChildrenChildrenInternalIgnoreType = 'children___children___internal___ignoreType',
+  ChildrenChildrenInternalMediaType = 'children___children___internal___mediaType',
+  ChildrenChildrenInternalOwner = 'children___children___internal___owner',
+  ChildrenChildrenInternalType = 'children___children___internal___type',
+  ChildrenInternalContent = 'children___internal___content',
+  ChildrenInternalContentDigest = 'children___internal___contentDigest',
+  ChildrenInternalDescription = 'children___internal___description',
+  ChildrenInternalFieldOwners = 'children___internal___fieldOwners',
+  ChildrenInternalIgnoreType = 'children___internal___ignoreType',
+  ChildrenInternalMediaType = 'children___internal___mediaType',
+  ChildrenInternalOwner = 'children___internal___owner',
+  ChildrenInternalType = 'children___internal___type',
+  InternalContent = 'internal___content',
+  InternalContentDigest = 'internal___contentDigest',
+  InternalDescription = 'internal___description',
+  InternalFieldOwners = 'internal___fieldOwners',
+  InternalIgnoreType = 'internal___ignoreType',
+  InternalMediaType = 'internal___mediaType',
+  InternalOwner = 'internal___owner',
+  InternalType = 'internal___type'
+}
+
+export type SiteFilterInput = {
+  buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
-  polyfill?: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix?: Maybe<StringQueryOperatorInput>;
-  buildTime?: Maybe<DateQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type SiteGroupConnection = {
@@ -1996,19 +2514,20 @@ export type SiteGroupConnection = {
 
 export type SitePage = Node & {
   __typename?: 'SitePage';
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-  path?: Maybe<Scalars['String']>;
-  internalComponentName?: Maybe<Scalars['String']>;
-  component?: Maybe<Scalars['String']>;
-  componentChunkName?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
+  component: Scalars['String'];
+  internalComponentName: Scalars['String'];
+  componentChunkName: Scalars['String'];
+  matchPath?: Maybe<Scalars['String']>;
   isCreatedByStatefulCreatePages?: Maybe<Scalars['Boolean']>;
   context?: Maybe<SitePageContext>;
   pluginCreator?: Maybe<SitePlugin>;
   pluginCreatorId?: Maybe<Scalars['String']>;
   componentPath?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
 };
 
 export type SitePageConnection = {
@@ -2068,6 +2587,110 @@ export type SitePageEdge = {
 };
 
 export enum SitePageFieldsEnum {
+  Path = 'path',
+  Component = 'component',
+  InternalComponentName = 'internalComponentName',
+  ComponentChunkName = 'componentChunkName',
+  MatchPath = 'matchPath',
+  IsCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  ContextId = 'context___id',
+  ContextPageNumber = 'context___pageNumber',
+  ContextHumanPageNumber = 'context___humanPageNumber',
+  ContextSkip = 'context___skip',
+  ContextLimit = 'context___limit',
+  ContextNumberOfPages = 'context___numberOfPages',
+  ContextPreviousPagePath = 'context___previousPagePath',
+  ContextNextPagePath = 'context___nextPagePath',
+  ContextName = 'context___name',
+  ContextSlug = 'context___slug',
+  PluginCreatorId = 'pluginCreator___id',
+  PluginCreatorParentId = 'pluginCreator___parent___id',
+  PluginCreatorParentParentId = 'pluginCreator___parent___parent___id',
+  PluginCreatorParentParentChildren = 'pluginCreator___parent___parent___children',
+  PluginCreatorParentChildren = 'pluginCreator___parent___children',
+  PluginCreatorParentChildrenId = 'pluginCreator___parent___children___id',
+  PluginCreatorParentChildrenChildren = 'pluginCreator___parent___children___children',
+  PluginCreatorParentInternalContent = 'pluginCreator___parent___internal___content',
+  PluginCreatorParentInternalContentDigest = 'pluginCreator___parent___internal___contentDigest',
+  PluginCreatorParentInternalDescription = 'pluginCreator___parent___internal___description',
+  PluginCreatorParentInternalFieldOwners = 'pluginCreator___parent___internal___fieldOwners',
+  PluginCreatorParentInternalIgnoreType = 'pluginCreator___parent___internal___ignoreType',
+  PluginCreatorParentInternalMediaType = 'pluginCreator___parent___internal___mediaType',
+  PluginCreatorParentInternalOwner = 'pluginCreator___parent___internal___owner',
+  PluginCreatorParentInternalType = 'pluginCreator___parent___internal___type',
+  PluginCreatorChildren = 'pluginCreator___children',
+  PluginCreatorChildrenId = 'pluginCreator___children___id',
+  PluginCreatorChildrenParentId = 'pluginCreator___children___parent___id',
+  PluginCreatorChildrenParentChildren = 'pluginCreator___children___parent___children',
+  PluginCreatorChildrenChildren = 'pluginCreator___children___children',
+  PluginCreatorChildrenChildrenId = 'pluginCreator___children___children___id',
+  PluginCreatorChildrenChildrenChildren = 'pluginCreator___children___children___children',
+  PluginCreatorChildrenInternalContent = 'pluginCreator___children___internal___content',
+  PluginCreatorChildrenInternalContentDigest = 'pluginCreator___children___internal___contentDigest',
+  PluginCreatorChildrenInternalDescription = 'pluginCreator___children___internal___description',
+  PluginCreatorChildrenInternalFieldOwners = 'pluginCreator___children___internal___fieldOwners',
+  PluginCreatorChildrenInternalIgnoreType = 'pluginCreator___children___internal___ignoreType',
+  PluginCreatorChildrenInternalMediaType = 'pluginCreator___children___internal___mediaType',
+  PluginCreatorChildrenInternalOwner = 'pluginCreator___children___internal___owner',
+  PluginCreatorChildrenInternalType = 'pluginCreator___children___internal___type',
+  PluginCreatorInternalContent = 'pluginCreator___internal___content',
+  PluginCreatorInternalContentDigest = 'pluginCreator___internal___contentDigest',
+  PluginCreatorInternalDescription = 'pluginCreator___internal___description',
+  PluginCreatorInternalFieldOwners = 'pluginCreator___internal___fieldOwners',
+  PluginCreatorInternalIgnoreType = 'pluginCreator___internal___ignoreType',
+  PluginCreatorInternalMediaType = 'pluginCreator___internal___mediaType',
+  PluginCreatorInternalOwner = 'pluginCreator___internal___owner',
+  PluginCreatorInternalType = 'pluginCreator___internal___type',
+  PluginCreatorResolve = 'pluginCreator___resolve',
+  PluginCreatorName = 'pluginCreator___name',
+  PluginCreatorVersion = 'pluginCreator___version',
+  PluginCreatorPluginOptionsName = 'pluginCreator___pluginOptions___name',
+  PluginCreatorPluginOptionsShortName = 'pluginCreator___pluginOptions___short_name',
+  PluginCreatorPluginOptionsStartUrl = 'pluginCreator___pluginOptions___start_url',
+  PluginCreatorPluginOptionsBackgroundColor = 'pluginCreator___pluginOptions___background_color',
+  PluginCreatorPluginOptionsThemeColor = 'pluginCreator___pluginOptions___theme_color',
+  PluginCreatorPluginOptionsDisplay = 'pluginCreator___pluginOptions___display',
+  PluginCreatorPluginOptionsIcon = 'pluginCreator___pluginOptions___icon',
+  PluginCreatorPluginOptionsCacheBustingMode = 'pluginCreator___pluginOptions___cache_busting_mode',
+  PluginCreatorPluginOptionsIncludeFavicon = 'pluginCreator___pluginOptions___include_favicon',
+  PluginCreatorPluginOptionsLegacy = 'pluginCreator___pluginOptions___legacy',
+  PluginCreatorPluginOptionsThemeColorInHead = 'pluginCreator___pluginOptions___theme_color_in_head',
+  PluginCreatorPluginOptionsWorkboxConfigGlobPatterns = 'pluginCreator___pluginOptions___workboxConfig___globPatterns',
+  PluginCreatorPluginOptions = 'pluginCreator___pluginOptions____',
+  PluginCreatorPluginOptionsIsTsx = 'pluginCreator___pluginOptions___isTSX',
+  PluginCreatorPluginOptionsJsxPragma = 'pluginCreator___pluginOptions___jsxPragma',
+  PluginCreatorPluginOptionsAllExtensions = 'pluginCreator___pluginOptions___allExtensions',
+  PluginCreatorPluginOptionsBaseUrl = 'pluginCreator___pluginOptions___baseUrl',
+  PluginCreatorPluginOptionsHostingWpcom = 'pluginCreator___pluginOptions___hostingWPCOM',
+  PluginCreatorPluginOptionsProtocol = 'pluginCreator___pluginOptions___protocol',
+  PluginCreatorPluginOptionsUseAcf = 'pluginCreator___pluginOptions___useACF',
+  PluginCreatorPluginOptionsVerboseOutput = 'pluginCreator___pluginOptions___verboseOutput',
+  PluginCreatorPluginOptionsDevelop = 'pluginCreator___pluginOptions___develop',
+  PluginCreatorPluginOptionsPurgeOnly = 'pluginCreator___pluginOptions___purgeOnly',
+  PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
+  PluginCreatorPluginOptionsPathCheck = 'pluginCreator___pluginOptions___pathCheck',
+  PluginCreatorNodeApIs = 'pluginCreator___nodeAPIs',
+  PluginCreatorBrowserApIs = 'pluginCreator___browserAPIs',
+  PluginCreatorSsrApIs = 'pluginCreator___ssrAPIs',
+  PluginCreatorPluginFilepath = 'pluginCreator___pluginFilepath',
+  PluginCreatorPackageJsonName = 'pluginCreator___packageJson___name',
+  PluginCreatorPackageJsonDescription = 'pluginCreator___packageJson___description',
+  PluginCreatorPackageJsonVersion = 'pluginCreator___packageJson___version',
+  PluginCreatorPackageJsonMain = 'pluginCreator___packageJson___main',
+  PluginCreatorPackageJsonAuthor = 'pluginCreator___packageJson___author',
+  PluginCreatorPackageJsonLicense = 'pluginCreator___packageJson___license',
+  PluginCreatorPackageJsonDependencies = 'pluginCreator___packageJson___dependencies',
+  PluginCreatorPackageJsonDependenciesName = 'pluginCreator___packageJson___dependencies___name',
+  PluginCreatorPackageJsonDependenciesVersion = 'pluginCreator___packageJson___dependencies___version',
+  PluginCreatorPackageJsonDevDependencies = 'pluginCreator___packageJson___devDependencies',
+  PluginCreatorPackageJsonDevDependenciesName = 'pluginCreator___packageJson___devDependencies___name',
+  PluginCreatorPackageJsonDevDependenciesVersion = 'pluginCreator___packageJson___devDependencies___version',
+  PluginCreatorPackageJsonPeerDependencies = 'pluginCreator___packageJson___peerDependencies',
+  PluginCreatorPackageJsonPeerDependenciesName = 'pluginCreator___packageJson___peerDependencies___name',
+  PluginCreatorPackageJsonPeerDependenciesVersion = 'pluginCreator___packageJson___peerDependencies___version',
+  PluginCreatorPackageJsonKeywords = 'pluginCreator___packageJson___keywords',
+  PluginCreatorId = 'pluginCreatorId',
+  ComponentPath = 'componentPath',
   Id = 'id',
   ParentId = 'parent___id',
   ParentParentId = 'parent___parent___id',
@@ -2153,112 +2776,24 @@ export enum SitePageFieldsEnum {
   InternalIgnoreType = 'internal___ignoreType',
   InternalMediaType = 'internal___mediaType',
   InternalOwner = 'internal___owner',
-  InternalType = 'internal___type',
-  Path = 'path',
-  InternalComponentName = 'internalComponentName',
-  Component = 'component',
-  ComponentChunkName = 'componentChunkName',
-  IsCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  ContextId = 'context___id',
-  ContextPageNumber = 'context___pageNumber',
-  ContextHumanPageNumber = 'context___humanPageNumber',
-  ContextSkip = 'context___skip',
-  ContextLimit = 'context___limit',
-  ContextNumberOfPages = 'context___numberOfPages',
-  ContextPreviousPagePath = 'context___previousPagePath',
-  ContextNextPagePath = 'context___nextPagePath',
-  ContextName = 'context___name',
-  ContextSlug = 'context___slug',
-  PluginCreatorId = 'pluginCreator___id',
-  PluginCreatorParentId = 'pluginCreator___parent___id',
-  PluginCreatorParentParentId = 'pluginCreator___parent___parent___id',
-  PluginCreatorParentParentChildren = 'pluginCreator___parent___parent___children',
-  PluginCreatorParentChildren = 'pluginCreator___parent___children',
-  PluginCreatorParentChildrenId = 'pluginCreator___parent___children___id',
-  PluginCreatorParentChildrenChildren = 'pluginCreator___parent___children___children',
-  PluginCreatorParentInternalContent = 'pluginCreator___parent___internal___content',
-  PluginCreatorParentInternalContentDigest = 'pluginCreator___parent___internal___contentDigest',
-  PluginCreatorParentInternalDescription = 'pluginCreator___parent___internal___description',
-  PluginCreatorParentInternalFieldOwners = 'pluginCreator___parent___internal___fieldOwners',
-  PluginCreatorParentInternalIgnoreType = 'pluginCreator___parent___internal___ignoreType',
-  PluginCreatorParentInternalMediaType = 'pluginCreator___parent___internal___mediaType',
-  PluginCreatorParentInternalOwner = 'pluginCreator___parent___internal___owner',
-  PluginCreatorParentInternalType = 'pluginCreator___parent___internal___type',
-  PluginCreatorChildren = 'pluginCreator___children',
-  PluginCreatorChildrenId = 'pluginCreator___children___id',
-  PluginCreatorChildrenParentId = 'pluginCreator___children___parent___id',
-  PluginCreatorChildrenParentChildren = 'pluginCreator___children___parent___children',
-  PluginCreatorChildrenChildren = 'pluginCreator___children___children',
-  PluginCreatorChildrenChildrenId = 'pluginCreator___children___children___id',
-  PluginCreatorChildrenChildrenChildren = 'pluginCreator___children___children___children',
-  PluginCreatorChildrenInternalContent = 'pluginCreator___children___internal___content',
-  PluginCreatorChildrenInternalContentDigest = 'pluginCreator___children___internal___contentDigest',
-  PluginCreatorChildrenInternalDescription = 'pluginCreator___children___internal___description',
-  PluginCreatorChildrenInternalFieldOwners = 'pluginCreator___children___internal___fieldOwners',
-  PluginCreatorChildrenInternalIgnoreType = 'pluginCreator___children___internal___ignoreType',
-  PluginCreatorChildrenInternalMediaType = 'pluginCreator___children___internal___mediaType',
-  PluginCreatorChildrenInternalOwner = 'pluginCreator___children___internal___owner',
-  PluginCreatorChildrenInternalType = 'pluginCreator___children___internal___type',
-  PluginCreatorInternalContent = 'pluginCreator___internal___content',
-  PluginCreatorInternalContentDigest = 'pluginCreator___internal___contentDigest',
-  PluginCreatorInternalDescription = 'pluginCreator___internal___description',
-  PluginCreatorInternalFieldOwners = 'pluginCreator___internal___fieldOwners',
-  PluginCreatorInternalIgnoreType = 'pluginCreator___internal___ignoreType',
-  PluginCreatorInternalMediaType = 'pluginCreator___internal___mediaType',
-  PluginCreatorInternalOwner = 'pluginCreator___internal___owner',
-  PluginCreatorInternalType = 'pluginCreator___internal___type',
-  PluginCreatorResolve = 'pluginCreator___resolve',
-  PluginCreatorName = 'pluginCreator___name',
-  PluginCreatorVersion = 'pluginCreator___version',
-  PluginCreatorPluginOptionsIsTsx = 'pluginCreator___pluginOptions___isTSX',
-  PluginCreatorPluginOptionsJsxPragma = 'pluginCreator___pluginOptions___jsxPragma',
-  PluginCreatorPluginOptionsAllExtensions = 'pluginCreator___pluginOptions___allExtensions',
-  PluginCreatorPluginOptionsBaseUrl = 'pluginCreator___pluginOptions___baseUrl',
-  PluginCreatorPluginOptionsHostingWpcom = 'pluginCreator___pluginOptions___hostingWPCOM',
-  PluginCreatorPluginOptionsProtocol = 'pluginCreator___pluginOptions___protocol',
-  PluginCreatorPluginOptionsUseAcf = 'pluginCreator___pluginOptions___useACF',
-  PluginCreatorPluginOptionsVerboseOutput = 'pluginCreator___pluginOptions___verboseOutput',
-  PluginCreatorPluginOptionsDevelop = 'pluginCreator___pluginOptions___develop',
-  PluginCreatorPluginOptionsPurgeOnly = 'pluginCreator___pluginOptions___purgeOnly',
-  PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
-  PluginCreatorPluginOptionsPathCheck = 'pluginCreator___pluginOptions___pathCheck',
-  PluginCreatorNodeApIs = 'pluginCreator___nodeAPIs',
-  PluginCreatorSsrApIs = 'pluginCreator___ssrAPIs',
-  PluginCreatorPluginFilepath = 'pluginCreator___pluginFilepath',
-  PluginCreatorPackageJsonName = 'pluginCreator___packageJson___name',
-  PluginCreatorPackageJsonDescription = 'pluginCreator___packageJson___description',
-  PluginCreatorPackageJsonVersion = 'pluginCreator___packageJson___version',
-  PluginCreatorPackageJsonMain = 'pluginCreator___packageJson___main',
-  PluginCreatorPackageJsonAuthor = 'pluginCreator___packageJson___author',
-  PluginCreatorPackageJsonLicense = 'pluginCreator___packageJson___license',
-  PluginCreatorPackageJsonDependencies = 'pluginCreator___packageJson___dependencies',
-  PluginCreatorPackageJsonDependenciesName = 'pluginCreator___packageJson___dependencies___name',
-  PluginCreatorPackageJsonDependenciesVersion = 'pluginCreator___packageJson___dependencies___version',
-  PluginCreatorPackageJsonDevDependencies = 'pluginCreator___packageJson___devDependencies',
-  PluginCreatorPackageJsonDevDependenciesName = 'pluginCreator___packageJson___devDependencies___name',
-  PluginCreatorPackageJsonDevDependenciesVersion = 'pluginCreator___packageJson___devDependencies___version',
-  PluginCreatorPackageJsonPeerDependencies = 'pluginCreator___packageJson___peerDependencies',
-  PluginCreatorPackageJsonPeerDependenciesName = 'pluginCreator___packageJson___peerDependencies___name',
-  PluginCreatorPackageJsonPeerDependenciesVersion = 'pluginCreator___packageJson___peerDependencies___version',
-  PluginCreatorPackageJsonKeywords = 'pluginCreator___packageJson___keywords',
-  PluginCreatorId = 'pluginCreatorId',
-  ComponentPath = 'componentPath'
+  InternalType = 'internal___type'
 }
 
 export type SitePageFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
-  internalComponentName?: Maybe<StringQueryOperatorInput>;
   component?: Maybe<StringQueryOperatorInput>;
+  internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
+  matchPath?: Maybe<StringQueryOperatorInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type SitePageGroupConnection = {
@@ -2287,6 +2822,7 @@ export type SitePlugin = Node & {
   version?: Maybe<Scalars['String']>;
   pluginOptions?: Maybe<SitePluginPluginOptions>;
   nodeAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  browserAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   ssrAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   pluginFilepath?: Maybe<Scalars['String']>;
   packageJson?: Maybe<SitePluginPackageJson>;
@@ -2411,6 +2947,19 @@ export enum SitePluginFieldsEnum {
   Resolve = 'resolve',
   Name = 'name',
   Version = 'version',
+  PluginOptionsName = 'pluginOptions___name',
+  PluginOptionsShortName = 'pluginOptions___short_name',
+  PluginOptionsStartUrl = 'pluginOptions___start_url',
+  PluginOptionsBackgroundColor = 'pluginOptions___background_color',
+  PluginOptionsThemeColor = 'pluginOptions___theme_color',
+  PluginOptionsDisplay = 'pluginOptions___display',
+  PluginOptionsIcon = 'pluginOptions___icon',
+  PluginOptionsCacheBustingMode = 'pluginOptions___cache_busting_mode',
+  PluginOptionsIncludeFavicon = 'pluginOptions___include_favicon',
+  PluginOptionsLegacy = 'pluginOptions___legacy',
+  PluginOptionsThemeColorInHead = 'pluginOptions___theme_color_in_head',
+  PluginOptionsWorkboxConfigGlobPatterns = 'pluginOptions___workboxConfig___globPatterns',
+  PluginOptions = 'pluginOptions____',
   PluginOptionsIsTsx = 'pluginOptions___isTSX',
   PluginOptionsJsxPragma = 'pluginOptions___jsxPragma',
   PluginOptionsAllExtensions = 'pluginOptions___allExtensions',
@@ -2428,6 +2977,7 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPath = 'pluginOptions___path',
   PluginOptionsPathCheck = 'pluginOptions___pathCheck',
   NodeApIs = 'nodeAPIs',
+  BrowserApIs = 'browserAPIs',
   SsrApIs = 'ssrAPIs',
   PluginFilepath = 'pluginFilepath',
   PackageJsonName = 'packageJson___name',
@@ -2458,6 +3008,7 @@ export type SitePluginFilterInput = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -2547,6 +3098,19 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 
 export type SitePluginPluginOptions = {
   __typename?: 'SitePluginPluginOptions';
+  name?: Maybe<Scalars['String']>;
+  short_name?: Maybe<Scalars['String']>;
+  start_url?: Maybe<Scalars['String']>;
+  background_color?: Maybe<Scalars['String']>;
+  theme_color?: Maybe<Scalars['String']>;
+  display?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  cache_busting_mode?: Maybe<Scalars['String']>;
+  include_favicon?: Maybe<Scalars['Boolean']>;
+  legacy?: Maybe<Scalars['Boolean']>;
+  theme_color_in_head?: Maybe<Scalars['Boolean']>;
+  workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfig>;
+  _?: Maybe<Scalars['String']>;
   isTSX?: Maybe<Scalars['Boolean']>;
   jsxPragma?: Maybe<Scalars['String']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
@@ -2674,6 +3238,19 @@ export type SitePluginPluginOptionsEnvProductionPolicyFilterListInput = {
 };
 
 export type SitePluginPluginOptionsFilterInput = {
+  name?: Maybe<StringQueryOperatorInput>;
+  short_name?: Maybe<StringQueryOperatorInput>;
+  start_url?: Maybe<StringQueryOperatorInput>;
+  background_color?: Maybe<StringQueryOperatorInput>;
+  theme_color?: Maybe<StringQueryOperatorInput>;
+  display?: Maybe<StringQueryOperatorInput>;
+  icon?: Maybe<StringQueryOperatorInput>;
+  cache_busting_mode?: Maybe<StringQueryOperatorInput>;
+  include_favicon?: Maybe<BooleanQueryOperatorInput>;
+  legacy?: Maybe<BooleanQueryOperatorInput>;
+  theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
+  workboxConfig?: Maybe<SitePluginPluginOptionsWorkboxConfigFilterInput>;
+  _?: Maybe<StringQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
   jsxPragma?: Maybe<StringQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
@@ -2689,6 +3266,15 @@ export type SitePluginPluginOptionsFilterInput = {
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 
+export type SitePluginPluginOptionsWorkboxConfig = {
+  __typename?: 'SitePluginPluginOptionsWorkboxConfig';
+  globPatterns?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type SitePluginPluginOptionsWorkboxConfigFilterInput = {
+  globPatterns?: Maybe<StringQueryOperatorInput>;
+};
+
 export type SitePluginSortInput = {
   fields?: Maybe<Array<Maybe<SitePluginFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
@@ -2697,10 +3283,12 @@ export type SitePluginSortInput = {
 export type SiteSiteMetadata = {
   __typename?: 'SiteSiteMetadata';
   title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 export type SiteSiteMetadataFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SiteSortInput = {
@@ -4735,7 +5323,6 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressWpMediaInternalType = 'author___authored_wordpress__wp_media___internal___type',
   AuthorAuthoredWordpressWpMediaWordpressId = 'author___authored_wordpress__wp_media___wordpress_id',
   AuthorAuthoredWordpressWpMediaDate = 'author___authored_wordpress__wp_media___date',
-  AuthorAuthoredWordpressWpMediaGuid = 'author___authored_wordpress__wp_media___guid',
   AuthorAuthoredWordpressWpMediaModified = 'author___authored_wordpress__wp_media___modified',
   AuthorAuthoredWordpressWpMediaSlug = 'author___authored_wordpress__wp_media___slug',
   AuthorAuthoredWordpressWpMediaStatus = 'author___authored_wordpress__wp_media___status',
@@ -4772,8 +5359,26 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressWpMediaAuthorAuthoredWordpressWpMedia = 'author___authored_wordpress__wp_media___author___authored_wordpress__wp_media',
   AuthorAuthoredWordpressWpMediaAuthorPath = 'author___authored_wordpress__wp_media___author___path',
   AuthorAuthoredWordpressWpMediaAuthorAuthoredWordpressPost = 'author___authored_wordpress__wp_media___author___authored_wordpress__POST',
-  AuthorAuthoredWordpressWpMediaLocalFileId = 'author___authored_wordpress__wp_media___localFile___id',
-  AuthorAuthoredWordpressWpMediaLocalFileChildren = 'author___authored_wordpress__wp_media___localFile___children',
+  AuthorAuthoredWordpressWpMediaGuidId = 'author___authored_wordpress__wp_media___guid___id',
+  AuthorAuthoredWordpressWpMediaGuidChildren = 'author___authored_wordpress__wp_media___guid___children',
+  AuthorAuthoredWordpressWpMediaGuidWordpressId = 'author___authored_wordpress__wp_media___guid___wordpress_id',
+  AuthorAuthoredWordpressWpMediaGuidDate = 'author___authored_wordpress__wp_media___guid___date',
+  AuthorAuthoredWordpressWpMediaGuidModified = 'author___authored_wordpress__wp_media___guid___modified',
+  AuthorAuthoredWordpressWpMediaGuidSlug = 'author___authored_wordpress__wp_media___guid___slug',
+  AuthorAuthoredWordpressWpMediaGuidStatus = 'author___authored_wordpress__wp_media___guid___status',
+  AuthorAuthoredWordpressWpMediaGuidType = 'author___authored_wordpress__wp_media___guid___type',
+  AuthorAuthoredWordpressWpMediaGuidLink = 'author___authored_wordpress__wp_media___guid___link',
+  AuthorAuthoredWordpressWpMediaGuidTitle = 'author___authored_wordpress__wp_media___guid___title',
+  AuthorAuthoredWordpressWpMediaGuidCommentStatus = 'author___authored_wordpress__wp_media___guid___comment_status',
+  AuthorAuthoredWordpressWpMediaGuidPingStatus = 'author___authored_wordpress__wp_media___guid___ping_status',
+  AuthorAuthoredWordpressWpMediaGuidTemplate = 'author___authored_wordpress__wp_media___guid___template',
+  AuthorAuthoredWordpressWpMediaGuidDescription = 'author___authored_wordpress__wp_media___guid___description',
+  AuthorAuthoredWordpressWpMediaGuidCaption = 'author___authored_wordpress__wp_media___guid___caption',
+  AuthorAuthoredWordpressWpMediaGuidAltText = 'author___authored_wordpress__wp_media___guid___alt_text',
+  AuthorAuthoredWordpressWpMediaGuidMediaType = 'author___authored_wordpress__wp_media___guid___media_type',
+  AuthorAuthoredWordpressWpMediaGuidMimeType = 'author___authored_wordpress__wp_media___guid___mime_type',
+  AuthorAuthoredWordpressWpMediaGuidSourceUrl = 'author___authored_wordpress__wp_media___guid___source_url',
+  AuthorAuthoredWordpressWpMediaGuidPath = 'author___authored_wordpress__wp_media___guid___path',
   AuthorAuthoredWordpressWpMediaLocalFileSourceInstanceName = 'author___authored_wordpress__wp_media___localFile___sourceInstanceName',
   AuthorAuthoredWordpressWpMediaLocalFileAbsolutePath = 'author___authored_wordpress__wp_media___localFile___absolutePath',
   AuthorAuthoredWordpressWpMediaLocalFileRelativePath = 'author___authored_wordpress__wp_media___localFile___relativePath',
@@ -4796,18 +5401,20 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressWpMediaLocalFileUid = 'author___authored_wordpress__wp_media___localFile___uid',
   AuthorAuthoredWordpressWpMediaLocalFileGid = 'author___authored_wordpress__wp_media___localFile___gid',
   AuthorAuthoredWordpressWpMediaLocalFileRdev = 'author___authored_wordpress__wp_media___localFile___rdev',
-  AuthorAuthoredWordpressWpMediaLocalFileBlksize = 'author___authored_wordpress__wp_media___localFile___blksize',
   AuthorAuthoredWordpressWpMediaLocalFileIno = 'author___authored_wordpress__wp_media___localFile___ino',
-  AuthorAuthoredWordpressWpMediaLocalFileBlocks = 'author___authored_wordpress__wp_media___localFile___blocks',
   AuthorAuthoredWordpressWpMediaLocalFileAtimeMs = 'author___authored_wordpress__wp_media___localFile___atimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileMtimeMs = 'author___authored_wordpress__wp_media___localFile___mtimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileCtimeMs = 'author___authored_wordpress__wp_media___localFile___ctimeMs',
-  AuthorAuthoredWordpressWpMediaLocalFileBirthtimeMs = 'author___authored_wordpress__wp_media___localFile___birthtimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileAtime = 'author___authored_wordpress__wp_media___localFile___atime',
   AuthorAuthoredWordpressWpMediaLocalFileMtime = 'author___authored_wordpress__wp_media___localFile___mtime',
   AuthorAuthoredWordpressWpMediaLocalFileCtime = 'author___authored_wordpress__wp_media___localFile___ctime',
   AuthorAuthoredWordpressWpMediaLocalFileBirthtime = 'author___authored_wordpress__wp_media___localFile___birthtime',
+  AuthorAuthoredWordpressWpMediaLocalFileBirthtimeMs = 'author___authored_wordpress__wp_media___localFile___birthtimeMs',
+  AuthorAuthoredWordpressWpMediaLocalFileBlksize = 'author___authored_wordpress__wp_media___localFile___blksize',
+  AuthorAuthoredWordpressWpMediaLocalFileBlocks = 'author___authored_wordpress__wp_media___localFile___blocks',
   AuthorAuthoredWordpressWpMediaLocalFileUrl = 'author___authored_wordpress__wp_media___localFile___url',
+  AuthorAuthoredWordpressWpMediaLocalFileId = 'author___authored_wordpress__wp_media___localFile___id',
+  AuthorAuthoredWordpressWpMediaLocalFileChildren = 'author___authored_wordpress__wp_media___localFile___children',
   AuthorAuthoredWordpressWpMediaPath = 'author___authored_wordpress__wp_media___path',
   AuthorPath = 'author___path',
   AuthorAuthoredWordpressPost = 'author___authored_wordpress__POST',
@@ -4864,16 +5471,6 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressPostAuthorAuthoredWordpressWpMedia = 'author___authored_wordpress__POST___author___authored_wordpress__wp_media',
   AuthorAuthoredWordpressPostAuthorPath = 'author___authored_wordpress__POST___author___path',
   AuthorAuthoredWordpressPostAuthorAuthoredWordpressPost = 'author___authored_wordpress__POST___author___authored_wordpress__POST',
-  AuthorAuthoredWordpressPostTags = 'author___authored_wordpress__POST___tags',
-  AuthorAuthoredWordpressPostTagsId = 'author___authored_wordpress__POST___tags___id',
-  AuthorAuthoredWordpressPostTagsChildren = 'author___authored_wordpress__POST___tags___children',
-  AuthorAuthoredWordpressPostTagsWordpressId = 'author___authored_wordpress__POST___tags___wordpress_id',
-  AuthorAuthoredWordpressPostTagsCount = 'author___authored_wordpress__POST___tags___count',
-  AuthorAuthoredWordpressPostTagsDescription = 'author___authored_wordpress__POST___tags___description',
-  AuthorAuthoredWordpressPostTagsLink = 'author___authored_wordpress__POST___tags___link',
-  AuthorAuthoredWordpressPostTagsName = 'author___authored_wordpress__POST___tags___name',
-  AuthorAuthoredWordpressPostTagsSlug = 'author___authored_wordpress__POST___tags___slug',
-  AuthorAuthoredWordpressPostTagsPath = 'author___authored_wordpress__POST___tags___path',
   AuthorAuthoredWordpressPostCategories = 'author___authored_wordpress__POST___categories',
   AuthorAuthoredWordpressPostCategoriesId = 'author___authored_wordpress__POST___categories___id',
   AuthorAuthoredWordpressPostCategoriesChildren = 'author___authored_wordpress__POST___categories___children',
@@ -4889,7 +5486,6 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressPostFeaturedMediaChildren = 'author___authored_wordpress__POST___featured_media___children',
   AuthorAuthoredWordpressPostFeaturedMediaWordpressId = 'author___authored_wordpress__POST___featured_media___wordpress_id',
   AuthorAuthoredWordpressPostFeaturedMediaDate = 'author___authored_wordpress__POST___featured_media___date',
-  AuthorAuthoredWordpressPostFeaturedMediaGuid = 'author___authored_wordpress__POST___featured_media___guid',
   AuthorAuthoredWordpressPostFeaturedMediaModified = 'author___authored_wordpress__POST___featured_media___modified',
   AuthorAuthoredWordpressPostFeaturedMediaSlug = 'author___authored_wordpress__POST___featured_media___slug',
   AuthorAuthoredWordpressPostFeaturedMediaStatus = 'author___authored_wordpress__POST___featured_media___status',
@@ -4910,7 +5506,6 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlChildren = 'author___authored_wordpress__POST___jetpack_featured_media_url___children',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlWordpressId = 'author___authored_wordpress__POST___jetpack_featured_media_url___wordpress_id',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlDate = 'author___authored_wordpress__POST___jetpack_featured_media_url___date',
-  AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlGuid = 'author___authored_wordpress__POST___jetpack_featured_media_url___guid',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlModified = 'author___authored_wordpress__POST___jetpack_featured_media_url___modified',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlSlug = 'author___authored_wordpress__POST___jetpack_featured_media_url___slug',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlStatus = 'author___authored_wordpress__POST___jetpack_featured_media_url___status',
@@ -4928,6 +5523,16 @@ export enum Wordpress__PageFieldsEnum {
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlSourceUrl = 'author___authored_wordpress__POST___jetpack_featured_media_url___source_url',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlPath = 'author___authored_wordpress__POST___jetpack_featured_media_url___path',
   AuthorAuthoredWordpressPostPath = 'author___authored_wordpress__POST___path',
+  AuthorAuthoredWordpressPostTags = 'author___authored_wordpress__POST___tags',
+  AuthorAuthoredWordpressPostTagsId = 'author___authored_wordpress__POST___tags___id',
+  AuthorAuthoredWordpressPostTagsChildren = 'author___authored_wordpress__POST___tags___children',
+  AuthorAuthoredWordpressPostTagsWordpressId = 'author___authored_wordpress__POST___tags___wordpress_id',
+  AuthorAuthoredWordpressPostTagsCount = 'author___authored_wordpress__POST___tags___count',
+  AuthorAuthoredWordpressPostTagsDescription = 'author___authored_wordpress__POST___tags___description',
+  AuthorAuthoredWordpressPostTagsLink = 'author___authored_wordpress__POST___tags___link',
+  AuthorAuthoredWordpressPostTagsName = 'author___authored_wordpress__POST___tags___name',
+  AuthorAuthoredWordpressPostTagsSlug = 'author___authored_wordpress__POST___tags___slug',
+  AuthorAuthoredWordpressPostTagsPath = 'author___authored_wordpress__POST___tags___path',
   Path = 'path'
 }
 
@@ -5002,11 +5607,11 @@ export type Wordpress__Post = Node & {
   format?: Maybe<Scalars['String']>;
   _links?: Maybe<Wordpress__Post_Links>;
   author?: Maybe<Wordpress__Wp_Users>;
-  tags?: Maybe<Array<Maybe<Wordpress__Tag>>>;
   categories?: Maybe<Array<Maybe<Wordpress__Category>>>;
   featured_media?: Maybe<Wordpress__Wp_Media>;
   jetpack_featured_media_url?: Maybe<Wordpress__Wp_Media>;
   path?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Wordpress__Tag>>>;
 };
 
 
@@ -5499,7 +6104,6 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressWpMediaInternalType = 'author___authored_wordpress__wp_media___internal___type',
   AuthorAuthoredWordpressWpMediaWordpressId = 'author___authored_wordpress__wp_media___wordpress_id',
   AuthorAuthoredWordpressWpMediaDate = 'author___authored_wordpress__wp_media___date',
-  AuthorAuthoredWordpressWpMediaGuid = 'author___authored_wordpress__wp_media___guid',
   AuthorAuthoredWordpressWpMediaModified = 'author___authored_wordpress__wp_media___modified',
   AuthorAuthoredWordpressWpMediaSlug = 'author___authored_wordpress__wp_media___slug',
   AuthorAuthoredWordpressWpMediaStatus = 'author___authored_wordpress__wp_media___status',
@@ -5536,8 +6140,26 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressWpMediaAuthorAuthoredWordpressWpMedia = 'author___authored_wordpress__wp_media___author___authored_wordpress__wp_media',
   AuthorAuthoredWordpressWpMediaAuthorPath = 'author___authored_wordpress__wp_media___author___path',
   AuthorAuthoredWordpressWpMediaAuthorAuthoredWordpressPost = 'author___authored_wordpress__wp_media___author___authored_wordpress__POST',
-  AuthorAuthoredWordpressWpMediaLocalFileId = 'author___authored_wordpress__wp_media___localFile___id',
-  AuthorAuthoredWordpressWpMediaLocalFileChildren = 'author___authored_wordpress__wp_media___localFile___children',
+  AuthorAuthoredWordpressWpMediaGuidId = 'author___authored_wordpress__wp_media___guid___id',
+  AuthorAuthoredWordpressWpMediaGuidChildren = 'author___authored_wordpress__wp_media___guid___children',
+  AuthorAuthoredWordpressWpMediaGuidWordpressId = 'author___authored_wordpress__wp_media___guid___wordpress_id',
+  AuthorAuthoredWordpressWpMediaGuidDate = 'author___authored_wordpress__wp_media___guid___date',
+  AuthorAuthoredWordpressWpMediaGuidModified = 'author___authored_wordpress__wp_media___guid___modified',
+  AuthorAuthoredWordpressWpMediaGuidSlug = 'author___authored_wordpress__wp_media___guid___slug',
+  AuthorAuthoredWordpressWpMediaGuidStatus = 'author___authored_wordpress__wp_media___guid___status',
+  AuthorAuthoredWordpressWpMediaGuidType = 'author___authored_wordpress__wp_media___guid___type',
+  AuthorAuthoredWordpressWpMediaGuidLink = 'author___authored_wordpress__wp_media___guid___link',
+  AuthorAuthoredWordpressWpMediaGuidTitle = 'author___authored_wordpress__wp_media___guid___title',
+  AuthorAuthoredWordpressWpMediaGuidCommentStatus = 'author___authored_wordpress__wp_media___guid___comment_status',
+  AuthorAuthoredWordpressWpMediaGuidPingStatus = 'author___authored_wordpress__wp_media___guid___ping_status',
+  AuthorAuthoredWordpressWpMediaGuidTemplate = 'author___authored_wordpress__wp_media___guid___template',
+  AuthorAuthoredWordpressWpMediaGuidDescription = 'author___authored_wordpress__wp_media___guid___description',
+  AuthorAuthoredWordpressWpMediaGuidCaption = 'author___authored_wordpress__wp_media___guid___caption',
+  AuthorAuthoredWordpressWpMediaGuidAltText = 'author___authored_wordpress__wp_media___guid___alt_text',
+  AuthorAuthoredWordpressWpMediaGuidMediaType = 'author___authored_wordpress__wp_media___guid___media_type',
+  AuthorAuthoredWordpressWpMediaGuidMimeType = 'author___authored_wordpress__wp_media___guid___mime_type',
+  AuthorAuthoredWordpressWpMediaGuidSourceUrl = 'author___authored_wordpress__wp_media___guid___source_url',
+  AuthorAuthoredWordpressWpMediaGuidPath = 'author___authored_wordpress__wp_media___guid___path',
   AuthorAuthoredWordpressWpMediaLocalFileSourceInstanceName = 'author___authored_wordpress__wp_media___localFile___sourceInstanceName',
   AuthorAuthoredWordpressWpMediaLocalFileAbsolutePath = 'author___authored_wordpress__wp_media___localFile___absolutePath',
   AuthorAuthoredWordpressWpMediaLocalFileRelativePath = 'author___authored_wordpress__wp_media___localFile___relativePath',
@@ -5560,18 +6182,20 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressWpMediaLocalFileUid = 'author___authored_wordpress__wp_media___localFile___uid',
   AuthorAuthoredWordpressWpMediaLocalFileGid = 'author___authored_wordpress__wp_media___localFile___gid',
   AuthorAuthoredWordpressWpMediaLocalFileRdev = 'author___authored_wordpress__wp_media___localFile___rdev',
-  AuthorAuthoredWordpressWpMediaLocalFileBlksize = 'author___authored_wordpress__wp_media___localFile___blksize',
   AuthorAuthoredWordpressWpMediaLocalFileIno = 'author___authored_wordpress__wp_media___localFile___ino',
-  AuthorAuthoredWordpressWpMediaLocalFileBlocks = 'author___authored_wordpress__wp_media___localFile___blocks',
   AuthorAuthoredWordpressWpMediaLocalFileAtimeMs = 'author___authored_wordpress__wp_media___localFile___atimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileMtimeMs = 'author___authored_wordpress__wp_media___localFile___mtimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileCtimeMs = 'author___authored_wordpress__wp_media___localFile___ctimeMs',
-  AuthorAuthoredWordpressWpMediaLocalFileBirthtimeMs = 'author___authored_wordpress__wp_media___localFile___birthtimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileAtime = 'author___authored_wordpress__wp_media___localFile___atime',
   AuthorAuthoredWordpressWpMediaLocalFileMtime = 'author___authored_wordpress__wp_media___localFile___mtime',
   AuthorAuthoredWordpressWpMediaLocalFileCtime = 'author___authored_wordpress__wp_media___localFile___ctime',
   AuthorAuthoredWordpressWpMediaLocalFileBirthtime = 'author___authored_wordpress__wp_media___localFile___birthtime',
+  AuthorAuthoredWordpressWpMediaLocalFileBirthtimeMs = 'author___authored_wordpress__wp_media___localFile___birthtimeMs',
+  AuthorAuthoredWordpressWpMediaLocalFileBlksize = 'author___authored_wordpress__wp_media___localFile___blksize',
+  AuthorAuthoredWordpressWpMediaLocalFileBlocks = 'author___authored_wordpress__wp_media___localFile___blocks',
   AuthorAuthoredWordpressWpMediaLocalFileUrl = 'author___authored_wordpress__wp_media___localFile___url',
+  AuthorAuthoredWordpressWpMediaLocalFileId = 'author___authored_wordpress__wp_media___localFile___id',
+  AuthorAuthoredWordpressWpMediaLocalFileChildren = 'author___authored_wordpress__wp_media___localFile___children',
   AuthorAuthoredWordpressWpMediaPath = 'author___authored_wordpress__wp_media___path',
   AuthorPath = 'author___path',
   AuthorAuthoredWordpressPost = 'author___authored_wordpress__POST',
@@ -5628,16 +6252,6 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressPostAuthorAuthoredWordpressWpMedia = 'author___authored_wordpress__POST___author___authored_wordpress__wp_media',
   AuthorAuthoredWordpressPostAuthorPath = 'author___authored_wordpress__POST___author___path',
   AuthorAuthoredWordpressPostAuthorAuthoredWordpressPost = 'author___authored_wordpress__POST___author___authored_wordpress__POST',
-  AuthorAuthoredWordpressPostTags = 'author___authored_wordpress__POST___tags',
-  AuthorAuthoredWordpressPostTagsId = 'author___authored_wordpress__POST___tags___id',
-  AuthorAuthoredWordpressPostTagsChildren = 'author___authored_wordpress__POST___tags___children',
-  AuthorAuthoredWordpressPostTagsWordpressId = 'author___authored_wordpress__POST___tags___wordpress_id',
-  AuthorAuthoredWordpressPostTagsCount = 'author___authored_wordpress__POST___tags___count',
-  AuthorAuthoredWordpressPostTagsDescription = 'author___authored_wordpress__POST___tags___description',
-  AuthorAuthoredWordpressPostTagsLink = 'author___authored_wordpress__POST___tags___link',
-  AuthorAuthoredWordpressPostTagsName = 'author___authored_wordpress__POST___tags___name',
-  AuthorAuthoredWordpressPostTagsSlug = 'author___authored_wordpress__POST___tags___slug',
-  AuthorAuthoredWordpressPostTagsPath = 'author___authored_wordpress__POST___tags___path',
   AuthorAuthoredWordpressPostCategories = 'author___authored_wordpress__POST___categories',
   AuthorAuthoredWordpressPostCategoriesId = 'author___authored_wordpress__POST___categories___id',
   AuthorAuthoredWordpressPostCategoriesChildren = 'author___authored_wordpress__POST___categories___children',
@@ -5653,7 +6267,6 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressPostFeaturedMediaChildren = 'author___authored_wordpress__POST___featured_media___children',
   AuthorAuthoredWordpressPostFeaturedMediaWordpressId = 'author___authored_wordpress__POST___featured_media___wordpress_id',
   AuthorAuthoredWordpressPostFeaturedMediaDate = 'author___authored_wordpress__POST___featured_media___date',
-  AuthorAuthoredWordpressPostFeaturedMediaGuid = 'author___authored_wordpress__POST___featured_media___guid',
   AuthorAuthoredWordpressPostFeaturedMediaModified = 'author___authored_wordpress__POST___featured_media___modified',
   AuthorAuthoredWordpressPostFeaturedMediaSlug = 'author___authored_wordpress__POST___featured_media___slug',
   AuthorAuthoredWordpressPostFeaturedMediaStatus = 'author___authored_wordpress__POST___featured_media___status',
@@ -5674,7 +6287,6 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlChildren = 'author___authored_wordpress__POST___jetpack_featured_media_url___children',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlWordpressId = 'author___authored_wordpress__POST___jetpack_featured_media_url___wordpress_id',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlDate = 'author___authored_wordpress__POST___jetpack_featured_media_url___date',
-  AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlGuid = 'author___authored_wordpress__POST___jetpack_featured_media_url___guid',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlModified = 'author___authored_wordpress__POST___jetpack_featured_media_url___modified',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlSlug = 'author___authored_wordpress__POST___jetpack_featured_media_url___slug',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlStatus = 'author___authored_wordpress__POST___jetpack_featured_media_url___status',
@@ -5692,88 +6304,16 @@ export enum Wordpress__PostFieldsEnum {
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlSourceUrl = 'author___authored_wordpress__POST___jetpack_featured_media_url___source_url',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlPath = 'author___authored_wordpress__POST___jetpack_featured_media_url___path',
   AuthorAuthoredWordpressPostPath = 'author___authored_wordpress__POST___path',
-  Tags = 'tags',
-  TagsId = 'tags___id',
-  TagsParentId = 'tags___parent___id',
-  TagsParentParentId = 'tags___parent___parent___id',
-  TagsParentParentChildren = 'tags___parent___parent___children',
-  TagsParentChildren = 'tags___parent___children',
-  TagsParentChildrenId = 'tags___parent___children___id',
-  TagsParentChildrenChildren = 'tags___parent___children___children',
-  TagsParentInternalContent = 'tags___parent___internal___content',
-  TagsParentInternalContentDigest = 'tags___parent___internal___contentDigest',
-  TagsParentInternalDescription = 'tags___parent___internal___description',
-  TagsParentInternalFieldOwners = 'tags___parent___internal___fieldOwners',
-  TagsParentInternalIgnoreType = 'tags___parent___internal___ignoreType',
-  TagsParentInternalMediaType = 'tags___parent___internal___mediaType',
-  TagsParentInternalOwner = 'tags___parent___internal___owner',
-  TagsParentInternalType = 'tags___parent___internal___type',
-  TagsChildren = 'tags___children',
-  TagsChildrenId = 'tags___children___id',
-  TagsChildrenParentId = 'tags___children___parent___id',
-  TagsChildrenParentChildren = 'tags___children___parent___children',
-  TagsChildrenChildren = 'tags___children___children',
-  TagsChildrenChildrenId = 'tags___children___children___id',
-  TagsChildrenChildrenChildren = 'tags___children___children___children',
-  TagsChildrenInternalContent = 'tags___children___internal___content',
-  TagsChildrenInternalContentDigest = 'tags___children___internal___contentDigest',
-  TagsChildrenInternalDescription = 'tags___children___internal___description',
-  TagsChildrenInternalFieldOwners = 'tags___children___internal___fieldOwners',
-  TagsChildrenInternalIgnoreType = 'tags___children___internal___ignoreType',
-  TagsChildrenInternalMediaType = 'tags___children___internal___mediaType',
-  TagsChildrenInternalOwner = 'tags___children___internal___owner',
-  TagsChildrenInternalType = 'tags___children___internal___type',
-  TagsInternalContent = 'tags___internal___content',
-  TagsInternalContentDigest = 'tags___internal___contentDigest',
-  TagsInternalDescription = 'tags___internal___description',
-  TagsInternalFieldOwners = 'tags___internal___fieldOwners',
-  TagsInternalIgnoreType = 'tags___internal___ignoreType',
-  TagsInternalMediaType = 'tags___internal___mediaType',
-  TagsInternalOwner = 'tags___internal___owner',
-  TagsInternalType = 'tags___internal___type',
-  TagsWordpressId = 'tags___wordpress_id',
-  TagsCount = 'tags___count',
-  TagsDescription = 'tags___description',
-  TagsLink = 'tags___link',
-  TagsName = 'tags___name',
-  TagsSlug = 'tags___slug',
-  TagsLinksSelf = 'tags____links___self',
-  TagsLinksSelfHref = 'tags____links___self___href',
-  TagsLinksCollection = 'tags____links___collection',
-  TagsLinksCollectionHref = 'tags____links___collection___href',
-  TagsLinksAbout = 'tags____links___about',
-  TagsLinksAboutHref = 'tags____links___about___href',
-  TagsLinksWpPostType = 'tags____links___wp_post_type',
-  TagsLinksWpPostTypeHref = 'tags____links___wp_post_type___href',
-  TagsLinksCuries = 'tags____links___curies',
-  TagsLinksCuriesName = 'tags____links___curies___name',
-  TagsLinksCuriesHref = 'tags____links___curies___href',
-  TagsLinksCuriesTemplated = 'tags____links___curies___templated',
-  TagsTaxonomyId = 'tags___taxonomy___id',
-  TagsTaxonomyParentId = 'tags___taxonomy___parent___id',
-  TagsTaxonomyParentChildren = 'tags___taxonomy___parent___children',
-  TagsTaxonomyChildren = 'tags___taxonomy___children',
-  TagsTaxonomyChildrenId = 'tags___taxonomy___children___id',
-  TagsTaxonomyChildrenChildren = 'tags___taxonomy___children___children',
-  TagsTaxonomyInternalContent = 'tags___taxonomy___internal___content',
-  TagsTaxonomyInternalContentDigest = 'tags___taxonomy___internal___contentDigest',
-  TagsTaxonomyInternalDescription = 'tags___taxonomy___internal___description',
-  TagsTaxonomyInternalFieldOwners = 'tags___taxonomy___internal___fieldOwners',
-  TagsTaxonomyInternalIgnoreType = 'tags___taxonomy___internal___ignoreType',
-  TagsTaxonomyInternalMediaType = 'tags___taxonomy___internal___mediaType',
-  TagsTaxonomyInternalOwner = 'tags___taxonomy___internal___owner',
-  TagsTaxonomyInternalType = 'tags___taxonomy___internal___type',
-  TagsTaxonomyWordpressId = 'tags___taxonomy___wordpress_id',
-  TagsTaxonomyName = 'tags___taxonomy___name',
-  TagsTaxonomySlug = 'tags___taxonomy___slug',
-  TagsTaxonomyDescription = 'tags___taxonomy___description',
-  TagsTaxonomyTypes = 'tags___taxonomy___types',
-  TagsTaxonomyHierarchical = 'tags___taxonomy___hierarchical',
-  TagsTaxonomyRestBase = 'tags___taxonomy___rest_base',
-  TagsTaxonomyLinksCollection = 'tags___taxonomy____links___collection',
-  TagsTaxonomyLinksWpItems = 'tags___taxonomy____links___wp_items',
-  TagsTaxonomyLinksCuries = 'tags___taxonomy____links___curies',
-  TagsPath = 'tags___path',
+  AuthorAuthoredWordpressPostTags = 'author___authored_wordpress__POST___tags',
+  AuthorAuthoredWordpressPostTagsId = 'author___authored_wordpress__POST___tags___id',
+  AuthorAuthoredWordpressPostTagsChildren = 'author___authored_wordpress__POST___tags___children',
+  AuthorAuthoredWordpressPostTagsWordpressId = 'author___authored_wordpress__POST___tags___wordpress_id',
+  AuthorAuthoredWordpressPostTagsCount = 'author___authored_wordpress__POST___tags___count',
+  AuthorAuthoredWordpressPostTagsDescription = 'author___authored_wordpress__POST___tags___description',
+  AuthorAuthoredWordpressPostTagsLink = 'author___authored_wordpress__POST___tags___link',
+  AuthorAuthoredWordpressPostTagsName = 'author___authored_wordpress__POST___tags___name',
+  AuthorAuthoredWordpressPostTagsSlug = 'author___authored_wordpress__POST___tags___slug',
+  AuthorAuthoredWordpressPostTagsPath = 'author___authored_wordpress__POST___tags___path',
   Categories = 'categories',
   CategoriesId = 'categories___id',
   CategoriesParentId = 'categories___parent___id',
@@ -5897,7 +6437,6 @@ export enum Wordpress__PostFieldsEnum {
   FeaturedMediaInternalType = 'featured_media___internal___type',
   FeaturedMediaWordpressId = 'featured_media___wordpress_id',
   FeaturedMediaDate = 'featured_media___date',
-  FeaturedMediaGuid = 'featured_media___guid',
   FeaturedMediaModified = 'featured_media___modified',
   FeaturedMediaSlug = 'featured_media___slug',
   FeaturedMediaStatus = 'featured_media___status',
@@ -5990,7 +6529,6 @@ export enum Wordpress__PostFieldsEnum {
   FeaturedMediaAuthorAuthoredWordpressWpMediaChildren = 'featured_media___author___authored_wordpress__wp_media___children',
   FeaturedMediaAuthorAuthoredWordpressWpMediaWordpressId = 'featured_media___author___authored_wordpress__wp_media___wordpress_id',
   FeaturedMediaAuthorAuthoredWordpressWpMediaDate = 'featured_media___author___authored_wordpress__wp_media___date',
-  FeaturedMediaAuthorAuthoredWordpressWpMediaGuid = 'featured_media___author___authored_wordpress__wp_media___guid',
   FeaturedMediaAuthorAuthoredWordpressWpMediaModified = 'featured_media___author___authored_wordpress__wp_media___modified',
   FeaturedMediaAuthorAuthoredWordpressWpMediaSlug = 'featured_media___author___authored_wordpress__wp_media___slug',
   FeaturedMediaAuthorAuthoredWordpressWpMediaStatus = 'featured_media___author___authored_wordpress__wp_media___status',
@@ -6027,23 +6565,118 @@ export enum Wordpress__PostFieldsEnum {
   FeaturedMediaAuthorAuthoredWordpressPostSticky = 'featured_media___author___authored_wordpress__POST___sticky',
   FeaturedMediaAuthorAuthoredWordpressPostTemplate = 'featured_media___author___authored_wordpress__POST___template',
   FeaturedMediaAuthorAuthoredWordpressPostFormat = 'featured_media___author___authored_wordpress__POST___format',
-  FeaturedMediaAuthorAuthoredWordpressPostTags = 'featured_media___author___authored_wordpress__POST___tags',
   FeaturedMediaAuthorAuthoredWordpressPostCategories = 'featured_media___author___authored_wordpress__POST___categories',
   FeaturedMediaAuthorAuthoredWordpressPostPath = 'featured_media___author___authored_wordpress__POST___path',
-  FeaturedMediaLocalFileId = 'featured_media___localFile___id',
-  FeaturedMediaLocalFileParentId = 'featured_media___localFile___parent___id',
-  FeaturedMediaLocalFileParentChildren = 'featured_media___localFile___parent___children',
-  FeaturedMediaLocalFileChildren = 'featured_media___localFile___children',
-  FeaturedMediaLocalFileChildrenId = 'featured_media___localFile___children___id',
-  FeaturedMediaLocalFileChildrenChildren = 'featured_media___localFile___children___children',
-  FeaturedMediaLocalFileInternalContent = 'featured_media___localFile___internal___content',
-  FeaturedMediaLocalFileInternalContentDigest = 'featured_media___localFile___internal___contentDigest',
-  FeaturedMediaLocalFileInternalDescription = 'featured_media___localFile___internal___description',
-  FeaturedMediaLocalFileInternalFieldOwners = 'featured_media___localFile___internal___fieldOwners',
-  FeaturedMediaLocalFileInternalIgnoreType = 'featured_media___localFile___internal___ignoreType',
-  FeaturedMediaLocalFileInternalMediaType = 'featured_media___localFile___internal___mediaType',
-  FeaturedMediaLocalFileInternalOwner = 'featured_media___localFile___internal___owner',
-  FeaturedMediaLocalFileInternalType = 'featured_media___localFile___internal___type',
+  FeaturedMediaAuthorAuthoredWordpressPostTags = 'featured_media___author___authored_wordpress__POST___tags',
+  FeaturedMediaGuidId = 'featured_media___guid___id',
+  FeaturedMediaGuidParentId = 'featured_media___guid___parent___id',
+  FeaturedMediaGuidParentChildren = 'featured_media___guid___parent___children',
+  FeaturedMediaGuidChildren = 'featured_media___guid___children',
+  FeaturedMediaGuidChildrenId = 'featured_media___guid___children___id',
+  FeaturedMediaGuidChildrenChildren = 'featured_media___guid___children___children',
+  FeaturedMediaGuidInternalContent = 'featured_media___guid___internal___content',
+  FeaturedMediaGuidInternalContentDigest = 'featured_media___guid___internal___contentDigest',
+  FeaturedMediaGuidInternalDescription = 'featured_media___guid___internal___description',
+  FeaturedMediaGuidInternalFieldOwners = 'featured_media___guid___internal___fieldOwners',
+  FeaturedMediaGuidInternalIgnoreType = 'featured_media___guid___internal___ignoreType',
+  FeaturedMediaGuidInternalMediaType = 'featured_media___guid___internal___mediaType',
+  FeaturedMediaGuidInternalOwner = 'featured_media___guid___internal___owner',
+  FeaturedMediaGuidInternalType = 'featured_media___guid___internal___type',
+  FeaturedMediaGuidWordpressId = 'featured_media___guid___wordpress_id',
+  FeaturedMediaGuidDate = 'featured_media___guid___date',
+  FeaturedMediaGuidModified = 'featured_media___guid___modified',
+  FeaturedMediaGuidSlug = 'featured_media___guid___slug',
+  FeaturedMediaGuidStatus = 'featured_media___guid___status',
+  FeaturedMediaGuidType = 'featured_media___guid___type',
+  FeaturedMediaGuidLink = 'featured_media___guid___link',
+  FeaturedMediaGuidTitle = 'featured_media___guid___title',
+  FeaturedMediaGuidCommentStatus = 'featured_media___guid___comment_status',
+  FeaturedMediaGuidPingStatus = 'featured_media___guid___ping_status',
+  FeaturedMediaGuidTemplate = 'featured_media___guid___template',
+  FeaturedMediaGuidDescription = 'featured_media___guid___description',
+  FeaturedMediaGuidCaption = 'featured_media___guid___caption',
+  FeaturedMediaGuidAltText = 'featured_media___guid___alt_text',
+  FeaturedMediaGuidMediaType = 'featured_media___guid___media_type',
+  FeaturedMediaGuidMimeType = 'featured_media___guid___mime_type',
+  FeaturedMediaGuidMediaDetailsWidth = 'featured_media___guid___media_details___width',
+  FeaturedMediaGuidMediaDetailsHeight = 'featured_media___guid___media_details___height',
+  FeaturedMediaGuidMediaDetailsFile = 'featured_media___guid___media_details___file',
+  FeaturedMediaGuidMediaDetailsOriginalImage = 'featured_media___guid___media_details___original_image',
+  FeaturedMediaGuidSourceUrl = 'featured_media___guid___source_url',
+  FeaturedMediaGuidLinksSelf = 'featured_media___guid____links___self',
+  FeaturedMediaGuidLinksCollection = 'featured_media___guid____links___collection',
+  FeaturedMediaGuidLinksAbout = 'featured_media___guid____links___about',
+  FeaturedMediaGuidLinksAuthor = 'featured_media___guid____links___author',
+  FeaturedMediaGuidLinksReplies = 'featured_media___guid____links___replies',
+  FeaturedMediaGuidAuthorId = 'featured_media___guid___author___id',
+  FeaturedMediaGuidAuthorChildren = 'featured_media___guid___author___children',
+  FeaturedMediaGuidAuthorWordpressId = 'featured_media___guid___author___wordpress_id',
+  FeaturedMediaGuidAuthorName = 'featured_media___guid___author___name',
+  FeaturedMediaGuidAuthorUrl = 'featured_media___guid___author___url',
+  FeaturedMediaGuidAuthorDescription = 'featured_media___guid___author___description',
+  FeaturedMediaGuidAuthorLink = 'featured_media___guid___author___link',
+  FeaturedMediaGuidAuthorSlug = 'featured_media___guid___author___slug',
+  FeaturedMediaGuidAuthorAuthoredWordpressPage = 'featured_media___guid___author___authored_wordpress__PAGE',
+  FeaturedMediaGuidAuthorAuthoredWordpressWpMedia = 'featured_media___guid___author___authored_wordpress__wp_media',
+  FeaturedMediaGuidAuthorPath = 'featured_media___guid___author___path',
+  FeaturedMediaGuidAuthorAuthoredWordpressPost = 'featured_media___guid___author___authored_wordpress__POST',
+  FeaturedMediaGuidGuidId = 'featured_media___guid___guid___id',
+  FeaturedMediaGuidGuidChildren = 'featured_media___guid___guid___children',
+  FeaturedMediaGuidGuidWordpressId = 'featured_media___guid___guid___wordpress_id',
+  FeaturedMediaGuidGuidDate = 'featured_media___guid___guid___date',
+  FeaturedMediaGuidGuidModified = 'featured_media___guid___guid___modified',
+  FeaturedMediaGuidGuidSlug = 'featured_media___guid___guid___slug',
+  FeaturedMediaGuidGuidStatus = 'featured_media___guid___guid___status',
+  FeaturedMediaGuidGuidType = 'featured_media___guid___guid___type',
+  FeaturedMediaGuidGuidLink = 'featured_media___guid___guid___link',
+  FeaturedMediaGuidGuidTitle = 'featured_media___guid___guid___title',
+  FeaturedMediaGuidGuidCommentStatus = 'featured_media___guid___guid___comment_status',
+  FeaturedMediaGuidGuidPingStatus = 'featured_media___guid___guid___ping_status',
+  FeaturedMediaGuidGuidTemplate = 'featured_media___guid___guid___template',
+  FeaturedMediaGuidGuidDescription = 'featured_media___guid___guid___description',
+  FeaturedMediaGuidGuidCaption = 'featured_media___guid___guid___caption',
+  FeaturedMediaGuidGuidAltText = 'featured_media___guid___guid___alt_text',
+  FeaturedMediaGuidGuidMediaType = 'featured_media___guid___guid___media_type',
+  FeaturedMediaGuidGuidMimeType = 'featured_media___guid___guid___mime_type',
+  FeaturedMediaGuidGuidSourceUrl = 'featured_media___guid___guid___source_url',
+  FeaturedMediaGuidGuidPath = 'featured_media___guid___guid___path',
+  FeaturedMediaGuidLocalFileSourceInstanceName = 'featured_media___guid___localFile___sourceInstanceName',
+  FeaturedMediaGuidLocalFileAbsolutePath = 'featured_media___guid___localFile___absolutePath',
+  FeaturedMediaGuidLocalFileRelativePath = 'featured_media___guid___localFile___relativePath',
+  FeaturedMediaGuidLocalFileExtension = 'featured_media___guid___localFile___extension',
+  FeaturedMediaGuidLocalFileSize = 'featured_media___guid___localFile___size',
+  FeaturedMediaGuidLocalFilePrettySize = 'featured_media___guid___localFile___prettySize',
+  FeaturedMediaGuidLocalFileModifiedTime = 'featured_media___guid___localFile___modifiedTime',
+  FeaturedMediaGuidLocalFileAccessTime = 'featured_media___guid___localFile___accessTime',
+  FeaturedMediaGuidLocalFileChangeTime = 'featured_media___guid___localFile___changeTime',
+  FeaturedMediaGuidLocalFileBirthTime = 'featured_media___guid___localFile___birthTime',
+  FeaturedMediaGuidLocalFileRoot = 'featured_media___guid___localFile___root',
+  FeaturedMediaGuidLocalFileDir = 'featured_media___guid___localFile___dir',
+  FeaturedMediaGuidLocalFileBase = 'featured_media___guid___localFile___base',
+  FeaturedMediaGuidLocalFileExt = 'featured_media___guid___localFile___ext',
+  FeaturedMediaGuidLocalFileName = 'featured_media___guid___localFile___name',
+  FeaturedMediaGuidLocalFileRelativeDirectory = 'featured_media___guid___localFile___relativeDirectory',
+  FeaturedMediaGuidLocalFileDev = 'featured_media___guid___localFile___dev',
+  FeaturedMediaGuidLocalFileMode = 'featured_media___guid___localFile___mode',
+  FeaturedMediaGuidLocalFileNlink = 'featured_media___guid___localFile___nlink',
+  FeaturedMediaGuidLocalFileUid = 'featured_media___guid___localFile___uid',
+  FeaturedMediaGuidLocalFileGid = 'featured_media___guid___localFile___gid',
+  FeaturedMediaGuidLocalFileRdev = 'featured_media___guid___localFile___rdev',
+  FeaturedMediaGuidLocalFileIno = 'featured_media___guid___localFile___ino',
+  FeaturedMediaGuidLocalFileAtimeMs = 'featured_media___guid___localFile___atimeMs',
+  FeaturedMediaGuidLocalFileMtimeMs = 'featured_media___guid___localFile___mtimeMs',
+  FeaturedMediaGuidLocalFileCtimeMs = 'featured_media___guid___localFile___ctimeMs',
+  FeaturedMediaGuidLocalFileAtime = 'featured_media___guid___localFile___atime',
+  FeaturedMediaGuidLocalFileMtime = 'featured_media___guid___localFile___mtime',
+  FeaturedMediaGuidLocalFileCtime = 'featured_media___guid___localFile___ctime',
+  FeaturedMediaGuidLocalFileBirthtime = 'featured_media___guid___localFile___birthtime',
+  FeaturedMediaGuidLocalFileBirthtimeMs = 'featured_media___guid___localFile___birthtimeMs',
+  FeaturedMediaGuidLocalFileBlksize = 'featured_media___guid___localFile___blksize',
+  FeaturedMediaGuidLocalFileBlocks = 'featured_media___guid___localFile___blocks',
+  FeaturedMediaGuidLocalFileUrl = 'featured_media___guid___localFile___url',
+  FeaturedMediaGuidLocalFileId = 'featured_media___guid___localFile___id',
+  FeaturedMediaGuidLocalFileChildren = 'featured_media___guid___localFile___children',
+  FeaturedMediaGuidPath = 'featured_media___guid___path',
   FeaturedMediaLocalFileSourceInstanceName = 'featured_media___localFile___sourceInstanceName',
   FeaturedMediaLocalFileAbsolutePath = 'featured_media___localFile___absolutePath',
   FeaturedMediaLocalFileRelativePath = 'featured_media___localFile___relativePath',
@@ -6066,20 +6699,34 @@ export enum Wordpress__PostFieldsEnum {
   FeaturedMediaLocalFileUid = 'featured_media___localFile___uid',
   FeaturedMediaLocalFileGid = 'featured_media___localFile___gid',
   FeaturedMediaLocalFileRdev = 'featured_media___localFile___rdev',
-  FeaturedMediaLocalFileBlksize = 'featured_media___localFile___blksize',
   FeaturedMediaLocalFileIno = 'featured_media___localFile___ino',
-  FeaturedMediaLocalFileBlocks = 'featured_media___localFile___blocks',
   FeaturedMediaLocalFileAtimeMs = 'featured_media___localFile___atimeMs',
   FeaturedMediaLocalFileMtimeMs = 'featured_media___localFile___mtimeMs',
   FeaturedMediaLocalFileCtimeMs = 'featured_media___localFile___ctimeMs',
-  FeaturedMediaLocalFileBirthtimeMs = 'featured_media___localFile___birthtimeMs',
   FeaturedMediaLocalFileAtime = 'featured_media___localFile___atime',
   FeaturedMediaLocalFileMtime = 'featured_media___localFile___mtime',
   FeaturedMediaLocalFileCtime = 'featured_media___localFile___ctime',
   FeaturedMediaLocalFileBirthtime = 'featured_media___localFile___birthtime',
+  FeaturedMediaLocalFileBirthtimeMs = 'featured_media___localFile___birthtimeMs',
+  FeaturedMediaLocalFileBlksize = 'featured_media___localFile___blksize',
+  FeaturedMediaLocalFileBlocks = 'featured_media___localFile___blocks',
   FeaturedMediaLocalFileUrl = 'featured_media___localFile___url',
   FeaturedMediaLocalFileChildImageSharpId = 'featured_media___localFile___childImageSharp___id',
   FeaturedMediaLocalFileChildImageSharpChildren = 'featured_media___localFile___childImageSharp___children',
+  FeaturedMediaLocalFileId = 'featured_media___localFile___id',
+  FeaturedMediaLocalFileParentId = 'featured_media___localFile___parent___id',
+  FeaturedMediaLocalFileParentChildren = 'featured_media___localFile___parent___children',
+  FeaturedMediaLocalFileChildren = 'featured_media___localFile___children',
+  FeaturedMediaLocalFileChildrenId = 'featured_media___localFile___children___id',
+  FeaturedMediaLocalFileChildrenChildren = 'featured_media___localFile___children___children',
+  FeaturedMediaLocalFileInternalContent = 'featured_media___localFile___internal___content',
+  FeaturedMediaLocalFileInternalContentDigest = 'featured_media___localFile___internal___contentDigest',
+  FeaturedMediaLocalFileInternalDescription = 'featured_media___localFile___internal___description',
+  FeaturedMediaLocalFileInternalFieldOwners = 'featured_media___localFile___internal___fieldOwners',
+  FeaturedMediaLocalFileInternalIgnoreType = 'featured_media___localFile___internal___ignoreType',
+  FeaturedMediaLocalFileInternalMediaType = 'featured_media___localFile___internal___mediaType',
+  FeaturedMediaLocalFileInternalOwner = 'featured_media___localFile___internal___owner',
+  FeaturedMediaLocalFileInternalType = 'featured_media___localFile___internal___type',
   FeaturedMediaPath = 'featured_media___path',
   JetpackFeaturedMediaUrlId = 'jetpack_featured_media_url___id',
   JetpackFeaturedMediaUrlParentId = 'jetpack_featured_media_url___parent___id',
@@ -6121,7 +6768,6 @@ export enum Wordpress__PostFieldsEnum {
   JetpackFeaturedMediaUrlInternalType = 'jetpack_featured_media_url___internal___type',
   JetpackFeaturedMediaUrlWordpressId = 'jetpack_featured_media_url___wordpress_id',
   JetpackFeaturedMediaUrlDate = 'jetpack_featured_media_url___date',
-  JetpackFeaturedMediaUrlGuid = 'jetpack_featured_media_url___guid',
   JetpackFeaturedMediaUrlModified = 'jetpack_featured_media_url___modified',
   JetpackFeaturedMediaUrlSlug = 'jetpack_featured_media_url___slug',
   JetpackFeaturedMediaUrlStatus = 'jetpack_featured_media_url___status',
@@ -6214,7 +6860,6 @@ export enum Wordpress__PostFieldsEnum {
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaChildren = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___children',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaWordpressId = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___wordpress_id',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaDate = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___date',
-  JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaGuid = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___guid',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaModified = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___modified',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaSlug = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___slug',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMediaStatus = 'jetpack_featured_media_url___author___authored_wordpress__wp_media___status',
@@ -6251,23 +6896,118 @@ export enum Wordpress__PostFieldsEnum {
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostSticky = 'jetpack_featured_media_url___author___authored_wordpress__POST___sticky',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostTemplate = 'jetpack_featured_media_url___author___authored_wordpress__POST___template',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostFormat = 'jetpack_featured_media_url___author___authored_wordpress__POST___format',
-  JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostTags = 'jetpack_featured_media_url___author___authored_wordpress__POST___tags',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostCategories = 'jetpack_featured_media_url___author___authored_wordpress__POST___categories',
   JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostPath = 'jetpack_featured_media_url___author___authored_wordpress__POST___path',
-  JetpackFeaturedMediaUrlLocalFileId = 'jetpack_featured_media_url___localFile___id',
-  JetpackFeaturedMediaUrlLocalFileParentId = 'jetpack_featured_media_url___localFile___parent___id',
-  JetpackFeaturedMediaUrlLocalFileParentChildren = 'jetpack_featured_media_url___localFile___parent___children',
-  JetpackFeaturedMediaUrlLocalFileChildren = 'jetpack_featured_media_url___localFile___children',
-  JetpackFeaturedMediaUrlLocalFileChildrenId = 'jetpack_featured_media_url___localFile___children___id',
-  JetpackFeaturedMediaUrlLocalFileChildrenChildren = 'jetpack_featured_media_url___localFile___children___children',
-  JetpackFeaturedMediaUrlLocalFileInternalContent = 'jetpack_featured_media_url___localFile___internal___content',
-  JetpackFeaturedMediaUrlLocalFileInternalContentDigest = 'jetpack_featured_media_url___localFile___internal___contentDigest',
-  JetpackFeaturedMediaUrlLocalFileInternalDescription = 'jetpack_featured_media_url___localFile___internal___description',
-  JetpackFeaturedMediaUrlLocalFileInternalFieldOwners = 'jetpack_featured_media_url___localFile___internal___fieldOwners',
-  JetpackFeaturedMediaUrlLocalFileInternalIgnoreType = 'jetpack_featured_media_url___localFile___internal___ignoreType',
-  JetpackFeaturedMediaUrlLocalFileInternalMediaType = 'jetpack_featured_media_url___localFile___internal___mediaType',
-  JetpackFeaturedMediaUrlLocalFileInternalOwner = 'jetpack_featured_media_url___localFile___internal___owner',
-  JetpackFeaturedMediaUrlLocalFileInternalType = 'jetpack_featured_media_url___localFile___internal___type',
+  JetpackFeaturedMediaUrlAuthorAuthoredWordpressPostTags = 'jetpack_featured_media_url___author___authored_wordpress__POST___tags',
+  JetpackFeaturedMediaUrlGuidId = 'jetpack_featured_media_url___guid___id',
+  JetpackFeaturedMediaUrlGuidParentId = 'jetpack_featured_media_url___guid___parent___id',
+  JetpackFeaturedMediaUrlGuidParentChildren = 'jetpack_featured_media_url___guid___parent___children',
+  JetpackFeaturedMediaUrlGuidChildren = 'jetpack_featured_media_url___guid___children',
+  JetpackFeaturedMediaUrlGuidChildrenId = 'jetpack_featured_media_url___guid___children___id',
+  JetpackFeaturedMediaUrlGuidChildrenChildren = 'jetpack_featured_media_url___guid___children___children',
+  JetpackFeaturedMediaUrlGuidInternalContent = 'jetpack_featured_media_url___guid___internal___content',
+  JetpackFeaturedMediaUrlGuidInternalContentDigest = 'jetpack_featured_media_url___guid___internal___contentDigest',
+  JetpackFeaturedMediaUrlGuidInternalDescription = 'jetpack_featured_media_url___guid___internal___description',
+  JetpackFeaturedMediaUrlGuidInternalFieldOwners = 'jetpack_featured_media_url___guid___internal___fieldOwners',
+  JetpackFeaturedMediaUrlGuidInternalIgnoreType = 'jetpack_featured_media_url___guid___internal___ignoreType',
+  JetpackFeaturedMediaUrlGuidInternalMediaType = 'jetpack_featured_media_url___guid___internal___mediaType',
+  JetpackFeaturedMediaUrlGuidInternalOwner = 'jetpack_featured_media_url___guid___internal___owner',
+  JetpackFeaturedMediaUrlGuidInternalType = 'jetpack_featured_media_url___guid___internal___type',
+  JetpackFeaturedMediaUrlGuidWordpressId = 'jetpack_featured_media_url___guid___wordpress_id',
+  JetpackFeaturedMediaUrlGuidDate = 'jetpack_featured_media_url___guid___date',
+  JetpackFeaturedMediaUrlGuidModified = 'jetpack_featured_media_url___guid___modified',
+  JetpackFeaturedMediaUrlGuidSlug = 'jetpack_featured_media_url___guid___slug',
+  JetpackFeaturedMediaUrlGuidStatus = 'jetpack_featured_media_url___guid___status',
+  JetpackFeaturedMediaUrlGuidType = 'jetpack_featured_media_url___guid___type',
+  JetpackFeaturedMediaUrlGuidLink = 'jetpack_featured_media_url___guid___link',
+  JetpackFeaturedMediaUrlGuidTitle = 'jetpack_featured_media_url___guid___title',
+  JetpackFeaturedMediaUrlGuidCommentStatus = 'jetpack_featured_media_url___guid___comment_status',
+  JetpackFeaturedMediaUrlGuidPingStatus = 'jetpack_featured_media_url___guid___ping_status',
+  JetpackFeaturedMediaUrlGuidTemplate = 'jetpack_featured_media_url___guid___template',
+  JetpackFeaturedMediaUrlGuidDescription = 'jetpack_featured_media_url___guid___description',
+  JetpackFeaturedMediaUrlGuidCaption = 'jetpack_featured_media_url___guid___caption',
+  JetpackFeaturedMediaUrlGuidAltText = 'jetpack_featured_media_url___guid___alt_text',
+  JetpackFeaturedMediaUrlGuidMediaType = 'jetpack_featured_media_url___guid___media_type',
+  JetpackFeaturedMediaUrlGuidMimeType = 'jetpack_featured_media_url___guid___mime_type',
+  JetpackFeaturedMediaUrlGuidMediaDetailsWidth = 'jetpack_featured_media_url___guid___media_details___width',
+  JetpackFeaturedMediaUrlGuidMediaDetailsHeight = 'jetpack_featured_media_url___guid___media_details___height',
+  JetpackFeaturedMediaUrlGuidMediaDetailsFile = 'jetpack_featured_media_url___guid___media_details___file',
+  JetpackFeaturedMediaUrlGuidMediaDetailsOriginalImage = 'jetpack_featured_media_url___guid___media_details___original_image',
+  JetpackFeaturedMediaUrlGuidSourceUrl = 'jetpack_featured_media_url___guid___source_url',
+  JetpackFeaturedMediaUrlGuidLinksSelf = 'jetpack_featured_media_url___guid____links___self',
+  JetpackFeaturedMediaUrlGuidLinksCollection = 'jetpack_featured_media_url___guid____links___collection',
+  JetpackFeaturedMediaUrlGuidLinksAbout = 'jetpack_featured_media_url___guid____links___about',
+  JetpackFeaturedMediaUrlGuidLinksAuthor = 'jetpack_featured_media_url___guid____links___author',
+  JetpackFeaturedMediaUrlGuidLinksReplies = 'jetpack_featured_media_url___guid____links___replies',
+  JetpackFeaturedMediaUrlGuidAuthorId = 'jetpack_featured_media_url___guid___author___id',
+  JetpackFeaturedMediaUrlGuidAuthorChildren = 'jetpack_featured_media_url___guid___author___children',
+  JetpackFeaturedMediaUrlGuidAuthorWordpressId = 'jetpack_featured_media_url___guid___author___wordpress_id',
+  JetpackFeaturedMediaUrlGuidAuthorName = 'jetpack_featured_media_url___guid___author___name',
+  JetpackFeaturedMediaUrlGuidAuthorUrl = 'jetpack_featured_media_url___guid___author___url',
+  JetpackFeaturedMediaUrlGuidAuthorDescription = 'jetpack_featured_media_url___guid___author___description',
+  JetpackFeaturedMediaUrlGuidAuthorLink = 'jetpack_featured_media_url___guid___author___link',
+  JetpackFeaturedMediaUrlGuidAuthorSlug = 'jetpack_featured_media_url___guid___author___slug',
+  JetpackFeaturedMediaUrlGuidAuthorAuthoredWordpressPage = 'jetpack_featured_media_url___guid___author___authored_wordpress__PAGE',
+  JetpackFeaturedMediaUrlGuidAuthorAuthoredWordpressWpMedia = 'jetpack_featured_media_url___guid___author___authored_wordpress__wp_media',
+  JetpackFeaturedMediaUrlGuidAuthorPath = 'jetpack_featured_media_url___guid___author___path',
+  JetpackFeaturedMediaUrlGuidAuthorAuthoredWordpressPost = 'jetpack_featured_media_url___guid___author___authored_wordpress__POST',
+  JetpackFeaturedMediaUrlGuidGuidId = 'jetpack_featured_media_url___guid___guid___id',
+  JetpackFeaturedMediaUrlGuidGuidChildren = 'jetpack_featured_media_url___guid___guid___children',
+  JetpackFeaturedMediaUrlGuidGuidWordpressId = 'jetpack_featured_media_url___guid___guid___wordpress_id',
+  JetpackFeaturedMediaUrlGuidGuidDate = 'jetpack_featured_media_url___guid___guid___date',
+  JetpackFeaturedMediaUrlGuidGuidModified = 'jetpack_featured_media_url___guid___guid___modified',
+  JetpackFeaturedMediaUrlGuidGuidSlug = 'jetpack_featured_media_url___guid___guid___slug',
+  JetpackFeaturedMediaUrlGuidGuidStatus = 'jetpack_featured_media_url___guid___guid___status',
+  JetpackFeaturedMediaUrlGuidGuidType = 'jetpack_featured_media_url___guid___guid___type',
+  JetpackFeaturedMediaUrlGuidGuidLink = 'jetpack_featured_media_url___guid___guid___link',
+  JetpackFeaturedMediaUrlGuidGuidTitle = 'jetpack_featured_media_url___guid___guid___title',
+  JetpackFeaturedMediaUrlGuidGuidCommentStatus = 'jetpack_featured_media_url___guid___guid___comment_status',
+  JetpackFeaturedMediaUrlGuidGuidPingStatus = 'jetpack_featured_media_url___guid___guid___ping_status',
+  JetpackFeaturedMediaUrlGuidGuidTemplate = 'jetpack_featured_media_url___guid___guid___template',
+  JetpackFeaturedMediaUrlGuidGuidDescription = 'jetpack_featured_media_url___guid___guid___description',
+  JetpackFeaturedMediaUrlGuidGuidCaption = 'jetpack_featured_media_url___guid___guid___caption',
+  JetpackFeaturedMediaUrlGuidGuidAltText = 'jetpack_featured_media_url___guid___guid___alt_text',
+  JetpackFeaturedMediaUrlGuidGuidMediaType = 'jetpack_featured_media_url___guid___guid___media_type',
+  JetpackFeaturedMediaUrlGuidGuidMimeType = 'jetpack_featured_media_url___guid___guid___mime_type',
+  JetpackFeaturedMediaUrlGuidGuidSourceUrl = 'jetpack_featured_media_url___guid___guid___source_url',
+  JetpackFeaturedMediaUrlGuidGuidPath = 'jetpack_featured_media_url___guid___guid___path',
+  JetpackFeaturedMediaUrlGuidLocalFileSourceInstanceName = 'jetpack_featured_media_url___guid___localFile___sourceInstanceName',
+  JetpackFeaturedMediaUrlGuidLocalFileAbsolutePath = 'jetpack_featured_media_url___guid___localFile___absolutePath',
+  JetpackFeaturedMediaUrlGuidLocalFileRelativePath = 'jetpack_featured_media_url___guid___localFile___relativePath',
+  JetpackFeaturedMediaUrlGuidLocalFileExtension = 'jetpack_featured_media_url___guid___localFile___extension',
+  JetpackFeaturedMediaUrlGuidLocalFileSize = 'jetpack_featured_media_url___guid___localFile___size',
+  JetpackFeaturedMediaUrlGuidLocalFilePrettySize = 'jetpack_featured_media_url___guid___localFile___prettySize',
+  JetpackFeaturedMediaUrlGuidLocalFileModifiedTime = 'jetpack_featured_media_url___guid___localFile___modifiedTime',
+  JetpackFeaturedMediaUrlGuidLocalFileAccessTime = 'jetpack_featured_media_url___guid___localFile___accessTime',
+  JetpackFeaturedMediaUrlGuidLocalFileChangeTime = 'jetpack_featured_media_url___guid___localFile___changeTime',
+  JetpackFeaturedMediaUrlGuidLocalFileBirthTime = 'jetpack_featured_media_url___guid___localFile___birthTime',
+  JetpackFeaturedMediaUrlGuidLocalFileRoot = 'jetpack_featured_media_url___guid___localFile___root',
+  JetpackFeaturedMediaUrlGuidLocalFileDir = 'jetpack_featured_media_url___guid___localFile___dir',
+  JetpackFeaturedMediaUrlGuidLocalFileBase = 'jetpack_featured_media_url___guid___localFile___base',
+  JetpackFeaturedMediaUrlGuidLocalFileExt = 'jetpack_featured_media_url___guid___localFile___ext',
+  JetpackFeaturedMediaUrlGuidLocalFileName = 'jetpack_featured_media_url___guid___localFile___name',
+  JetpackFeaturedMediaUrlGuidLocalFileRelativeDirectory = 'jetpack_featured_media_url___guid___localFile___relativeDirectory',
+  JetpackFeaturedMediaUrlGuidLocalFileDev = 'jetpack_featured_media_url___guid___localFile___dev',
+  JetpackFeaturedMediaUrlGuidLocalFileMode = 'jetpack_featured_media_url___guid___localFile___mode',
+  JetpackFeaturedMediaUrlGuidLocalFileNlink = 'jetpack_featured_media_url___guid___localFile___nlink',
+  JetpackFeaturedMediaUrlGuidLocalFileUid = 'jetpack_featured_media_url___guid___localFile___uid',
+  JetpackFeaturedMediaUrlGuidLocalFileGid = 'jetpack_featured_media_url___guid___localFile___gid',
+  JetpackFeaturedMediaUrlGuidLocalFileRdev = 'jetpack_featured_media_url___guid___localFile___rdev',
+  JetpackFeaturedMediaUrlGuidLocalFileIno = 'jetpack_featured_media_url___guid___localFile___ino',
+  JetpackFeaturedMediaUrlGuidLocalFileAtimeMs = 'jetpack_featured_media_url___guid___localFile___atimeMs',
+  JetpackFeaturedMediaUrlGuidLocalFileMtimeMs = 'jetpack_featured_media_url___guid___localFile___mtimeMs',
+  JetpackFeaturedMediaUrlGuidLocalFileCtimeMs = 'jetpack_featured_media_url___guid___localFile___ctimeMs',
+  JetpackFeaturedMediaUrlGuidLocalFileAtime = 'jetpack_featured_media_url___guid___localFile___atime',
+  JetpackFeaturedMediaUrlGuidLocalFileMtime = 'jetpack_featured_media_url___guid___localFile___mtime',
+  JetpackFeaturedMediaUrlGuidLocalFileCtime = 'jetpack_featured_media_url___guid___localFile___ctime',
+  JetpackFeaturedMediaUrlGuidLocalFileBirthtime = 'jetpack_featured_media_url___guid___localFile___birthtime',
+  JetpackFeaturedMediaUrlGuidLocalFileBirthtimeMs = 'jetpack_featured_media_url___guid___localFile___birthtimeMs',
+  JetpackFeaturedMediaUrlGuidLocalFileBlksize = 'jetpack_featured_media_url___guid___localFile___blksize',
+  JetpackFeaturedMediaUrlGuidLocalFileBlocks = 'jetpack_featured_media_url___guid___localFile___blocks',
+  JetpackFeaturedMediaUrlGuidLocalFileUrl = 'jetpack_featured_media_url___guid___localFile___url',
+  JetpackFeaturedMediaUrlGuidLocalFileId = 'jetpack_featured_media_url___guid___localFile___id',
+  JetpackFeaturedMediaUrlGuidLocalFileChildren = 'jetpack_featured_media_url___guid___localFile___children',
+  JetpackFeaturedMediaUrlGuidPath = 'jetpack_featured_media_url___guid___path',
   JetpackFeaturedMediaUrlLocalFileSourceInstanceName = 'jetpack_featured_media_url___localFile___sourceInstanceName',
   JetpackFeaturedMediaUrlLocalFileAbsolutePath = 'jetpack_featured_media_url___localFile___absolutePath',
   JetpackFeaturedMediaUrlLocalFileRelativePath = 'jetpack_featured_media_url___localFile___relativePath',
@@ -6290,22 +7030,118 @@ export enum Wordpress__PostFieldsEnum {
   JetpackFeaturedMediaUrlLocalFileUid = 'jetpack_featured_media_url___localFile___uid',
   JetpackFeaturedMediaUrlLocalFileGid = 'jetpack_featured_media_url___localFile___gid',
   JetpackFeaturedMediaUrlLocalFileRdev = 'jetpack_featured_media_url___localFile___rdev',
-  JetpackFeaturedMediaUrlLocalFileBlksize = 'jetpack_featured_media_url___localFile___blksize',
   JetpackFeaturedMediaUrlLocalFileIno = 'jetpack_featured_media_url___localFile___ino',
-  JetpackFeaturedMediaUrlLocalFileBlocks = 'jetpack_featured_media_url___localFile___blocks',
   JetpackFeaturedMediaUrlLocalFileAtimeMs = 'jetpack_featured_media_url___localFile___atimeMs',
   JetpackFeaturedMediaUrlLocalFileMtimeMs = 'jetpack_featured_media_url___localFile___mtimeMs',
   JetpackFeaturedMediaUrlLocalFileCtimeMs = 'jetpack_featured_media_url___localFile___ctimeMs',
-  JetpackFeaturedMediaUrlLocalFileBirthtimeMs = 'jetpack_featured_media_url___localFile___birthtimeMs',
   JetpackFeaturedMediaUrlLocalFileAtime = 'jetpack_featured_media_url___localFile___atime',
   JetpackFeaturedMediaUrlLocalFileMtime = 'jetpack_featured_media_url___localFile___mtime',
   JetpackFeaturedMediaUrlLocalFileCtime = 'jetpack_featured_media_url___localFile___ctime',
   JetpackFeaturedMediaUrlLocalFileBirthtime = 'jetpack_featured_media_url___localFile___birthtime',
+  JetpackFeaturedMediaUrlLocalFileBirthtimeMs = 'jetpack_featured_media_url___localFile___birthtimeMs',
+  JetpackFeaturedMediaUrlLocalFileBlksize = 'jetpack_featured_media_url___localFile___blksize',
+  JetpackFeaturedMediaUrlLocalFileBlocks = 'jetpack_featured_media_url___localFile___blocks',
   JetpackFeaturedMediaUrlLocalFileUrl = 'jetpack_featured_media_url___localFile___url',
   JetpackFeaturedMediaUrlLocalFileChildImageSharpId = 'jetpack_featured_media_url___localFile___childImageSharp___id',
   JetpackFeaturedMediaUrlLocalFileChildImageSharpChildren = 'jetpack_featured_media_url___localFile___childImageSharp___children',
+  JetpackFeaturedMediaUrlLocalFileId = 'jetpack_featured_media_url___localFile___id',
+  JetpackFeaturedMediaUrlLocalFileParentId = 'jetpack_featured_media_url___localFile___parent___id',
+  JetpackFeaturedMediaUrlLocalFileParentChildren = 'jetpack_featured_media_url___localFile___parent___children',
+  JetpackFeaturedMediaUrlLocalFileChildren = 'jetpack_featured_media_url___localFile___children',
+  JetpackFeaturedMediaUrlLocalFileChildrenId = 'jetpack_featured_media_url___localFile___children___id',
+  JetpackFeaturedMediaUrlLocalFileChildrenChildren = 'jetpack_featured_media_url___localFile___children___children',
+  JetpackFeaturedMediaUrlLocalFileInternalContent = 'jetpack_featured_media_url___localFile___internal___content',
+  JetpackFeaturedMediaUrlLocalFileInternalContentDigest = 'jetpack_featured_media_url___localFile___internal___contentDigest',
+  JetpackFeaturedMediaUrlLocalFileInternalDescription = 'jetpack_featured_media_url___localFile___internal___description',
+  JetpackFeaturedMediaUrlLocalFileInternalFieldOwners = 'jetpack_featured_media_url___localFile___internal___fieldOwners',
+  JetpackFeaturedMediaUrlLocalFileInternalIgnoreType = 'jetpack_featured_media_url___localFile___internal___ignoreType',
+  JetpackFeaturedMediaUrlLocalFileInternalMediaType = 'jetpack_featured_media_url___localFile___internal___mediaType',
+  JetpackFeaturedMediaUrlLocalFileInternalOwner = 'jetpack_featured_media_url___localFile___internal___owner',
+  JetpackFeaturedMediaUrlLocalFileInternalType = 'jetpack_featured_media_url___localFile___internal___type',
   JetpackFeaturedMediaUrlPath = 'jetpack_featured_media_url___path',
-  Path = 'path'
+  Path = 'path',
+  Tags = 'tags',
+  TagsId = 'tags___id',
+  TagsParentId = 'tags___parent___id',
+  TagsParentParentId = 'tags___parent___parent___id',
+  TagsParentParentChildren = 'tags___parent___parent___children',
+  TagsParentChildren = 'tags___parent___children',
+  TagsParentChildrenId = 'tags___parent___children___id',
+  TagsParentChildrenChildren = 'tags___parent___children___children',
+  TagsParentInternalContent = 'tags___parent___internal___content',
+  TagsParentInternalContentDigest = 'tags___parent___internal___contentDigest',
+  TagsParentInternalDescription = 'tags___parent___internal___description',
+  TagsParentInternalFieldOwners = 'tags___parent___internal___fieldOwners',
+  TagsParentInternalIgnoreType = 'tags___parent___internal___ignoreType',
+  TagsParentInternalMediaType = 'tags___parent___internal___mediaType',
+  TagsParentInternalOwner = 'tags___parent___internal___owner',
+  TagsParentInternalType = 'tags___parent___internal___type',
+  TagsChildren = 'tags___children',
+  TagsChildrenId = 'tags___children___id',
+  TagsChildrenParentId = 'tags___children___parent___id',
+  TagsChildrenParentChildren = 'tags___children___parent___children',
+  TagsChildrenChildren = 'tags___children___children',
+  TagsChildrenChildrenId = 'tags___children___children___id',
+  TagsChildrenChildrenChildren = 'tags___children___children___children',
+  TagsChildrenInternalContent = 'tags___children___internal___content',
+  TagsChildrenInternalContentDigest = 'tags___children___internal___contentDigest',
+  TagsChildrenInternalDescription = 'tags___children___internal___description',
+  TagsChildrenInternalFieldOwners = 'tags___children___internal___fieldOwners',
+  TagsChildrenInternalIgnoreType = 'tags___children___internal___ignoreType',
+  TagsChildrenInternalMediaType = 'tags___children___internal___mediaType',
+  TagsChildrenInternalOwner = 'tags___children___internal___owner',
+  TagsChildrenInternalType = 'tags___children___internal___type',
+  TagsInternalContent = 'tags___internal___content',
+  TagsInternalContentDigest = 'tags___internal___contentDigest',
+  TagsInternalDescription = 'tags___internal___description',
+  TagsInternalFieldOwners = 'tags___internal___fieldOwners',
+  TagsInternalIgnoreType = 'tags___internal___ignoreType',
+  TagsInternalMediaType = 'tags___internal___mediaType',
+  TagsInternalOwner = 'tags___internal___owner',
+  TagsInternalType = 'tags___internal___type',
+  TagsWordpressId = 'tags___wordpress_id',
+  TagsCount = 'tags___count',
+  TagsDescription = 'tags___description',
+  TagsLink = 'tags___link',
+  TagsName = 'tags___name',
+  TagsSlug = 'tags___slug',
+  TagsLinksSelf = 'tags____links___self',
+  TagsLinksSelfHref = 'tags____links___self___href',
+  TagsLinksCollection = 'tags____links___collection',
+  TagsLinksCollectionHref = 'tags____links___collection___href',
+  TagsLinksAbout = 'tags____links___about',
+  TagsLinksAboutHref = 'tags____links___about___href',
+  TagsLinksWpPostType = 'tags____links___wp_post_type',
+  TagsLinksWpPostTypeHref = 'tags____links___wp_post_type___href',
+  TagsLinksCuries = 'tags____links___curies',
+  TagsLinksCuriesName = 'tags____links___curies___name',
+  TagsLinksCuriesHref = 'tags____links___curies___href',
+  TagsLinksCuriesTemplated = 'tags____links___curies___templated',
+  TagsTaxonomyId = 'tags___taxonomy___id',
+  TagsTaxonomyParentId = 'tags___taxonomy___parent___id',
+  TagsTaxonomyParentChildren = 'tags___taxonomy___parent___children',
+  TagsTaxonomyChildren = 'tags___taxonomy___children',
+  TagsTaxonomyChildrenId = 'tags___taxonomy___children___id',
+  TagsTaxonomyChildrenChildren = 'tags___taxonomy___children___children',
+  TagsTaxonomyInternalContent = 'tags___taxonomy___internal___content',
+  TagsTaxonomyInternalContentDigest = 'tags___taxonomy___internal___contentDigest',
+  TagsTaxonomyInternalDescription = 'tags___taxonomy___internal___description',
+  TagsTaxonomyInternalFieldOwners = 'tags___taxonomy___internal___fieldOwners',
+  TagsTaxonomyInternalIgnoreType = 'tags___taxonomy___internal___ignoreType',
+  TagsTaxonomyInternalMediaType = 'tags___taxonomy___internal___mediaType',
+  TagsTaxonomyInternalOwner = 'tags___taxonomy___internal___owner',
+  TagsTaxonomyInternalType = 'tags___taxonomy___internal___type',
+  TagsTaxonomyWordpressId = 'tags___taxonomy___wordpress_id',
+  TagsTaxonomyName = 'tags___taxonomy___name',
+  TagsTaxonomySlug = 'tags___taxonomy___slug',
+  TagsTaxonomyDescription = 'tags___taxonomy___description',
+  TagsTaxonomyTypes = 'tags___taxonomy___types',
+  TagsTaxonomyHierarchical = 'tags___taxonomy___hierarchical',
+  TagsTaxonomyRestBase = 'tags___taxonomy___rest_base',
+  TagsTaxonomyLinksCollection = 'tags___taxonomy____links___collection',
+  TagsTaxonomyLinksWpItems = 'tags___taxonomy____links___wp_items',
+  TagsTaxonomyLinksCuries = 'tags___taxonomy____links___curies',
+  TagsPath = 'tags___path'
 }
 
 export type Wordpress__PostFilterInput = {
@@ -6331,11 +7167,11 @@ export type Wordpress__PostFilterInput = {
   format?: Maybe<StringQueryOperatorInput>;
   _links?: Maybe<Wordpress__Post_LinksFilterInput>;
   author?: Maybe<Wordpress__Wp_UsersFilterInput>;
-  tags?: Maybe<Wordpress__TagFilterListInput>;
   categories?: Maybe<Wordpress__CategoryFilterListInput>;
   featured_media?: Maybe<Wordpress__Wp_MediaFilterInput>;
   jetpack_featured_media_url?: Maybe<Wordpress__Wp_MediaFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  tags?: Maybe<Wordpress__TagFilterListInput>;
 };
 
 export type Wordpress__PostFilterListInput = {
@@ -8055,7 +8891,6 @@ export type Wordpress__Wp_Media = Node & {
   internal: Internal;
   wordpress_id?: Maybe<Scalars['Int']>;
   date?: Maybe<Scalars['Date']>;
-  guid?: Maybe<Scalars['String']>;
   modified?: Maybe<Scalars['Date']>;
   slug?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
@@ -8074,6 +8909,7 @@ export type Wordpress__Wp_Media = Node & {
   source_url?: Maybe<Scalars['String']>;
   _links?: Maybe<Wordpress__Wp_Media_Links>;
   author?: Maybe<Wordpress__Wp_Users>;
+  guid?: Maybe<Wordpress__Wp_Media>;
   localFile?: Maybe<File>;
   path?: Maybe<Scalars['String']>;
 };
@@ -8298,7 +9134,6 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   InternalType = 'internal___type',
   WordpressId = 'wordpress_id',
   Date = 'date',
-  Guid = 'guid',
   Modified = 'modified',
   Slug = 'slug',
   Status = 'status',
@@ -8462,7 +9297,6 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressWpMediaInternalType = 'author___authored_wordpress__wp_media___internal___type',
   AuthorAuthoredWordpressWpMediaWordpressId = 'author___authored_wordpress__wp_media___wordpress_id',
   AuthorAuthoredWordpressWpMediaDate = 'author___authored_wordpress__wp_media___date',
-  AuthorAuthoredWordpressWpMediaGuid = 'author___authored_wordpress__wp_media___guid',
   AuthorAuthoredWordpressWpMediaModified = 'author___authored_wordpress__wp_media___modified',
   AuthorAuthoredWordpressWpMediaSlug = 'author___authored_wordpress__wp_media___slug',
   AuthorAuthoredWordpressWpMediaStatus = 'author___authored_wordpress__wp_media___status',
@@ -8499,8 +9333,26 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressWpMediaAuthorAuthoredWordpressWpMedia = 'author___authored_wordpress__wp_media___author___authored_wordpress__wp_media',
   AuthorAuthoredWordpressWpMediaAuthorPath = 'author___authored_wordpress__wp_media___author___path',
   AuthorAuthoredWordpressWpMediaAuthorAuthoredWordpressPost = 'author___authored_wordpress__wp_media___author___authored_wordpress__POST',
-  AuthorAuthoredWordpressWpMediaLocalFileId = 'author___authored_wordpress__wp_media___localFile___id',
-  AuthorAuthoredWordpressWpMediaLocalFileChildren = 'author___authored_wordpress__wp_media___localFile___children',
+  AuthorAuthoredWordpressWpMediaGuidId = 'author___authored_wordpress__wp_media___guid___id',
+  AuthorAuthoredWordpressWpMediaGuidChildren = 'author___authored_wordpress__wp_media___guid___children',
+  AuthorAuthoredWordpressWpMediaGuidWordpressId = 'author___authored_wordpress__wp_media___guid___wordpress_id',
+  AuthorAuthoredWordpressWpMediaGuidDate = 'author___authored_wordpress__wp_media___guid___date',
+  AuthorAuthoredWordpressWpMediaGuidModified = 'author___authored_wordpress__wp_media___guid___modified',
+  AuthorAuthoredWordpressWpMediaGuidSlug = 'author___authored_wordpress__wp_media___guid___slug',
+  AuthorAuthoredWordpressWpMediaGuidStatus = 'author___authored_wordpress__wp_media___guid___status',
+  AuthorAuthoredWordpressWpMediaGuidType = 'author___authored_wordpress__wp_media___guid___type',
+  AuthorAuthoredWordpressWpMediaGuidLink = 'author___authored_wordpress__wp_media___guid___link',
+  AuthorAuthoredWordpressWpMediaGuidTitle = 'author___authored_wordpress__wp_media___guid___title',
+  AuthorAuthoredWordpressWpMediaGuidCommentStatus = 'author___authored_wordpress__wp_media___guid___comment_status',
+  AuthorAuthoredWordpressWpMediaGuidPingStatus = 'author___authored_wordpress__wp_media___guid___ping_status',
+  AuthorAuthoredWordpressWpMediaGuidTemplate = 'author___authored_wordpress__wp_media___guid___template',
+  AuthorAuthoredWordpressWpMediaGuidDescription = 'author___authored_wordpress__wp_media___guid___description',
+  AuthorAuthoredWordpressWpMediaGuidCaption = 'author___authored_wordpress__wp_media___guid___caption',
+  AuthorAuthoredWordpressWpMediaGuidAltText = 'author___authored_wordpress__wp_media___guid___alt_text',
+  AuthorAuthoredWordpressWpMediaGuidMediaType = 'author___authored_wordpress__wp_media___guid___media_type',
+  AuthorAuthoredWordpressWpMediaGuidMimeType = 'author___authored_wordpress__wp_media___guid___mime_type',
+  AuthorAuthoredWordpressWpMediaGuidSourceUrl = 'author___authored_wordpress__wp_media___guid___source_url',
+  AuthorAuthoredWordpressWpMediaGuidPath = 'author___authored_wordpress__wp_media___guid___path',
   AuthorAuthoredWordpressWpMediaLocalFileSourceInstanceName = 'author___authored_wordpress__wp_media___localFile___sourceInstanceName',
   AuthorAuthoredWordpressWpMediaLocalFileAbsolutePath = 'author___authored_wordpress__wp_media___localFile___absolutePath',
   AuthorAuthoredWordpressWpMediaLocalFileRelativePath = 'author___authored_wordpress__wp_media___localFile___relativePath',
@@ -8523,18 +9375,20 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressWpMediaLocalFileUid = 'author___authored_wordpress__wp_media___localFile___uid',
   AuthorAuthoredWordpressWpMediaLocalFileGid = 'author___authored_wordpress__wp_media___localFile___gid',
   AuthorAuthoredWordpressWpMediaLocalFileRdev = 'author___authored_wordpress__wp_media___localFile___rdev',
-  AuthorAuthoredWordpressWpMediaLocalFileBlksize = 'author___authored_wordpress__wp_media___localFile___blksize',
   AuthorAuthoredWordpressWpMediaLocalFileIno = 'author___authored_wordpress__wp_media___localFile___ino',
-  AuthorAuthoredWordpressWpMediaLocalFileBlocks = 'author___authored_wordpress__wp_media___localFile___blocks',
   AuthorAuthoredWordpressWpMediaLocalFileAtimeMs = 'author___authored_wordpress__wp_media___localFile___atimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileMtimeMs = 'author___authored_wordpress__wp_media___localFile___mtimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileCtimeMs = 'author___authored_wordpress__wp_media___localFile___ctimeMs',
-  AuthorAuthoredWordpressWpMediaLocalFileBirthtimeMs = 'author___authored_wordpress__wp_media___localFile___birthtimeMs',
   AuthorAuthoredWordpressWpMediaLocalFileAtime = 'author___authored_wordpress__wp_media___localFile___atime',
   AuthorAuthoredWordpressWpMediaLocalFileMtime = 'author___authored_wordpress__wp_media___localFile___mtime',
   AuthorAuthoredWordpressWpMediaLocalFileCtime = 'author___authored_wordpress__wp_media___localFile___ctime',
   AuthorAuthoredWordpressWpMediaLocalFileBirthtime = 'author___authored_wordpress__wp_media___localFile___birthtime',
+  AuthorAuthoredWordpressWpMediaLocalFileBirthtimeMs = 'author___authored_wordpress__wp_media___localFile___birthtimeMs',
+  AuthorAuthoredWordpressWpMediaLocalFileBlksize = 'author___authored_wordpress__wp_media___localFile___blksize',
+  AuthorAuthoredWordpressWpMediaLocalFileBlocks = 'author___authored_wordpress__wp_media___localFile___blocks',
   AuthorAuthoredWordpressWpMediaLocalFileUrl = 'author___authored_wordpress__wp_media___localFile___url',
+  AuthorAuthoredWordpressWpMediaLocalFileId = 'author___authored_wordpress__wp_media___localFile___id',
+  AuthorAuthoredWordpressWpMediaLocalFileChildren = 'author___authored_wordpress__wp_media___localFile___children',
   AuthorAuthoredWordpressWpMediaPath = 'author___authored_wordpress__wp_media___path',
   AuthorPath = 'author___path',
   AuthorAuthoredWordpressPost = 'author___authored_wordpress__POST',
@@ -8591,16 +9445,6 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressPostAuthorAuthoredWordpressWpMedia = 'author___authored_wordpress__POST___author___authored_wordpress__wp_media',
   AuthorAuthoredWordpressPostAuthorPath = 'author___authored_wordpress__POST___author___path',
   AuthorAuthoredWordpressPostAuthorAuthoredWordpressPost = 'author___authored_wordpress__POST___author___authored_wordpress__POST',
-  AuthorAuthoredWordpressPostTags = 'author___authored_wordpress__POST___tags',
-  AuthorAuthoredWordpressPostTagsId = 'author___authored_wordpress__POST___tags___id',
-  AuthorAuthoredWordpressPostTagsChildren = 'author___authored_wordpress__POST___tags___children',
-  AuthorAuthoredWordpressPostTagsWordpressId = 'author___authored_wordpress__POST___tags___wordpress_id',
-  AuthorAuthoredWordpressPostTagsCount = 'author___authored_wordpress__POST___tags___count',
-  AuthorAuthoredWordpressPostTagsDescription = 'author___authored_wordpress__POST___tags___description',
-  AuthorAuthoredWordpressPostTagsLink = 'author___authored_wordpress__POST___tags___link',
-  AuthorAuthoredWordpressPostTagsName = 'author___authored_wordpress__POST___tags___name',
-  AuthorAuthoredWordpressPostTagsSlug = 'author___authored_wordpress__POST___tags___slug',
-  AuthorAuthoredWordpressPostTagsPath = 'author___authored_wordpress__POST___tags___path',
   AuthorAuthoredWordpressPostCategories = 'author___authored_wordpress__POST___categories',
   AuthorAuthoredWordpressPostCategoriesId = 'author___authored_wordpress__POST___categories___id',
   AuthorAuthoredWordpressPostCategoriesChildren = 'author___authored_wordpress__POST___categories___children',
@@ -8616,7 +9460,6 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressPostFeaturedMediaChildren = 'author___authored_wordpress__POST___featured_media___children',
   AuthorAuthoredWordpressPostFeaturedMediaWordpressId = 'author___authored_wordpress__POST___featured_media___wordpress_id',
   AuthorAuthoredWordpressPostFeaturedMediaDate = 'author___authored_wordpress__POST___featured_media___date',
-  AuthorAuthoredWordpressPostFeaturedMediaGuid = 'author___authored_wordpress__POST___featured_media___guid',
   AuthorAuthoredWordpressPostFeaturedMediaModified = 'author___authored_wordpress__POST___featured_media___modified',
   AuthorAuthoredWordpressPostFeaturedMediaSlug = 'author___authored_wordpress__POST___featured_media___slug',
   AuthorAuthoredWordpressPostFeaturedMediaStatus = 'author___authored_wordpress__POST___featured_media___status',
@@ -8637,7 +9480,6 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlChildren = 'author___authored_wordpress__POST___jetpack_featured_media_url___children',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlWordpressId = 'author___authored_wordpress__POST___jetpack_featured_media_url___wordpress_id',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlDate = 'author___authored_wordpress__POST___jetpack_featured_media_url___date',
-  AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlGuid = 'author___authored_wordpress__POST___jetpack_featured_media_url___guid',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlModified = 'author___authored_wordpress__POST___jetpack_featured_media_url___modified',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlSlug = 'author___authored_wordpress__POST___jetpack_featured_media_url___slug',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlStatus = 'author___authored_wordpress__POST___jetpack_featured_media_url___status',
@@ -8655,44 +9497,347 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlSourceUrl = 'author___authored_wordpress__POST___jetpack_featured_media_url___source_url',
   AuthorAuthoredWordpressPostJetpackFeaturedMediaUrlPath = 'author___authored_wordpress__POST___jetpack_featured_media_url___path',
   AuthorAuthoredWordpressPostPath = 'author___authored_wordpress__POST___path',
-  LocalFileId = 'localFile___id',
-  LocalFileParentId = 'localFile___parent___id',
-  LocalFileParentParentId = 'localFile___parent___parent___id',
-  LocalFileParentParentChildren = 'localFile___parent___parent___children',
-  LocalFileParentChildren = 'localFile___parent___children',
-  LocalFileParentChildrenId = 'localFile___parent___children___id',
-  LocalFileParentChildrenChildren = 'localFile___parent___children___children',
-  LocalFileParentInternalContent = 'localFile___parent___internal___content',
-  LocalFileParentInternalContentDigest = 'localFile___parent___internal___contentDigest',
-  LocalFileParentInternalDescription = 'localFile___parent___internal___description',
-  LocalFileParentInternalFieldOwners = 'localFile___parent___internal___fieldOwners',
-  LocalFileParentInternalIgnoreType = 'localFile___parent___internal___ignoreType',
-  LocalFileParentInternalMediaType = 'localFile___parent___internal___mediaType',
-  LocalFileParentInternalOwner = 'localFile___parent___internal___owner',
-  LocalFileParentInternalType = 'localFile___parent___internal___type',
-  LocalFileChildren = 'localFile___children',
-  LocalFileChildrenId = 'localFile___children___id',
-  LocalFileChildrenParentId = 'localFile___children___parent___id',
-  LocalFileChildrenParentChildren = 'localFile___children___parent___children',
-  LocalFileChildrenChildren = 'localFile___children___children',
-  LocalFileChildrenChildrenId = 'localFile___children___children___id',
-  LocalFileChildrenChildrenChildren = 'localFile___children___children___children',
-  LocalFileChildrenInternalContent = 'localFile___children___internal___content',
-  LocalFileChildrenInternalContentDigest = 'localFile___children___internal___contentDigest',
-  LocalFileChildrenInternalDescription = 'localFile___children___internal___description',
-  LocalFileChildrenInternalFieldOwners = 'localFile___children___internal___fieldOwners',
-  LocalFileChildrenInternalIgnoreType = 'localFile___children___internal___ignoreType',
-  LocalFileChildrenInternalMediaType = 'localFile___children___internal___mediaType',
-  LocalFileChildrenInternalOwner = 'localFile___children___internal___owner',
-  LocalFileChildrenInternalType = 'localFile___children___internal___type',
-  LocalFileInternalContent = 'localFile___internal___content',
-  LocalFileInternalContentDigest = 'localFile___internal___contentDigest',
-  LocalFileInternalDescription = 'localFile___internal___description',
-  LocalFileInternalFieldOwners = 'localFile___internal___fieldOwners',
-  LocalFileInternalIgnoreType = 'localFile___internal___ignoreType',
-  LocalFileInternalMediaType = 'localFile___internal___mediaType',
-  LocalFileInternalOwner = 'localFile___internal___owner',
-  LocalFileInternalType = 'localFile___internal___type',
+  AuthorAuthoredWordpressPostTags = 'author___authored_wordpress__POST___tags',
+  AuthorAuthoredWordpressPostTagsId = 'author___authored_wordpress__POST___tags___id',
+  AuthorAuthoredWordpressPostTagsChildren = 'author___authored_wordpress__POST___tags___children',
+  AuthorAuthoredWordpressPostTagsWordpressId = 'author___authored_wordpress__POST___tags___wordpress_id',
+  AuthorAuthoredWordpressPostTagsCount = 'author___authored_wordpress__POST___tags___count',
+  AuthorAuthoredWordpressPostTagsDescription = 'author___authored_wordpress__POST___tags___description',
+  AuthorAuthoredWordpressPostTagsLink = 'author___authored_wordpress__POST___tags___link',
+  AuthorAuthoredWordpressPostTagsName = 'author___authored_wordpress__POST___tags___name',
+  AuthorAuthoredWordpressPostTagsSlug = 'author___authored_wordpress__POST___tags___slug',
+  AuthorAuthoredWordpressPostTagsPath = 'author___authored_wordpress__POST___tags___path',
+  GuidId = 'guid___id',
+  GuidParentId = 'guid___parent___id',
+  GuidParentParentId = 'guid___parent___parent___id',
+  GuidParentParentChildren = 'guid___parent___parent___children',
+  GuidParentChildren = 'guid___parent___children',
+  GuidParentChildrenId = 'guid___parent___children___id',
+  GuidParentChildrenChildren = 'guid___parent___children___children',
+  GuidParentInternalContent = 'guid___parent___internal___content',
+  GuidParentInternalContentDigest = 'guid___parent___internal___contentDigest',
+  GuidParentInternalDescription = 'guid___parent___internal___description',
+  GuidParentInternalFieldOwners = 'guid___parent___internal___fieldOwners',
+  GuidParentInternalIgnoreType = 'guid___parent___internal___ignoreType',
+  GuidParentInternalMediaType = 'guid___parent___internal___mediaType',
+  GuidParentInternalOwner = 'guid___parent___internal___owner',
+  GuidParentInternalType = 'guid___parent___internal___type',
+  GuidChildren = 'guid___children',
+  GuidChildrenId = 'guid___children___id',
+  GuidChildrenParentId = 'guid___children___parent___id',
+  GuidChildrenParentChildren = 'guid___children___parent___children',
+  GuidChildrenChildren = 'guid___children___children',
+  GuidChildrenChildrenId = 'guid___children___children___id',
+  GuidChildrenChildrenChildren = 'guid___children___children___children',
+  GuidChildrenInternalContent = 'guid___children___internal___content',
+  GuidChildrenInternalContentDigest = 'guid___children___internal___contentDigest',
+  GuidChildrenInternalDescription = 'guid___children___internal___description',
+  GuidChildrenInternalFieldOwners = 'guid___children___internal___fieldOwners',
+  GuidChildrenInternalIgnoreType = 'guid___children___internal___ignoreType',
+  GuidChildrenInternalMediaType = 'guid___children___internal___mediaType',
+  GuidChildrenInternalOwner = 'guid___children___internal___owner',
+  GuidChildrenInternalType = 'guid___children___internal___type',
+  GuidInternalContent = 'guid___internal___content',
+  GuidInternalContentDigest = 'guid___internal___contentDigest',
+  GuidInternalDescription = 'guid___internal___description',
+  GuidInternalFieldOwners = 'guid___internal___fieldOwners',
+  GuidInternalIgnoreType = 'guid___internal___ignoreType',
+  GuidInternalMediaType = 'guid___internal___mediaType',
+  GuidInternalOwner = 'guid___internal___owner',
+  GuidInternalType = 'guid___internal___type',
+  GuidWordpressId = 'guid___wordpress_id',
+  GuidDate = 'guid___date',
+  GuidModified = 'guid___modified',
+  GuidSlug = 'guid___slug',
+  GuidStatus = 'guid___status',
+  GuidType = 'guid___type',
+  GuidLink = 'guid___link',
+  GuidTitle = 'guid___title',
+  GuidCommentStatus = 'guid___comment_status',
+  GuidPingStatus = 'guid___ping_status',
+  GuidTemplate = 'guid___template',
+  GuidDescription = 'guid___description',
+  GuidCaption = 'guid___caption',
+  GuidAltText = 'guid___alt_text',
+  GuidMediaType = 'guid___media_type',
+  GuidMimeType = 'guid___mime_type',
+  GuidMediaDetailsWidth = 'guid___media_details___width',
+  GuidMediaDetailsHeight = 'guid___media_details___height',
+  GuidMediaDetailsFile = 'guid___media_details___file',
+  GuidMediaDetailsImageMetaAperture = 'guid___media_details___image_meta___aperture',
+  GuidMediaDetailsImageMetaCredit = 'guid___media_details___image_meta___credit',
+  GuidMediaDetailsImageMetaCamera = 'guid___media_details___image_meta___camera',
+  GuidMediaDetailsImageMetaCaption = 'guid___media_details___image_meta___caption',
+  GuidMediaDetailsImageMetaCreatedTimestamp = 'guid___media_details___image_meta___created_timestamp',
+  GuidMediaDetailsImageMetaCopyright = 'guid___media_details___image_meta___copyright',
+  GuidMediaDetailsImageMetaFocalLength = 'guid___media_details___image_meta___focal_length',
+  GuidMediaDetailsImageMetaIso = 'guid___media_details___image_meta___iso',
+  GuidMediaDetailsImageMetaShutterSpeed = 'guid___media_details___image_meta___shutter_speed',
+  GuidMediaDetailsImageMetaTitle = 'guid___media_details___image_meta___title',
+  GuidMediaDetailsImageMetaOrientation = 'guid___media_details___image_meta___orientation',
+  GuidMediaDetailsOriginalImage = 'guid___media_details___original_image',
+  GuidSourceUrl = 'guid___source_url',
+  GuidLinksSelf = 'guid____links___self',
+  GuidLinksSelfHref = 'guid____links___self___href',
+  GuidLinksCollection = 'guid____links___collection',
+  GuidLinksCollectionHref = 'guid____links___collection___href',
+  GuidLinksAbout = 'guid____links___about',
+  GuidLinksAboutHref = 'guid____links___about___href',
+  GuidLinksAuthor = 'guid____links___author',
+  GuidLinksAuthorEmbeddable = 'guid____links___author___embeddable',
+  GuidLinksAuthorHref = 'guid____links___author___href',
+  GuidLinksReplies = 'guid____links___replies',
+  GuidLinksRepliesEmbeddable = 'guid____links___replies___embeddable',
+  GuidLinksRepliesHref = 'guid____links___replies___href',
+  GuidAuthorId = 'guid___author___id',
+  GuidAuthorParentId = 'guid___author___parent___id',
+  GuidAuthorParentChildren = 'guid___author___parent___children',
+  GuidAuthorChildren = 'guid___author___children',
+  GuidAuthorChildrenId = 'guid___author___children___id',
+  GuidAuthorChildrenChildren = 'guid___author___children___children',
+  GuidAuthorInternalContent = 'guid___author___internal___content',
+  GuidAuthorInternalContentDigest = 'guid___author___internal___contentDigest',
+  GuidAuthorInternalDescription = 'guid___author___internal___description',
+  GuidAuthorInternalFieldOwners = 'guid___author___internal___fieldOwners',
+  GuidAuthorInternalIgnoreType = 'guid___author___internal___ignoreType',
+  GuidAuthorInternalMediaType = 'guid___author___internal___mediaType',
+  GuidAuthorInternalOwner = 'guid___author___internal___owner',
+  GuidAuthorInternalType = 'guid___author___internal___type',
+  GuidAuthorWordpressId = 'guid___author___wordpress_id',
+  GuidAuthorName = 'guid___author___name',
+  GuidAuthorUrl = 'guid___author___url',
+  GuidAuthorDescription = 'guid___author___description',
+  GuidAuthorLink = 'guid___author___link',
+  GuidAuthorSlug = 'guid___author___slug',
+  GuidAuthorAvatarUrlsWordpress_24 = 'guid___author___avatar_urls___wordpress_24',
+  GuidAuthorAvatarUrlsWordpress_48 = 'guid___author___avatar_urls___wordpress_48',
+  GuidAuthorAvatarUrlsWordpress_96 = 'guid___author___avatar_urls___wordpress_96',
+  GuidAuthorLinksSelf = 'guid___author____links___self',
+  GuidAuthorLinksCollection = 'guid___author____links___collection',
+  GuidAuthorAuthoredWordpressPage = 'guid___author___authored_wordpress__PAGE',
+  GuidAuthorAuthoredWordpressPageId = 'guid___author___authored_wordpress__PAGE___id',
+  GuidAuthorAuthoredWordpressPageChildren = 'guid___author___authored_wordpress__PAGE___children',
+  GuidAuthorAuthoredWordpressPageWordpressId = 'guid___author___authored_wordpress__PAGE___wordpress_id',
+  GuidAuthorAuthoredWordpressPageDate = 'guid___author___authored_wordpress__PAGE___date',
+  GuidAuthorAuthoredWordpressPageGuid = 'guid___author___authored_wordpress__PAGE___guid',
+  GuidAuthorAuthoredWordpressPageModified = 'guid___author___authored_wordpress__PAGE___modified',
+  GuidAuthorAuthoredWordpressPageSlug = 'guid___author___authored_wordpress__PAGE___slug',
+  GuidAuthorAuthoredWordpressPageStatus = 'guid___author___authored_wordpress__PAGE___status',
+  GuidAuthorAuthoredWordpressPageType = 'guid___author___authored_wordpress__PAGE___type',
+  GuidAuthorAuthoredWordpressPageLink = 'guid___author___authored_wordpress__PAGE___link',
+  GuidAuthorAuthoredWordpressPageTitle = 'guid___author___authored_wordpress__PAGE___title',
+  GuidAuthorAuthoredWordpressPageContent = 'guid___author___authored_wordpress__PAGE___content',
+  GuidAuthorAuthoredWordpressPageExcerpt = 'guid___author___authored_wordpress__PAGE___excerpt',
+  GuidAuthorAuthoredWordpressPageWordpressParent = 'guid___author___authored_wordpress__PAGE___wordpress_parent',
+  GuidAuthorAuthoredWordpressPageMenuOrder = 'guid___author___authored_wordpress__PAGE___menu_order',
+  GuidAuthorAuthoredWordpressPageCommentStatus = 'guid___author___authored_wordpress__PAGE___comment_status',
+  GuidAuthorAuthoredWordpressPagePingStatus = 'guid___author___authored_wordpress__PAGE___ping_status',
+  GuidAuthorAuthoredWordpressPageTemplate = 'guid___author___authored_wordpress__PAGE___template',
+  GuidAuthorAuthoredWordpressPagePath = 'guid___author___authored_wordpress__PAGE___path',
+  GuidAuthorAuthoredWordpressWpMedia = 'guid___author___authored_wordpress__wp_media',
+  GuidAuthorAuthoredWordpressWpMediaId = 'guid___author___authored_wordpress__wp_media___id',
+  GuidAuthorAuthoredWordpressWpMediaChildren = 'guid___author___authored_wordpress__wp_media___children',
+  GuidAuthorAuthoredWordpressWpMediaWordpressId = 'guid___author___authored_wordpress__wp_media___wordpress_id',
+  GuidAuthorAuthoredWordpressWpMediaDate = 'guid___author___authored_wordpress__wp_media___date',
+  GuidAuthorAuthoredWordpressWpMediaModified = 'guid___author___authored_wordpress__wp_media___modified',
+  GuidAuthorAuthoredWordpressWpMediaSlug = 'guid___author___authored_wordpress__wp_media___slug',
+  GuidAuthorAuthoredWordpressWpMediaStatus = 'guid___author___authored_wordpress__wp_media___status',
+  GuidAuthorAuthoredWordpressWpMediaType = 'guid___author___authored_wordpress__wp_media___type',
+  GuidAuthorAuthoredWordpressWpMediaLink = 'guid___author___authored_wordpress__wp_media___link',
+  GuidAuthorAuthoredWordpressWpMediaTitle = 'guid___author___authored_wordpress__wp_media___title',
+  GuidAuthorAuthoredWordpressWpMediaCommentStatus = 'guid___author___authored_wordpress__wp_media___comment_status',
+  GuidAuthorAuthoredWordpressWpMediaPingStatus = 'guid___author___authored_wordpress__wp_media___ping_status',
+  GuidAuthorAuthoredWordpressWpMediaTemplate = 'guid___author___authored_wordpress__wp_media___template',
+  GuidAuthorAuthoredWordpressWpMediaDescription = 'guid___author___authored_wordpress__wp_media___description',
+  GuidAuthorAuthoredWordpressWpMediaCaption = 'guid___author___authored_wordpress__wp_media___caption',
+  GuidAuthorAuthoredWordpressWpMediaAltText = 'guid___author___authored_wordpress__wp_media___alt_text',
+  GuidAuthorAuthoredWordpressWpMediaMediaType = 'guid___author___authored_wordpress__wp_media___media_type',
+  GuidAuthorAuthoredWordpressWpMediaMimeType = 'guid___author___authored_wordpress__wp_media___mime_type',
+  GuidAuthorAuthoredWordpressWpMediaSourceUrl = 'guid___author___authored_wordpress__wp_media___source_url',
+  GuidAuthorAuthoredWordpressWpMediaPath = 'guid___author___authored_wordpress__wp_media___path',
+  GuidAuthorPath = 'guid___author___path',
+  GuidAuthorAuthoredWordpressPost = 'guid___author___authored_wordpress__POST',
+  GuidAuthorAuthoredWordpressPostId = 'guid___author___authored_wordpress__POST___id',
+  GuidAuthorAuthoredWordpressPostChildren = 'guid___author___authored_wordpress__POST___children',
+  GuidAuthorAuthoredWordpressPostWordpressId = 'guid___author___authored_wordpress__POST___wordpress_id',
+  GuidAuthorAuthoredWordpressPostDate = 'guid___author___authored_wordpress__POST___date',
+  GuidAuthorAuthoredWordpressPostGuid = 'guid___author___authored_wordpress__POST___guid',
+  GuidAuthorAuthoredWordpressPostModified = 'guid___author___authored_wordpress__POST___modified',
+  GuidAuthorAuthoredWordpressPostSlug = 'guid___author___authored_wordpress__POST___slug',
+  GuidAuthorAuthoredWordpressPostStatus = 'guid___author___authored_wordpress__POST___status',
+  GuidAuthorAuthoredWordpressPostType = 'guid___author___authored_wordpress__POST___type',
+  GuidAuthorAuthoredWordpressPostLink = 'guid___author___authored_wordpress__POST___link',
+  GuidAuthorAuthoredWordpressPostTitle = 'guid___author___authored_wordpress__POST___title',
+  GuidAuthorAuthoredWordpressPostContent = 'guid___author___authored_wordpress__POST___content',
+  GuidAuthorAuthoredWordpressPostExcerpt = 'guid___author___authored_wordpress__POST___excerpt',
+  GuidAuthorAuthoredWordpressPostCommentStatus = 'guid___author___authored_wordpress__POST___comment_status',
+  GuidAuthorAuthoredWordpressPostPingStatus = 'guid___author___authored_wordpress__POST___ping_status',
+  GuidAuthorAuthoredWordpressPostSticky = 'guid___author___authored_wordpress__POST___sticky',
+  GuidAuthorAuthoredWordpressPostTemplate = 'guid___author___authored_wordpress__POST___template',
+  GuidAuthorAuthoredWordpressPostFormat = 'guid___author___authored_wordpress__POST___format',
+  GuidAuthorAuthoredWordpressPostCategories = 'guid___author___authored_wordpress__POST___categories',
+  GuidAuthorAuthoredWordpressPostPath = 'guid___author___authored_wordpress__POST___path',
+  GuidAuthorAuthoredWordpressPostTags = 'guid___author___authored_wordpress__POST___tags',
+  GuidGuidId = 'guid___guid___id',
+  GuidGuidParentId = 'guid___guid___parent___id',
+  GuidGuidParentChildren = 'guid___guid___parent___children',
+  GuidGuidChildren = 'guid___guid___children',
+  GuidGuidChildrenId = 'guid___guid___children___id',
+  GuidGuidChildrenChildren = 'guid___guid___children___children',
+  GuidGuidInternalContent = 'guid___guid___internal___content',
+  GuidGuidInternalContentDigest = 'guid___guid___internal___contentDigest',
+  GuidGuidInternalDescription = 'guid___guid___internal___description',
+  GuidGuidInternalFieldOwners = 'guid___guid___internal___fieldOwners',
+  GuidGuidInternalIgnoreType = 'guid___guid___internal___ignoreType',
+  GuidGuidInternalMediaType = 'guid___guid___internal___mediaType',
+  GuidGuidInternalOwner = 'guid___guid___internal___owner',
+  GuidGuidInternalType = 'guid___guid___internal___type',
+  GuidGuidWordpressId = 'guid___guid___wordpress_id',
+  GuidGuidDate = 'guid___guid___date',
+  GuidGuidModified = 'guid___guid___modified',
+  GuidGuidSlug = 'guid___guid___slug',
+  GuidGuidStatus = 'guid___guid___status',
+  GuidGuidType = 'guid___guid___type',
+  GuidGuidLink = 'guid___guid___link',
+  GuidGuidTitle = 'guid___guid___title',
+  GuidGuidCommentStatus = 'guid___guid___comment_status',
+  GuidGuidPingStatus = 'guid___guid___ping_status',
+  GuidGuidTemplate = 'guid___guid___template',
+  GuidGuidDescription = 'guid___guid___description',
+  GuidGuidCaption = 'guid___guid___caption',
+  GuidGuidAltText = 'guid___guid___alt_text',
+  GuidGuidMediaType = 'guid___guid___media_type',
+  GuidGuidMimeType = 'guid___guid___mime_type',
+  GuidGuidMediaDetailsWidth = 'guid___guid___media_details___width',
+  GuidGuidMediaDetailsHeight = 'guid___guid___media_details___height',
+  GuidGuidMediaDetailsFile = 'guid___guid___media_details___file',
+  GuidGuidMediaDetailsOriginalImage = 'guid___guid___media_details___original_image',
+  GuidGuidSourceUrl = 'guid___guid___source_url',
+  GuidGuidLinksSelf = 'guid___guid____links___self',
+  GuidGuidLinksCollection = 'guid___guid____links___collection',
+  GuidGuidLinksAbout = 'guid___guid____links___about',
+  GuidGuidLinksAuthor = 'guid___guid____links___author',
+  GuidGuidLinksReplies = 'guid___guid____links___replies',
+  GuidGuidAuthorId = 'guid___guid___author___id',
+  GuidGuidAuthorChildren = 'guid___guid___author___children',
+  GuidGuidAuthorWordpressId = 'guid___guid___author___wordpress_id',
+  GuidGuidAuthorName = 'guid___guid___author___name',
+  GuidGuidAuthorUrl = 'guid___guid___author___url',
+  GuidGuidAuthorDescription = 'guid___guid___author___description',
+  GuidGuidAuthorLink = 'guid___guid___author___link',
+  GuidGuidAuthorSlug = 'guid___guid___author___slug',
+  GuidGuidAuthorAuthoredWordpressPage = 'guid___guid___author___authored_wordpress__PAGE',
+  GuidGuidAuthorAuthoredWordpressWpMedia = 'guid___guid___author___authored_wordpress__wp_media',
+  GuidGuidAuthorPath = 'guid___guid___author___path',
+  GuidGuidAuthorAuthoredWordpressPost = 'guid___guid___author___authored_wordpress__POST',
+  GuidGuidGuidId = 'guid___guid___guid___id',
+  GuidGuidGuidChildren = 'guid___guid___guid___children',
+  GuidGuidGuidWordpressId = 'guid___guid___guid___wordpress_id',
+  GuidGuidGuidDate = 'guid___guid___guid___date',
+  GuidGuidGuidModified = 'guid___guid___guid___modified',
+  GuidGuidGuidSlug = 'guid___guid___guid___slug',
+  GuidGuidGuidStatus = 'guid___guid___guid___status',
+  GuidGuidGuidType = 'guid___guid___guid___type',
+  GuidGuidGuidLink = 'guid___guid___guid___link',
+  GuidGuidGuidTitle = 'guid___guid___guid___title',
+  GuidGuidGuidCommentStatus = 'guid___guid___guid___comment_status',
+  GuidGuidGuidPingStatus = 'guid___guid___guid___ping_status',
+  GuidGuidGuidTemplate = 'guid___guid___guid___template',
+  GuidGuidGuidDescription = 'guid___guid___guid___description',
+  GuidGuidGuidCaption = 'guid___guid___guid___caption',
+  GuidGuidGuidAltText = 'guid___guid___guid___alt_text',
+  GuidGuidGuidMediaType = 'guid___guid___guid___media_type',
+  GuidGuidGuidMimeType = 'guid___guid___guid___mime_type',
+  GuidGuidGuidSourceUrl = 'guid___guid___guid___source_url',
+  GuidGuidGuidPath = 'guid___guid___guid___path',
+  GuidGuidLocalFileSourceInstanceName = 'guid___guid___localFile___sourceInstanceName',
+  GuidGuidLocalFileAbsolutePath = 'guid___guid___localFile___absolutePath',
+  GuidGuidLocalFileRelativePath = 'guid___guid___localFile___relativePath',
+  GuidGuidLocalFileExtension = 'guid___guid___localFile___extension',
+  GuidGuidLocalFileSize = 'guid___guid___localFile___size',
+  GuidGuidLocalFilePrettySize = 'guid___guid___localFile___prettySize',
+  GuidGuidLocalFileModifiedTime = 'guid___guid___localFile___modifiedTime',
+  GuidGuidLocalFileAccessTime = 'guid___guid___localFile___accessTime',
+  GuidGuidLocalFileChangeTime = 'guid___guid___localFile___changeTime',
+  GuidGuidLocalFileBirthTime = 'guid___guid___localFile___birthTime',
+  GuidGuidLocalFileRoot = 'guid___guid___localFile___root',
+  GuidGuidLocalFileDir = 'guid___guid___localFile___dir',
+  GuidGuidLocalFileBase = 'guid___guid___localFile___base',
+  GuidGuidLocalFileExt = 'guid___guid___localFile___ext',
+  GuidGuidLocalFileName = 'guid___guid___localFile___name',
+  GuidGuidLocalFileRelativeDirectory = 'guid___guid___localFile___relativeDirectory',
+  GuidGuidLocalFileDev = 'guid___guid___localFile___dev',
+  GuidGuidLocalFileMode = 'guid___guid___localFile___mode',
+  GuidGuidLocalFileNlink = 'guid___guid___localFile___nlink',
+  GuidGuidLocalFileUid = 'guid___guid___localFile___uid',
+  GuidGuidLocalFileGid = 'guid___guid___localFile___gid',
+  GuidGuidLocalFileRdev = 'guid___guid___localFile___rdev',
+  GuidGuidLocalFileIno = 'guid___guid___localFile___ino',
+  GuidGuidLocalFileAtimeMs = 'guid___guid___localFile___atimeMs',
+  GuidGuidLocalFileMtimeMs = 'guid___guid___localFile___mtimeMs',
+  GuidGuidLocalFileCtimeMs = 'guid___guid___localFile___ctimeMs',
+  GuidGuidLocalFileAtime = 'guid___guid___localFile___atime',
+  GuidGuidLocalFileMtime = 'guid___guid___localFile___mtime',
+  GuidGuidLocalFileCtime = 'guid___guid___localFile___ctime',
+  GuidGuidLocalFileBirthtime = 'guid___guid___localFile___birthtime',
+  GuidGuidLocalFileBirthtimeMs = 'guid___guid___localFile___birthtimeMs',
+  GuidGuidLocalFileBlksize = 'guid___guid___localFile___blksize',
+  GuidGuidLocalFileBlocks = 'guid___guid___localFile___blocks',
+  GuidGuidLocalFileUrl = 'guid___guid___localFile___url',
+  GuidGuidLocalFileId = 'guid___guid___localFile___id',
+  GuidGuidLocalFileChildren = 'guid___guid___localFile___children',
+  GuidGuidPath = 'guid___guid___path',
+  GuidLocalFileSourceInstanceName = 'guid___localFile___sourceInstanceName',
+  GuidLocalFileAbsolutePath = 'guid___localFile___absolutePath',
+  GuidLocalFileRelativePath = 'guid___localFile___relativePath',
+  GuidLocalFileExtension = 'guid___localFile___extension',
+  GuidLocalFileSize = 'guid___localFile___size',
+  GuidLocalFilePrettySize = 'guid___localFile___prettySize',
+  GuidLocalFileModifiedTime = 'guid___localFile___modifiedTime',
+  GuidLocalFileAccessTime = 'guid___localFile___accessTime',
+  GuidLocalFileChangeTime = 'guid___localFile___changeTime',
+  GuidLocalFileBirthTime = 'guid___localFile___birthTime',
+  GuidLocalFileRoot = 'guid___localFile___root',
+  GuidLocalFileDir = 'guid___localFile___dir',
+  GuidLocalFileBase = 'guid___localFile___base',
+  GuidLocalFileExt = 'guid___localFile___ext',
+  GuidLocalFileName = 'guid___localFile___name',
+  GuidLocalFileRelativeDirectory = 'guid___localFile___relativeDirectory',
+  GuidLocalFileDev = 'guid___localFile___dev',
+  GuidLocalFileMode = 'guid___localFile___mode',
+  GuidLocalFileNlink = 'guid___localFile___nlink',
+  GuidLocalFileUid = 'guid___localFile___uid',
+  GuidLocalFileGid = 'guid___localFile___gid',
+  GuidLocalFileRdev = 'guid___localFile___rdev',
+  GuidLocalFileIno = 'guid___localFile___ino',
+  GuidLocalFileAtimeMs = 'guid___localFile___atimeMs',
+  GuidLocalFileMtimeMs = 'guid___localFile___mtimeMs',
+  GuidLocalFileCtimeMs = 'guid___localFile___ctimeMs',
+  GuidLocalFileAtime = 'guid___localFile___atime',
+  GuidLocalFileMtime = 'guid___localFile___mtime',
+  GuidLocalFileCtime = 'guid___localFile___ctime',
+  GuidLocalFileBirthtime = 'guid___localFile___birthtime',
+  GuidLocalFileBirthtimeMs = 'guid___localFile___birthtimeMs',
+  GuidLocalFileBlksize = 'guid___localFile___blksize',
+  GuidLocalFileBlocks = 'guid___localFile___blocks',
+  GuidLocalFileUrl = 'guid___localFile___url',
+  GuidLocalFileChildImageSharpId = 'guid___localFile___childImageSharp___id',
+  GuidLocalFileChildImageSharpChildren = 'guid___localFile___childImageSharp___children',
+  GuidLocalFileId = 'guid___localFile___id',
+  GuidLocalFileParentId = 'guid___localFile___parent___id',
+  GuidLocalFileParentChildren = 'guid___localFile___parent___children',
+  GuidLocalFileChildren = 'guid___localFile___children',
+  GuidLocalFileChildrenId = 'guid___localFile___children___id',
+  GuidLocalFileChildrenChildren = 'guid___localFile___children___children',
+  GuidLocalFileInternalContent = 'guid___localFile___internal___content',
+  GuidLocalFileInternalContentDigest = 'guid___localFile___internal___contentDigest',
+  GuidLocalFileInternalDescription = 'guid___localFile___internal___description',
+  GuidLocalFileInternalFieldOwners = 'guid___localFile___internal___fieldOwners',
+  GuidLocalFileInternalIgnoreType = 'guid___localFile___internal___ignoreType',
+  GuidLocalFileInternalMediaType = 'guid___localFile___internal___mediaType',
+  GuidLocalFileInternalOwner = 'guid___localFile___internal___owner',
+  GuidLocalFileInternalType = 'guid___localFile___internal___type',
+  GuidPath = 'guid___path',
   LocalFileSourceInstanceName = 'localFile___sourceInstanceName',
   LocalFileAbsolutePath = 'localFile___absolutePath',
   LocalFileRelativePath = 'localFile___relativePath',
@@ -8715,17 +9860,17 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   LocalFileUid = 'localFile___uid',
   LocalFileGid = 'localFile___gid',
   LocalFileRdev = 'localFile___rdev',
-  LocalFileBlksize = 'localFile___blksize',
   LocalFileIno = 'localFile___ino',
-  LocalFileBlocks = 'localFile___blocks',
   LocalFileAtimeMs = 'localFile___atimeMs',
   LocalFileMtimeMs = 'localFile___mtimeMs',
   LocalFileCtimeMs = 'localFile___ctimeMs',
-  LocalFileBirthtimeMs = 'localFile___birthtimeMs',
   LocalFileAtime = 'localFile___atime',
   LocalFileMtime = 'localFile___mtime',
   LocalFileCtime = 'localFile___ctime',
   LocalFileBirthtime = 'localFile___birthtime',
+  LocalFileBirthtimeMs = 'localFile___birthtimeMs',
+  LocalFileBlksize = 'localFile___blksize',
+  LocalFileBlocks = 'localFile___blocks',
   LocalFileUrl = 'localFile___url',
   LocalFileChildImageSharpFixedBase64 = 'localFile___childImageSharp___fixed___base64',
   LocalFileChildImageSharpFixedTracedSvg = 'localFile___childImageSharp___fixed___tracedSVG',
@@ -8794,6 +9939,44 @@ export enum Wordpress__Wp_MediaFieldsEnum {
   LocalFileChildImageSharpInternalMediaType = 'localFile___childImageSharp___internal___mediaType',
   LocalFileChildImageSharpInternalOwner = 'localFile___childImageSharp___internal___owner',
   LocalFileChildImageSharpInternalType = 'localFile___childImageSharp___internal___type',
+  LocalFileId = 'localFile___id',
+  LocalFileParentId = 'localFile___parent___id',
+  LocalFileParentParentId = 'localFile___parent___parent___id',
+  LocalFileParentParentChildren = 'localFile___parent___parent___children',
+  LocalFileParentChildren = 'localFile___parent___children',
+  LocalFileParentChildrenId = 'localFile___parent___children___id',
+  LocalFileParentChildrenChildren = 'localFile___parent___children___children',
+  LocalFileParentInternalContent = 'localFile___parent___internal___content',
+  LocalFileParentInternalContentDigest = 'localFile___parent___internal___contentDigest',
+  LocalFileParentInternalDescription = 'localFile___parent___internal___description',
+  LocalFileParentInternalFieldOwners = 'localFile___parent___internal___fieldOwners',
+  LocalFileParentInternalIgnoreType = 'localFile___parent___internal___ignoreType',
+  LocalFileParentInternalMediaType = 'localFile___parent___internal___mediaType',
+  LocalFileParentInternalOwner = 'localFile___parent___internal___owner',
+  LocalFileParentInternalType = 'localFile___parent___internal___type',
+  LocalFileChildren = 'localFile___children',
+  LocalFileChildrenId = 'localFile___children___id',
+  LocalFileChildrenParentId = 'localFile___children___parent___id',
+  LocalFileChildrenParentChildren = 'localFile___children___parent___children',
+  LocalFileChildrenChildren = 'localFile___children___children',
+  LocalFileChildrenChildrenId = 'localFile___children___children___id',
+  LocalFileChildrenChildrenChildren = 'localFile___children___children___children',
+  LocalFileChildrenInternalContent = 'localFile___children___internal___content',
+  LocalFileChildrenInternalContentDigest = 'localFile___children___internal___contentDigest',
+  LocalFileChildrenInternalDescription = 'localFile___children___internal___description',
+  LocalFileChildrenInternalFieldOwners = 'localFile___children___internal___fieldOwners',
+  LocalFileChildrenInternalIgnoreType = 'localFile___children___internal___ignoreType',
+  LocalFileChildrenInternalMediaType = 'localFile___children___internal___mediaType',
+  LocalFileChildrenInternalOwner = 'localFile___children___internal___owner',
+  LocalFileChildrenInternalType = 'localFile___children___internal___type',
+  LocalFileInternalContent = 'localFile___internal___content',
+  LocalFileInternalContentDigest = 'localFile___internal___contentDigest',
+  LocalFileInternalDescription = 'localFile___internal___description',
+  LocalFileInternalFieldOwners = 'localFile___internal___fieldOwners',
+  LocalFileInternalIgnoreType = 'localFile___internal___ignoreType',
+  LocalFileInternalMediaType = 'localFile___internal___mediaType',
+  LocalFileInternalOwner = 'localFile___internal___owner',
+  LocalFileInternalType = 'localFile___internal___type',
   Path = 'path'
 }
 
@@ -8804,7 +9987,6 @@ export type Wordpress__Wp_MediaFilterInput = {
   internal?: Maybe<InternalFilterInput>;
   wordpress_id?: Maybe<IntQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
-  guid?: Maybe<StringQueryOperatorInput>;
   modified?: Maybe<DateQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
   status?: Maybe<StringQueryOperatorInput>;
@@ -8823,6 +10005,7 @@ export type Wordpress__Wp_MediaFilterInput = {
   source_url?: Maybe<StringQueryOperatorInput>;
   _links?: Maybe<Wordpress__Wp_Media_LinksFilterInput>;
   author?: Maybe<Wordpress__Wp_UsersFilterInput>;
+  guid?: Maybe<Wordpress__Wp_MediaFilterInput>;
   localFile?: Maybe<FileFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
 };
@@ -10089,7 +11272,6 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPageAuthorAuthoredWordpressWpMediaChildren = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___children',
   AuthoredWordpressPageAuthorAuthoredWordpressWpMediaWordpressId = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___wordpress_id',
   AuthoredWordpressPageAuthorAuthoredWordpressWpMediaDate = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___date',
-  AuthoredWordpressPageAuthorAuthoredWordpressWpMediaGuid = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___guid',
   AuthoredWordpressPageAuthorAuthoredWordpressWpMediaModified = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___modified',
   AuthoredWordpressPageAuthorAuthoredWordpressWpMediaSlug = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___slug',
   AuthoredWordpressPageAuthorAuthoredWordpressWpMediaStatus = 'authored_wordpress__PAGE___author___authored_wordpress__wp_media___status',
@@ -10126,9 +11308,9 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPageAuthorAuthoredWordpressPostSticky = 'authored_wordpress__PAGE___author___authored_wordpress__POST___sticky',
   AuthoredWordpressPageAuthorAuthoredWordpressPostTemplate = 'authored_wordpress__PAGE___author___authored_wordpress__POST___template',
   AuthoredWordpressPageAuthorAuthoredWordpressPostFormat = 'authored_wordpress__PAGE___author___authored_wordpress__POST___format',
-  AuthoredWordpressPageAuthorAuthoredWordpressPostTags = 'authored_wordpress__PAGE___author___authored_wordpress__POST___tags',
   AuthoredWordpressPageAuthorAuthoredWordpressPostCategories = 'authored_wordpress__PAGE___author___authored_wordpress__POST___categories',
   AuthoredWordpressPageAuthorAuthoredWordpressPostPath = 'authored_wordpress__PAGE___author___authored_wordpress__POST___path',
+  AuthoredWordpressPageAuthorAuthoredWordpressPostTags = 'authored_wordpress__PAGE___author___authored_wordpress__POST___tags',
   AuthoredWordpressPagePath = 'authored_wordpress__PAGE___path',
   AuthoredWordpressWpMedia = 'authored_wordpress__wp_media',
   AuthoredWordpressWpMediaId = 'authored_wordpress__wp_media___id',
@@ -10171,7 +11353,6 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressWpMediaInternalType = 'authored_wordpress__wp_media___internal___type',
   AuthoredWordpressWpMediaWordpressId = 'authored_wordpress__wp_media___wordpress_id',
   AuthoredWordpressWpMediaDate = 'authored_wordpress__wp_media___date',
-  AuthoredWordpressWpMediaGuid = 'authored_wordpress__wp_media___guid',
   AuthoredWordpressWpMediaModified = 'authored_wordpress__wp_media___modified',
   AuthoredWordpressWpMediaSlug = 'authored_wordpress__wp_media___slug',
   AuthoredWordpressWpMediaStatus = 'authored_wordpress__wp_media___status',
@@ -10264,7 +11445,6 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaChildren = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___children',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaWordpressId = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___wordpress_id',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaDate = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___date',
-  AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaGuid = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___guid',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaModified = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___modified',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaSlug = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___slug',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressWpMediaStatus = 'authored_wordpress__wp_media___author___authored_wordpress__wp_media___status',
@@ -10301,23 +11481,118 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressWpMediaAuthorAuthoredWordpressPostSticky = 'authored_wordpress__wp_media___author___authored_wordpress__POST___sticky',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressPostTemplate = 'authored_wordpress__wp_media___author___authored_wordpress__POST___template',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressPostFormat = 'authored_wordpress__wp_media___author___authored_wordpress__POST___format',
-  AuthoredWordpressWpMediaAuthorAuthoredWordpressPostTags = 'authored_wordpress__wp_media___author___authored_wordpress__POST___tags',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressPostCategories = 'authored_wordpress__wp_media___author___authored_wordpress__POST___categories',
   AuthoredWordpressWpMediaAuthorAuthoredWordpressPostPath = 'authored_wordpress__wp_media___author___authored_wordpress__POST___path',
-  AuthoredWordpressWpMediaLocalFileId = 'authored_wordpress__wp_media___localFile___id',
-  AuthoredWordpressWpMediaLocalFileParentId = 'authored_wordpress__wp_media___localFile___parent___id',
-  AuthoredWordpressWpMediaLocalFileParentChildren = 'authored_wordpress__wp_media___localFile___parent___children',
-  AuthoredWordpressWpMediaLocalFileChildren = 'authored_wordpress__wp_media___localFile___children',
-  AuthoredWordpressWpMediaLocalFileChildrenId = 'authored_wordpress__wp_media___localFile___children___id',
-  AuthoredWordpressWpMediaLocalFileChildrenChildren = 'authored_wordpress__wp_media___localFile___children___children',
-  AuthoredWordpressWpMediaLocalFileInternalContent = 'authored_wordpress__wp_media___localFile___internal___content',
-  AuthoredWordpressWpMediaLocalFileInternalContentDigest = 'authored_wordpress__wp_media___localFile___internal___contentDigest',
-  AuthoredWordpressWpMediaLocalFileInternalDescription = 'authored_wordpress__wp_media___localFile___internal___description',
-  AuthoredWordpressWpMediaLocalFileInternalFieldOwners = 'authored_wordpress__wp_media___localFile___internal___fieldOwners',
-  AuthoredWordpressWpMediaLocalFileInternalIgnoreType = 'authored_wordpress__wp_media___localFile___internal___ignoreType',
-  AuthoredWordpressWpMediaLocalFileInternalMediaType = 'authored_wordpress__wp_media___localFile___internal___mediaType',
-  AuthoredWordpressWpMediaLocalFileInternalOwner = 'authored_wordpress__wp_media___localFile___internal___owner',
-  AuthoredWordpressWpMediaLocalFileInternalType = 'authored_wordpress__wp_media___localFile___internal___type',
+  AuthoredWordpressWpMediaAuthorAuthoredWordpressPostTags = 'authored_wordpress__wp_media___author___authored_wordpress__POST___tags',
+  AuthoredWordpressWpMediaGuidId = 'authored_wordpress__wp_media___guid___id',
+  AuthoredWordpressWpMediaGuidParentId = 'authored_wordpress__wp_media___guid___parent___id',
+  AuthoredWordpressWpMediaGuidParentChildren = 'authored_wordpress__wp_media___guid___parent___children',
+  AuthoredWordpressWpMediaGuidChildren = 'authored_wordpress__wp_media___guid___children',
+  AuthoredWordpressWpMediaGuidChildrenId = 'authored_wordpress__wp_media___guid___children___id',
+  AuthoredWordpressWpMediaGuidChildrenChildren = 'authored_wordpress__wp_media___guid___children___children',
+  AuthoredWordpressWpMediaGuidInternalContent = 'authored_wordpress__wp_media___guid___internal___content',
+  AuthoredWordpressWpMediaGuidInternalContentDigest = 'authored_wordpress__wp_media___guid___internal___contentDigest',
+  AuthoredWordpressWpMediaGuidInternalDescription = 'authored_wordpress__wp_media___guid___internal___description',
+  AuthoredWordpressWpMediaGuidInternalFieldOwners = 'authored_wordpress__wp_media___guid___internal___fieldOwners',
+  AuthoredWordpressWpMediaGuidInternalIgnoreType = 'authored_wordpress__wp_media___guid___internal___ignoreType',
+  AuthoredWordpressWpMediaGuidInternalMediaType = 'authored_wordpress__wp_media___guid___internal___mediaType',
+  AuthoredWordpressWpMediaGuidInternalOwner = 'authored_wordpress__wp_media___guid___internal___owner',
+  AuthoredWordpressWpMediaGuidInternalType = 'authored_wordpress__wp_media___guid___internal___type',
+  AuthoredWordpressWpMediaGuidWordpressId = 'authored_wordpress__wp_media___guid___wordpress_id',
+  AuthoredWordpressWpMediaGuidDate = 'authored_wordpress__wp_media___guid___date',
+  AuthoredWordpressWpMediaGuidModified = 'authored_wordpress__wp_media___guid___modified',
+  AuthoredWordpressWpMediaGuidSlug = 'authored_wordpress__wp_media___guid___slug',
+  AuthoredWordpressWpMediaGuidStatus = 'authored_wordpress__wp_media___guid___status',
+  AuthoredWordpressWpMediaGuidType = 'authored_wordpress__wp_media___guid___type',
+  AuthoredWordpressWpMediaGuidLink = 'authored_wordpress__wp_media___guid___link',
+  AuthoredWordpressWpMediaGuidTitle = 'authored_wordpress__wp_media___guid___title',
+  AuthoredWordpressWpMediaGuidCommentStatus = 'authored_wordpress__wp_media___guid___comment_status',
+  AuthoredWordpressWpMediaGuidPingStatus = 'authored_wordpress__wp_media___guid___ping_status',
+  AuthoredWordpressWpMediaGuidTemplate = 'authored_wordpress__wp_media___guid___template',
+  AuthoredWordpressWpMediaGuidDescription = 'authored_wordpress__wp_media___guid___description',
+  AuthoredWordpressWpMediaGuidCaption = 'authored_wordpress__wp_media___guid___caption',
+  AuthoredWordpressWpMediaGuidAltText = 'authored_wordpress__wp_media___guid___alt_text',
+  AuthoredWordpressWpMediaGuidMediaType = 'authored_wordpress__wp_media___guid___media_type',
+  AuthoredWordpressWpMediaGuidMimeType = 'authored_wordpress__wp_media___guid___mime_type',
+  AuthoredWordpressWpMediaGuidMediaDetailsWidth = 'authored_wordpress__wp_media___guid___media_details___width',
+  AuthoredWordpressWpMediaGuidMediaDetailsHeight = 'authored_wordpress__wp_media___guid___media_details___height',
+  AuthoredWordpressWpMediaGuidMediaDetailsFile = 'authored_wordpress__wp_media___guid___media_details___file',
+  AuthoredWordpressWpMediaGuidMediaDetailsOriginalImage = 'authored_wordpress__wp_media___guid___media_details___original_image',
+  AuthoredWordpressWpMediaGuidSourceUrl = 'authored_wordpress__wp_media___guid___source_url',
+  AuthoredWordpressWpMediaGuidLinksSelf = 'authored_wordpress__wp_media___guid____links___self',
+  AuthoredWordpressWpMediaGuidLinksCollection = 'authored_wordpress__wp_media___guid____links___collection',
+  AuthoredWordpressWpMediaGuidLinksAbout = 'authored_wordpress__wp_media___guid____links___about',
+  AuthoredWordpressWpMediaGuidLinksAuthor = 'authored_wordpress__wp_media___guid____links___author',
+  AuthoredWordpressWpMediaGuidLinksReplies = 'authored_wordpress__wp_media___guid____links___replies',
+  AuthoredWordpressWpMediaGuidAuthorId = 'authored_wordpress__wp_media___guid___author___id',
+  AuthoredWordpressWpMediaGuidAuthorChildren = 'authored_wordpress__wp_media___guid___author___children',
+  AuthoredWordpressWpMediaGuidAuthorWordpressId = 'authored_wordpress__wp_media___guid___author___wordpress_id',
+  AuthoredWordpressWpMediaGuidAuthorName = 'authored_wordpress__wp_media___guid___author___name',
+  AuthoredWordpressWpMediaGuidAuthorUrl = 'authored_wordpress__wp_media___guid___author___url',
+  AuthoredWordpressWpMediaGuidAuthorDescription = 'authored_wordpress__wp_media___guid___author___description',
+  AuthoredWordpressWpMediaGuidAuthorLink = 'authored_wordpress__wp_media___guid___author___link',
+  AuthoredWordpressWpMediaGuidAuthorSlug = 'authored_wordpress__wp_media___guid___author___slug',
+  AuthoredWordpressWpMediaGuidAuthorAuthoredWordpressPage = 'authored_wordpress__wp_media___guid___author___authored_wordpress__PAGE',
+  AuthoredWordpressWpMediaGuidAuthorAuthoredWordpressWpMedia = 'authored_wordpress__wp_media___guid___author___authored_wordpress__wp_media',
+  AuthoredWordpressWpMediaGuidAuthorPath = 'authored_wordpress__wp_media___guid___author___path',
+  AuthoredWordpressWpMediaGuidAuthorAuthoredWordpressPost = 'authored_wordpress__wp_media___guid___author___authored_wordpress__POST',
+  AuthoredWordpressWpMediaGuidGuidId = 'authored_wordpress__wp_media___guid___guid___id',
+  AuthoredWordpressWpMediaGuidGuidChildren = 'authored_wordpress__wp_media___guid___guid___children',
+  AuthoredWordpressWpMediaGuidGuidWordpressId = 'authored_wordpress__wp_media___guid___guid___wordpress_id',
+  AuthoredWordpressWpMediaGuidGuidDate = 'authored_wordpress__wp_media___guid___guid___date',
+  AuthoredWordpressWpMediaGuidGuidModified = 'authored_wordpress__wp_media___guid___guid___modified',
+  AuthoredWordpressWpMediaGuidGuidSlug = 'authored_wordpress__wp_media___guid___guid___slug',
+  AuthoredWordpressWpMediaGuidGuidStatus = 'authored_wordpress__wp_media___guid___guid___status',
+  AuthoredWordpressWpMediaGuidGuidType = 'authored_wordpress__wp_media___guid___guid___type',
+  AuthoredWordpressWpMediaGuidGuidLink = 'authored_wordpress__wp_media___guid___guid___link',
+  AuthoredWordpressWpMediaGuidGuidTitle = 'authored_wordpress__wp_media___guid___guid___title',
+  AuthoredWordpressWpMediaGuidGuidCommentStatus = 'authored_wordpress__wp_media___guid___guid___comment_status',
+  AuthoredWordpressWpMediaGuidGuidPingStatus = 'authored_wordpress__wp_media___guid___guid___ping_status',
+  AuthoredWordpressWpMediaGuidGuidTemplate = 'authored_wordpress__wp_media___guid___guid___template',
+  AuthoredWordpressWpMediaGuidGuidDescription = 'authored_wordpress__wp_media___guid___guid___description',
+  AuthoredWordpressWpMediaGuidGuidCaption = 'authored_wordpress__wp_media___guid___guid___caption',
+  AuthoredWordpressWpMediaGuidGuidAltText = 'authored_wordpress__wp_media___guid___guid___alt_text',
+  AuthoredWordpressWpMediaGuidGuidMediaType = 'authored_wordpress__wp_media___guid___guid___media_type',
+  AuthoredWordpressWpMediaGuidGuidMimeType = 'authored_wordpress__wp_media___guid___guid___mime_type',
+  AuthoredWordpressWpMediaGuidGuidSourceUrl = 'authored_wordpress__wp_media___guid___guid___source_url',
+  AuthoredWordpressWpMediaGuidGuidPath = 'authored_wordpress__wp_media___guid___guid___path',
+  AuthoredWordpressWpMediaGuidLocalFileSourceInstanceName = 'authored_wordpress__wp_media___guid___localFile___sourceInstanceName',
+  AuthoredWordpressWpMediaGuidLocalFileAbsolutePath = 'authored_wordpress__wp_media___guid___localFile___absolutePath',
+  AuthoredWordpressWpMediaGuidLocalFileRelativePath = 'authored_wordpress__wp_media___guid___localFile___relativePath',
+  AuthoredWordpressWpMediaGuidLocalFileExtension = 'authored_wordpress__wp_media___guid___localFile___extension',
+  AuthoredWordpressWpMediaGuidLocalFileSize = 'authored_wordpress__wp_media___guid___localFile___size',
+  AuthoredWordpressWpMediaGuidLocalFilePrettySize = 'authored_wordpress__wp_media___guid___localFile___prettySize',
+  AuthoredWordpressWpMediaGuidLocalFileModifiedTime = 'authored_wordpress__wp_media___guid___localFile___modifiedTime',
+  AuthoredWordpressWpMediaGuidLocalFileAccessTime = 'authored_wordpress__wp_media___guid___localFile___accessTime',
+  AuthoredWordpressWpMediaGuidLocalFileChangeTime = 'authored_wordpress__wp_media___guid___localFile___changeTime',
+  AuthoredWordpressWpMediaGuidLocalFileBirthTime = 'authored_wordpress__wp_media___guid___localFile___birthTime',
+  AuthoredWordpressWpMediaGuidLocalFileRoot = 'authored_wordpress__wp_media___guid___localFile___root',
+  AuthoredWordpressWpMediaGuidLocalFileDir = 'authored_wordpress__wp_media___guid___localFile___dir',
+  AuthoredWordpressWpMediaGuidLocalFileBase = 'authored_wordpress__wp_media___guid___localFile___base',
+  AuthoredWordpressWpMediaGuidLocalFileExt = 'authored_wordpress__wp_media___guid___localFile___ext',
+  AuthoredWordpressWpMediaGuidLocalFileName = 'authored_wordpress__wp_media___guid___localFile___name',
+  AuthoredWordpressWpMediaGuidLocalFileRelativeDirectory = 'authored_wordpress__wp_media___guid___localFile___relativeDirectory',
+  AuthoredWordpressWpMediaGuidLocalFileDev = 'authored_wordpress__wp_media___guid___localFile___dev',
+  AuthoredWordpressWpMediaGuidLocalFileMode = 'authored_wordpress__wp_media___guid___localFile___mode',
+  AuthoredWordpressWpMediaGuidLocalFileNlink = 'authored_wordpress__wp_media___guid___localFile___nlink',
+  AuthoredWordpressWpMediaGuidLocalFileUid = 'authored_wordpress__wp_media___guid___localFile___uid',
+  AuthoredWordpressWpMediaGuidLocalFileGid = 'authored_wordpress__wp_media___guid___localFile___gid',
+  AuthoredWordpressWpMediaGuidLocalFileRdev = 'authored_wordpress__wp_media___guid___localFile___rdev',
+  AuthoredWordpressWpMediaGuidLocalFileIno = 'authored_wordpress__wp_media___guid___localFile___ino',
+  AuthoredWordpressWpMediaGuidLocalFileAtimeMs = 'authored_wordpress__wp_media___guid___localFile___atimeMs',
+  AuthoredWordpressWpMediaGuidLocalFileMtimeMs = 'authored_wordpress__wp_media___guid___localFile___mtimeMs',
+  AuthoredWordpressWpMediaGuidLocalFileCtimeMs = 'authored_wordpress__wp_media___guid___localFile___ctimeMs',
+  AuthoredWordpressWpMediaGuidLocalFileAtime = 'authored_wordpress__wp_media___guid___localFile___atime',
+  AuthoredWordpressWpMediaGuidLocalFileMtime = 'authored_wordpress__wp_media___guid___localFile___mtime',
+  AuthoredWordpressWpMediaGuidLocalFileCtime = 'authored_wordpress__wp_media___guid___localFile___ctime',
+  AuthoredWordpressWpMediaGuidLocalFileBirthtime = 'authored_wordpress__wp_media___guid___localFile___birthtime',
+  AuthoredWordpressWpMediaGuidLocalFileBirthtimeMs = 'authored_wordpress__wp_media___guid___localFile___birthtimeMs',
+  AuthoredWordpressWpMediaGuidLocalFileBlksize = 'authored_wordpress__wp_media___guid___localFile___blksize',
+  AuthoredWordpressWpMediaGuidLocalFileBlocks = 'authored_wordpress__wp_media___guid___localFile___blocks',
+  AuthoredWordpressWpMediaGuidLocalFileUrl = 'authored_wordpress__wp_media___guid___localFile___url',
+  AuthoredWordpressWpMediaGuidLocalFileId = 'authored_wordpress__wp_media___guid___localFile___id',
+  AuthoredWordpressWpMediaGuidLocalFileChildren = 'authored_wordpress__wp_media___guid___localFile___children',
+  AuthoredWordpressWpMediaGuidPath = 'authored_wordpress__wp_media___guid___path',
   AuthoredWordpressWpMediaLocalFileSourceInstanceName = 'authored_wordpress__wp_media___localFile___sourceInstanceName',
   AuthoredWordpressWpMediaLocalFileAbsolutePath = 'authored_wordpress__wp_media___localFile___absolutePath',
   AuthoredWordpressWpMediaLocalFileRelativePath = 'authored_wordpress__wp_media___localFile___relativePath',
@@ -10340,20 +11615,34 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressWpMediaLocalFileUid = 'authored_wordpress__wp_media___localFile___uid',
   AuthoredWordpressWpMediaLocalFileGid = 'authored_wordpress__wp_media___localFile___gid',
   AuthoredWordpressWpMediaLocalFileRdev = 'authored_wordpress__wp_media___localFile___rdev',
-  AuthoredWordpressWpMediaLocalFileBlksize = 'authored_wordpress__wp_media___localFile___blksize',
   AuthoredWordpressWpMediaLocalFileIno = 'authored_wordpress__wp_media___localFile___ino',
-  AuthoredWordpressWpMediaLocalFileBlocks = 'authored_wordpress__wp_media___localFile___blocks',
   AuthoredWordpressWpMediaLocalFileAtimeMs = 'authored_wordpress__wp_media___localFile___atimeMs',
   AuthoredWordpressWpMediaLocalFileMtimeMs = 'authored_wordpress__wp_media___localFile___mtimeMs',
   AuthoredWordpressWpMediaLocalFileCtimeMs = 'authored_wordpress__wp_media___localFile___ctimeMs',
-  AuthoredWordpressWpMediaLocalFileBirthtimeMs = 'authored_wordpress__wp_media___localFile___birthtimeMs',
   AuthoredWordpressWpMediaLocalFileAtime = 'authored_wordpress__wp_media___localFile___atime',
   AuthoredWordpressWpMediaLocalFileMtime = 'authored_wordpress__wp_media___localFile___mtime',
   AuthoredWordpressWpMediaLocalFileCtime = 'authored_wordpress__wp_media___localFile___ctime',
   AuthoredWordpressWpMediaLocalFileBirthtime = 'authored_wordpress__wp_media___localFile___birthtime',
+  AuthoredWordpressWpMediaLocalFileBirthtimeMs = 'authored_wordpress__wp_media___localFile___birthtimeMs',
+  AuthoredWordpressWpMediaLocalFileBlksize = 'authored_wordpress__wp_media___localFile___blksize',
+  AuthoredWordpressWpMediaLocalFileBlocks = 'authored_wordpress__wp_media___localFile___blocks',
   AuthoredWordpressWpMediaLocalFileUrl = 'authored_wordpress__wp_media___localFile___url',
   AuthoredWordpressWpMediaLocalFileChildImageSharpId = 'authored_wordpress__wp_media___localFile___childImageSharp___id',
   AuthoredWordpressWpMediaLocalFileChildImageSharpChildren = 'authored_wordpress__wp_media___localFile___childImageSharp___children',
+  AuthoredWordpressWpMediaLocalFileId = 'authored_wordpress__wp_media___localFile___id',
+  AuthoredWordpressWpMediaLocalFileParentId = 'authored_wordpress__wp_media___localFile___parent___id',
+  AuthoredWordpressWpMediaLocalFileParentChildren = 'authored_wordpress__wp_media___localFile___parent___children',
+  AuthoredWordpressWpMediaLocalFileChildren = 'authored_wordpress__wp_media___localFile___children',
+  AuthoredWordpressWpMediaLocalFileChildrenId = 'authored_wordpress__wp_media___localFile___children___id',
+  AuthoredWordpressWpMediaLocalFileChildrenChildren = 'authored_wordpress__wp_media___localFile___children___children',
+  AuthoredWordpressWpMediaLocalFileInternalContent = 'authored_wordpress__wp_media___localFile___internal___content',
+  AuthoredWordpressWpMediaLocalFileInternalContentDigest = 'authored_wordpress__wp_media___localFile___internal___contentDigest',
+  AuthoredWordpressWpMediaLocalFileInternalDescription = 'authored_wordpress__wp_media___localFile___internal___description',
+  AuthoredWordpressWpMediaLocalFileInternalFieldOwners = 'authored_wordpress__wp_media___localFile___internal___fieldOwners',
+  AuthoredWordpressWpMediaLocalFileInternalIgnoreType = 'authored_wordpress__wp_media___localFile___internal___ignoreType',
+  AuthoredWordpressWpMediaLocalFileInternalMediaType = 'authored_wordpress__wp_media___localFile___internal___mediaType',
+  AuthoredWordpressWpMediaLocalFileInternalOwner = 'authored_wordpress__wp_media___localFile___internal___owner',
+  AuthoredWordpressWpMediaLocalFileInternalType = 'authored_wordpress__wp_media___localFile___internal___type',
   AuthoredWordpressWpMediaPath = 'authored_wordpress__wp_media___path',
   Path = 'path',
   AuthoredWordpressPost = 'authored_wordpress__POST',
@@ -10492,7 +11781,6 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostAuthorAuthoredWordpressWpMediaChildren = 'authored_wordpress__POST___author___authored_wordpress__wp_media___children',
   AuthoredWordpressPostAuthorAuthoredWordpressWpMediaWordpressId = 'authored_wordpress__POST___author___authored_wordpress__wp_media___wordpress_id',
   AuthoredWordpressPostAuthorAuthoredWordpressWpMediaDate = 'authored_wordpress__POST___author___authored_wordpress__wp_media___date',
-  AuthoredWordpressPostAuthorAuthoredWordpressWpMediaGuid = 'authored_wordpress__POST___author___authored_wordpress__wp_media___guid',
   AuthoredWordpressPostAuthorAuthoredWordpressWpMediaModified = 'authored_wordpress__POST___author___authored_wordpress__wp_media___modified',
   AuthoredWordpressPostAuthorAuthoredWordpressWpMediaSlug = 'authored_wordpress__POST___author___authored_wordpress__wp_media___slug',
   AuthoredWordpressPostAuthorAuthoredWordpressWpMediaStatus = 'authored_wordpress__POST___author___authored_wordpress__wp_media___status',
@@ -10529,45 +11817,9 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostAuthorAuthoredWordpressPostSticky = 'authored_wordpress__POST___author___authored_wordpress__POST___sticky',
   AuthoredWordpressPostAuthorAuthoredWordpressPostTemplate = 'authored_wordpress__POST___author___authored_wordpress__POST___template',
   AuthoredWordpressPostAuthorAuthoredWordpressPostFormat = 'authored_wordpress__POST___author___authored_wordpress__POST___format',
-  AuthoredWordpressPostAuthorAuthoredWordpressPostTags = 'authored_wordpress__POST___author___authored_wordpress__POST___tags',
   AuthoredWordpressPostAuthorAuthoredWordpressPostCategories = 'authored_wordpress__POST___author___authored_wordpress__POST___categories',
   AuthoredWordpressPostAuthorAuthoredWordpressPostPath = 'authored_wordpress__POST___author___authored_wordpress__POST___path',
-  AuthoredWordpressPostTags = 'authored_wordpress__POST___tags',
-  AuthoredWordpressPostTagsId = 'authored_wordpress__POST___tags___id',
-  AuthoredWordpressPostTagsParentId = 'authored_wordpress__POST___tags___parent___id',
-  AuthoredWordpressPostTagsParentChildren = 'authored_wordpress__POST___tags___parent___children',
-  AuthoredWordpressPostTagsChildren = 'authored_wordpress__POST___tags___children',
-  AuthoredWordpressPostTagsChildrenId = 'authored_wordpress__POST___tags___children___id',
-  AuthoredWordpressPostTagsChildrenChildren = 'authored_wordpress__POST___tags___children___children',
-  AuthoredWordpressPostTagsInternalContent = 'authored_wordpress__POST___tags___internal___content',
-  AuthoredWordpressPostTagsInternalContentDigest = 'authored_wordpress__POST___tags___internal___contentDigest',
-  AuthoredWordpressPostTagsInternalDescription = 'authored_wordpress__POST___tags___internal___description',
-  AuthoredWordpressPostTagsInternalFieldOwners = 'authored_wordpress__POST___tags___internal___fieldOwners',
-  AuthoredWordpressPostTagsInternalIgnoreType = 'authored_wordpress__POST___tags___internal___ignoreType',
-  AuthoredWordpressPostTagsInternalMediaType = 'authored_wordpress__POST___tags___internal___mediaType',
-  AuthoredWordpressPostTagsInternalOwner = 'authored_wordpress__POST___tags___internal___owner',
-  AuthoredWordpressPostTagsInternalType = 'authored_wordpress__POST___tags___internal___type',
-  AuthoredWordpressPostTagsWordpressId = 'authored_wordpress__POST___tags___wordpress_id',
-  AuthoredWordpressPostTagsCount = 'authored_wordpress__POST___tags___count',
-  AuthoredWordpressPostTagsDescription = 'authored_wordpress__POST___tags___description',
-  AuthoredWordpressPostTagsLink = 'authored_wordpress__POST___tags___link',
-  AuthoredWordpressPostTagsName = 'authored_wordpress__POST___tags___name',
-  AuthoredWordpressPostTagsSlug = 'authored_wordpress__POST___tags___slug',
-  AuthoredWordpressPostTagsLinksSelf = 'authored_wordpress__POST___tags____links___self',
-  AuthoredWordpressPostTagsLinksCollection = 'authored_wordpress__POST___tags____links___collection',
-  AuthoredWordpressPostTagsLinksAbout = 'authored_wordpress__POST___tags____links___about',
-  AuthoredWordpressPostTagsLinksWpPostType = 'authored_wordpress__POST___tags____links___wp_post_type',
-  AuthoredWordpressPostTagsLinksCuries = 'authored_wordpress__POST___tags____links___curies',
-  AuthoredWordpressPostTagsTaxonomyId = 'authored_wordpress__POST___tags___taxonomy___id',
-  AuthoredWordpressPostTagsTaxonomyChildren = 'authored_wordpress__POST___tags___taxonomy___children',
-  AuthoredWordpressPostTagsTaxonomyWordpressId = 'authored_wordpress__POST___tags___taxonomy___wordpress_id',
-  AuthoredWordpressPostTagsTaxonomyName = 'authored_wordpress__POST___tags___taxonomy___name',
-  AuthoredWordpressPostTagsTaxonomySlug = 'authored_wordpress__POST___tags___taxonomy___slug',
-  AuthoredWordpressPostTagsTaxonomyDescription = 'authored_wordpress__POST___tags___taxonomy___description',
-  AuthoredWordpressPostTagsTaxonomyTypes = 'authored_wordpress__POST___tags___taxonomy___types',
-  AuthoredWordpressPostTagsTaxonomyHierarchical = 'authored_wordpress__POST___tags___taxonomy___hierarchical',
-  AuthoredWordpressPostTagsTaxonomyRestBase = 'authored_wordpress__POST___tags___taxonomy___rest_base',
-  AuthoredWordpressPostTagsPath = 'authored_wordpress__POST___tags___path',
+  AuthoredWordpressPostAuthorAuthoredWordpressPostTags = 'authored_wordpress__POST___author___authored_wordpress__POST___tags',
   AuthoredWordpressPostCategories = 'authored_wordpress__POST___categories',
   AuthoredWordpressPostCategoriesId = 'authored_wordpress__POST___categories___id',
   AuthoredWordpressPostCategoriesParentId = 'authored_wordpress__POST___categories___parent___id',
@@ -10621,7 +11873,6 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostFeaturedMediaInternalType = 'authored_wordpress__POST___featured_media___internal___type',
   AuthoredWordpressPostFeaturedMediaWordpressId = 'authored_wordpress__POST___featured_media___wordpress_id',
   AuthoredWordpressPostFeaturedMediaDate = 'authored_wordpress__POST___featured_media___date',
-  AuthoredWordpressPostFeaturedMediaGuid = 'authored_wordpress__POST___featured_media___guid',
   AuthoredWordpressPostFeaturedMediaModified = 'authored_wordpress__POST___featured_media___modified',
   AuthoredWordpressPostFeaturedMediaSlug = 'authored_wordpress__POST___featured_media___slug',
   AuthoredWordpressPostFeaturedMediaStatus = 'authored_wordpress__POST___featured_media___status',
@@ -10658,8 +11909,26 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostFeaturedMediaAuthorAuthoredWordpressWpMedia = 'authored_wordpress__POST___featured_media___author___authored_wordpress__wp_media',
   AuthoredWordpressPostFeaturedMediaAuthorPath = 'authored_wordpress__POST___featured_media___author___path',
   AuthoredWordpressPostFeaturedMediaAuthorAuthoredWordpressPost = 'authored_wordpress__POST___featured_media___author___authored_wordpress__POST',
-  AuthoredWordpressPostFeaturedMediaLocalFileId = 'authored_wordpress__POST___featured_media___localFile___id',
-  AuthoredWordpressPostFeaturedMediaLocalFileChildren = 'authored_wordpress__POST___featured_media___localFile___children',
+  AuthoredWordpressPostFeaturedMediaGuidId = 'authored_wordpress__POST___featured_media___guid___id',
+  AuthoredWordpressPostFeaturedMediaGuidChildren = 'authored_wordpress__POST___featured_media___guid___children',
+  AuthoredWordpressPostFeaturedMediaGuidWordpressId = 'authored_wordpress__POST___featured_media___guid___wordpress_id',
+  AuthoredWordpressPostFeaturedMediaGuidDate = 'authored_wordpress__POST___featured_media___guid___date',
+  AuthoredWordpressPostFeaturedMediaGuidModified = 'authored_wordpress__POST___featured_media___guid___modified',
+  AuthoredWordpressPostFeaturedMediaGuidSlug = 'authored_wordpress__POST___featured_media___guid___slug',
+  AuthoredWordpressPostFeaturedMediaGuidStatus = 'authored_wordpress__POST___featured_media___guid___status',
+  AuthoredWordpressPostFeaturedMediaGuidType = 'authored_wordpress__POST___featured_media___guid___type',
+  AuthoredWordpressPostFeaturedMediaGuidLink = 'authored_wordpress__POST___featured_media___guid___link',
+  AuthoredWordpressPostFeaturedMediaGuidTitle = 'authored_wordpress__POST___featured_media___guid___title',
+  AuthoredWordpressPostFeaturedMediaGuidCommentStatus = 'authored_wordpress__POST___featured_media___guid___comment_status',
+  AuthoredWordpressPostFeaturedMediaGuidPingStatus = 'authored_wordpress__POST___featured_media___guid___ping_status',
+  AuthoredWordpressPostFeaturedMediaGuidTemplate = 'authored_wordpress__POST___featured_media___guid___template',
+  AuthoredWordpressPostFeaturedMediaGuidDescription = 'authored_wordpress__POST___featured_media___guid___description',
+  AuthoredWordpressPostFeaturedMediaGuidCaption = 'authored_wordpress__POST___featured_media___guid___caption',
+  AuthoredWordpressPostFeaturedMediaGuidAltText = 'authored_wordpress__POST___featured_media___guid___alt_text',
+  AuthoredWordpressPostFeaturedMediaGuidMediaType = 'authored_wordpress__POST___featured_media___guid___media_type',
+  AuthoredWordpressPostFeaturedMediaGuidMimeType = 'authored_wordpress__POST___featured_media___guid___mime_type',
+  AuthoredWordpressPostFeaturedMediaGuidSourceUrl = 'authored_wordpress__POST___featured_media___guid___source_url',
+  AuthoredWordpressPostFeaturedMediaGuidPath = 'authored_wordpress__POST___featured_media___guid___path',
   AuthoredWordpressPostFeaturedMediaLocalFileSourceInstanceName = 'authored_wordpress__POST___featured_media___localFile___sourceInstanceName',
   AuthoredWordpressPostFeaturedMediaLocalFileAbsolutePath = 'authored_wordpress__POST___featured_media___localFile___absolutePath',
   AuthoredWordpressPostFeaturedMediaLocalFileRelativePath = 'authored_wordpress__POST___featured_media___localFile___relativePath',
@@ -10682,18 +11951,20 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostFeaturedMediaLocalFileUid = 'authored_wordpress__POST___featured_media___localFile___uid',
   AuthoredWordpressPostFeaturedMediaLocalFileGid = 'authored_wordpress__POST___featured_media___localFile___gid',
   AuthoredWordpressPostFeaturedMediaLocalFileRdev = 'authored_wordpress__POST___featured_media___localFile___rdev',
-  AuthoredWordpressPostFeaturedMediaLocalFileBlksize = 'authored_wordpress__POST___featured_media___localFile___blksize',
   AuthoredWordpressPostFeaturedMediaLocalFileIno = 'authored_wordpress__POST___featured_media___localFile___ino',
-  AuthoredWordpressPostFeaturedMediaLocalFileBlocks = 'authored_wordpress__POST___featured_media___localFile___blocks',
   AuthoredWordpressPostFeaturedMediaLocalFileAtimeMs = 'authored_wordpress__POST___featured_media___localFile___atimeMs',
   AuthoredWordpressPostFeaturedMediaLocalFileMtimeMs = 'authored_wordpress__POST___featured_media___localFile___mtimeMs',
   AuthoredWordpressPostFeaturedMediaLocalFileCtimeMs = 'authored_wordpress__POST___featured_media___localFile___ctimeMs',
-  AuthoredWordpressPostFeaturedMediaLocalFileBirthtimeMs = 'authored_wordpress__POST___featured_media___localFile___birthtimeMs',
   AuthoredWordpressPostFeaturedMediaLocalFileAtime = 'authored_wordpress__POST___featured_media___localFile___atime',
   AuthoredWordpressPostFeaturedMediaLocalFileMtime = 'authored_wordpress__POST___featured_media___localFile___mtime',
   AuthoredWordpressPostFeaturedMediaLocalFileCtime = 'authored_wordpress__POST___featured_media___localFile___ctime',
   AuthoredWordpressPostFeaturedMediaLocalFileBirthtime = 'authored_wordpress__POST___featured_media___localFile___birthtime',
+  AuthoredWordpressPostFeaturedMediaLocalFileBirthtimeMs = 'authored_wordpress__POST___featured_media___localFile___birthtimeMs',
+  AuthoredWordpressPostFeaturedMediaLocalFileBlksize = 'authored_wordpress__POST___featured_media___localFile___blksize',
+  AuthoredWordpressPostFeaturedMediaLocalFileBlocks = 'authored_wordpress__POST___featured_media___localFile___blocks',
   AuthoredWordpressPostFeaturedMediaLocalFileUrl = 'authored_wordpress__POST___featured_media___localFile___url',
+  AuthoredWordpressPostFeaturedMediaLocalFileId = 'authored_wordpress__POST___featured_media___localFile___id',
+  AuthoredWordpressPostFeaturedMediaLocalFileChildren = 'authored_wordpress__POST___featured_media___localFile___children',
   AuthoredWordpressPostFeaturedMediaPath = 'authored_wordpress__POST___featured_media___path',
   AuthoredWordpressPostJetpackFeaturedMediaUrlId = 'authored_wordpress__POST___jetpack_featured_media_url___id',
   AuthoredWordpressPostJetpackFeaturedMediaUrlParentId = 'authored_wordpress__POST___jetpack_featured_media_url___parent___id',
@@ -10711,7 +11982,6 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostJetpackFeaturedMediaUrlInternalType = 'authored_wordpress__POST___jetpack_featured_media_url___internal___type',
   AuthoredWordpressPostJetpackFeaturedMediaUrlWordpressId = 'authored_wordpress__POST___jetpack_featured_media_url___wordpress_id',
   AuthoredWordpressPostJetpackFeaturedMediaUrlDate = 'authored_wordpress__POST___jetpack_featured_media_url___date',
-  AuthoredWordpressPostJetpackFeaturedMediaUrlGuid = 'authored_wordpress__POST___jetpack_featured_media_url___guid',
   AuthoredWordpressPostJetpackFeaturedMediaUrlModified = 'authored_wordpress__POST___jetpack_featured_media_url___modified',
   AuthoredWordpressPostJetpackFeaturedMediaUrlSlug = 'authored_wordpress__POST___jetpack_featured_media_url___slug',
   AuthoredWordpressPostJetpackFeaturedMediaUrlStatus = 'authored_wordpress__POST___jetpack_featured_media_url___status',
@@ -10748,8 +12018,26 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostJetpackFeaturedMediaUrlAuthorAuthoredWordpressWpMedia = 'authored_wordpress__POST___jetpack_featured_media_url___author___authored_wordpress__wp_media',
   AuthoredWordpressPostJetpackFeaturedMediaUrlAuthorPath = 'authored_wordpress__POST___jetpack_featured_media_url___author___path',
   AuthoredWordpressPostJetpackFeaturedMediaUrlAuthorAuthoredWordpressPost = 'authored_wordpress__POST___jetpack_featured_media_url___author___authored_wordpress__POST',
-  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileId = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___id',
-  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileChildren = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___children',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidId = 'authored_wordpress__POST___jetpack_featured_media_url___guid___id',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidChildren = 'authored_wordpress__POST___jetpack_featured_media_url___guid___children',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidWordpressId = 'authored_wordpress__POST___jetpack_featured_media_url___guid___wordpress_id',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidDate = 'authored_wordpress__POST___jetpack_featured_media_url___guid___date',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidModified = 'authored_wordpress__POST___jetpack_featured_media_url___guid___modified',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidSlug = 'authored_wordpress__POST___jetpack_featured_media_url___guid___slug',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidStatus = 'authored_wordpress__POST___jetpack_featured_media_url___guid___status',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidType = 'authored_wordpress__POST___jetpack_featured_media_url___guid___type',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidLink = 'authored_wordpress__POST___jetpack_featured_media_url___guid___link',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidTitle = 'authored_wordpress__POST___jetpack_featured_media_url___guid___title',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidCommentStatus = 'authored_wordpress__POST___jetpack_featured_media_url___guid___comment_status',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidPingStatus = 'authored_wordpress__POST___jetpack_featured_media_url___guid___ping_status',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidTemplate = 'authored_wordpress__POST___jetpack_featured_media_url___guid___template',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidDescription = 'authored_wordpress__POST___jetpack_featured_media_url___guid___description',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidCaption = 'authored_wordpress__POST___jetpack_featured_media_url___guid___caption',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidAltText = 'authored_wordpress__POST___jetpack_featured_media_url___guid___alt_text',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidMediaType = 'authored_wordpress__POST___jetpack_featured_media_url___guid___media_type',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidMimeType = 'authored_wordpress__POST___jetpack_featured_media_url___guid___mime_type',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidSourceUrl = 'authored_wordpress__POST___jetpack_featured_media_url___guid___source_url',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlGuidPath = 'authored_wordpress__POST___jetpack_featured_media_url___guid___path',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileSourceInstanceName = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___sourceInstanceName',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileAbsolutePath = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___absolutePath',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileRelativePath = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___relativePath',
@@ -10772,20 +12060,58 @@ export enum Wordpress__Wp_UsersFieldsEnum {
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileUid = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___uid',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileGid = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___gid',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileRdev = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___rdev',
-  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBlksize = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___blksize',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileIno = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___ino',
-  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBlocks = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___blocks',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileAtimeMs = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___atimeMs',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileMtimeMs = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___mtimeMs',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileCtimeMs = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___ctimeMs',
-  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBirthtimeMs = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___birthtimeMs',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileAtime = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___atime',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileMtime = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___mtime',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileCtime = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___ctime',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBirthtime = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___birthtime',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBirthtimeMs = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___birthtimeMs',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBlksize = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___blksize',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileBlocks = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___blocks',
   AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileUrl = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___url',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileId = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___id',
+  AuthoredWordpressPostJetpackFeaturedMediaUrlLocalFileChildren = 'authored_wordpress__POST___jetpack_featured_media_url___localFile___children',
   AuthoredWordpressPostJetpackFeaturedMediaUrlPath = 'authored_wordpress__POST___jetpack_featured_media_url___path',
-  AuthoredWordpressPostPath = 'authored_wordpress__POST___path'
+  AuthoredWordpressPostPath = 'authored_wordpress__POST___path',
+  AuthoredWordpressPostTags = 'authored_wordpress__POST___tags',
+  AuthoredWordpressPostTagsId = 'authored_wordpress__POST___tags___id',
+  AuthoredWordpressPostTagsParentId = 'authored_wordpress__POST___tags___parent___id',
+  AuthoredWordpressPostTagsParentChildren = 'authored_wordpress__POST___tags___parent___children',
+  AuthoredWordpressPostTagsChildren = 'authored_wordpress__POST___tags___children',
+  AuthoredWordpressPostTagsChildrenId = 'authored_wordpress__POST___tags___children___id',
+  AuthoredWordpressPostTagsChildrenChildren = 'authored_wordpress__POST___tags___children___children',
+  AuthoredWordpressPostTagsInternalContent = 'authored_wordpress__POST___tags___internal___content',
+  AuthoredWordpressPostTagsInternalContentDigest = 'authored_wordpress__POST___tags___internal___contentDigest',
+  AuthoredWordpressPostTagsInternalDescription = 'authored_wordpress__POST___tags___internal___description',
+  AuthoredWordpressPostTagsInternalFieldOwners = 'authored_wordpress__POST___tags___internal___fieldOwners',
+  AuthoredWordpressPostTagsInternalIgnoreType = 'authored_wordpress__POST___tags___internal___ignoreType',
+  AuthoredWordpressPostTagsInternalMediaType = 'authored_wordpress__POST___tags___internal___mediaType',
+  AuthoredWordpressPostTagsInternalOwner = 'authored_wordpress__POST___tags___internal___owner',
+  AuthoredWordpressPostTagsInternalType = 'authored_wordpress__POST___tags___internal___type',
+  AuthoredWordpressPostTagsWordpressId = 'authored_wordpress__POST___tags___wordpress_id',
+  AuthoredWordpressPostTagsCount = 'authored_wordpress__POST___tags___count',
+  AuthoredWordpressPostTagsDescription = 'authored_wordpress__POST___tags___description',
+  AuthoredWordpressPostTagsLink = 'authored_wordpress__POST___tags___link',
+  AuthoredWordpressPostTagsName = 'authored_wordpress__POST___tags___name',
+  AuthoredWordpressPostTagsSlug = 'authored_wordpress__POST___tags___slug',
+  AuthoredWordpressPostTagsLinksSelf = 'authored_wordpress__POST___tags____links___self',
+  AuthoredWordpressPostTagsLinksCollection = 'authored_wordpress__POST___tags____links___collection',
+  AuthoredWordpressPostTagsLinksAbout = 'authored_wordpress__POST___tags____links___about',
+  AuthoredWordpressPostTagsLinksWpPostType = 'authored_wordpress__POST___tags____links___wp_post_type',
+  AuthoredWordpressPostTagsLinksCuries = 'authored_wordpress__POST___tags____links___curies',
+  AuthoredWordpressPostTagsTaxonomyId = 'authored_wordpress__POST___tags___taxonomy___id',
+  AuthoredWordpressPostTagsTaxonomyChildren = 'authored_wordpress__POST___tags___taxonomy___children',
+  AuthoredWordpressPostTagsTaxonomyWordpressId = 'authored_wordpress__POST___tags___taxonomy___wordpress_id',
+  AuthoredWordpressPostTagsTaxonomyName = 'authored_wordpress__POST___tags___taxonomy___name',
+  AuthoredWordpressPostTagsTaxonomySlug = 'authored_wordpress__POST___tags___taxonomy___slug',
+  AuthoredWordpressPostTagsTaxonomyDescription = 'authored_wordpress__POST___tags___taxonomy___description',
+  AuthoredWordpressPostTagsTaxonomyTypes = 'authored_wordpress__POST___tags___taxonomy___types',
+  AuthoredWordpressPostTagsTaxonomyHierarchical = 'authored_wordpress__POST___tags___taxonomy___hierarchical',
+  AuthoredWordpressPostTagsTaxonomyRestBase = 'authored_wordpress__POST___tags___taxonomy___rest_base',
+  AuthoredWordpressPostTagsPath = 'authored_wordpress__POST___tags___path'
 }
 
 export type Wordpress__Wp_UsersFilterInput = {

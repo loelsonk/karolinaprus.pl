@@ -12,10 +12,11 @@ const PWAConfig = require('./gatsby-pwa');
 
 module.exports = {
   siteMetadata: {
-    siteUrl,
+    siteUrl: siteUrl || 'http://localhost:8000',
     title: 'Holistic by Karolina Prus',
   },
   plugins: [
+    ...PWAConfig,
     pathsConfig,
     {
       resolve: `gatsby-plugin-typescript`,
@@ -57,7 +58,6 @@ module.exports = {
         purgeOnly: ['/all.sass'],
       },
     }, // must be after other CSS plugins
-    ...PWAConfig,
     'gatsby-plugin-netlify', // make sure to keep it last in the array
   ],
 }
