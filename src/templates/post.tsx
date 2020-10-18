@@ -2,7 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
+import parse from 'html-react-parser';
+import { replaceMedia } from '@/helpers/images';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  margin-top: 20px;
+  background-color: ${props => props.theme.palette.navy};
+`;
 
 export const BlogPostTemplate = ({
   content,
@@ -20,8 +28,8 @@ export const BlogPostTemplate = ({
             <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
               {title}
             </h1>
-            <div dangerouslySetInnerHTML={{ __html: content }} />
-            <div style={{ marginTop: `4rem` }}>
+            <div>{parse(content, { replace: replaceMedia })}</div>
+            <Wrapper>
               <p>
                 {date} - posted by{' '}
                 <Link to={`/author/${author.slug}`}>{author.name}</Link>
@@ -52,7 +60,7 @@ export const BlogPostTemplate = ({
                   </ul>
                 </div>
               ) : null}
-            </div>
+            </Wrapper>
           </div>
         </div>
       </div>
@@ -120,4 +128,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

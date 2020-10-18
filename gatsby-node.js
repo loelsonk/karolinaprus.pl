@@ -72,7 +72,7 @@ exports.createPages = ({ actions, graphql }) => {
         return Promise.reject(result.errors)
       }
 
-      const postTemplate = path.resolve(`./src/templates/post.js`)
+      const postTemplate = path.resolve(`./src/templates/post.tsx`)
       const blogTemplate = path.resolve(`./src/templates/blog.js`)
 
       // In production builds, filter for only published posts.
@@ -100,6 +100,58 @@ exports.createPages = ({ actions, graphql }) => {
         items: posts,
         itemsPerPage: 10,
         pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/` : `/page`),
+        component: blogTemplate,
+      })
+    })
+    .then(() => {
+      return graphql(`
+        {
+          allWordpressPost {
+            edges {
+              node {
+                id
+                slug
+                status
+              }
+            }
+          }
+        }
+      `)
+    })
+    .then(result => {
+      if (result.errors) {
+        result.errors.forEach(e => console.error(e.toString()))
+        return Promise.reject(result.errors)
+      }
+
+      const postTemplate = path.resolve(`./src/templates/post.tsx`)
+      const blogTemplate = path.resolve(`./src/templates/blog.js`)
+
+      // In production builds, filter for only published posts.
+      const allPosts = result.data.allWordpressPost.edges
+      const posts =
+        process.env.NODE_ENV === 'production'
+          ? getOnlyPublished(allPosts)
+          : allPosts
+
+      // Iterate over the array of posts
+      _.each(posts, ({ node: post }) => {
+        // Create the Gatsby page for this WordPress post
+        createPage({
+          path: `/blog/${post.slug}`,
+          component: postTemplate,
+          context: {
+            id: post.id,
+          },
+        })
+      })
+
+      // Create a paginated blog, e.g., /, /page/2, /page/3
+      paginate({
+        createPage,
+        items: posts,
+        itemsPerPage: 9,
+        pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog` : `/blog/page`),
         component: blogTemplate,
       })
     })

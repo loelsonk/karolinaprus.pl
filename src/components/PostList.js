@@ -22,8 +22,11 @@ export default class IndexPage extends React.Component {
               style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
               key={post.id}
             >
+              <div>
+                <img src={post.featured_media && post.featured_media.localFile.childImageSharp.fixed.src} alt=""/>
+              </div>
               <p>
-                <Link className="has-text-primary" to={post.slug}>
+                <Link className="has-text-primary" to={`/blog/${post.slug}`}>
                   {post.title}
                 </Link>
                 <span> &bull; </span>
@@ -40,7 +43,7 @@ export default class IndexPage extends React.Component {
                     __html: post.excerpt.replace(/<p class="link-more.*/, ''),
                   }}
                 />
-                <Link className="button is-small" to={post.slug}>
+                <Link className="button is-small" to={`/blog/${post.slug}`}>
                   Keep Reading →
                 </Link>
               </div>
@@ -71,5 +74,22 @@ export const pageQuery = graphql`
     }
     date(formatString: "MMMM DD, YYYY")
     slug
+    featured_media {
+        alt_text
+        link
+        media_type
+        mime_type
+        title
+        type
+        localFile {
+            childImageSharp {
+                fixed(height: 300, width: 300) {
+                    src
+                    width
+                    height
+                }
+            }
+        }
+    }
   }
 `
