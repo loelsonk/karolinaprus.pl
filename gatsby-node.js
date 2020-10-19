@@ -43,7 +43,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Call `createPage()` once per WordPress page
       _.each(pages, ({ node: page }) => {
         createPage({
-          path: `/${page.slug}/`,
+          path: `/${page.slug}`,
           component: pageTemplate,
           context: {
             id: page.id,
@@ -86,7 +86,7 @@ exports.createPages = ({ actions, graphql }) => {
       _.each(posts, ({ node: post }) => {
         // Create the Gatsby page for this WordPress post
         createPage({
-          path: `/${post.slug}/`,
+          path: `/${post.slug}`,
           component: postTemplate,
           context: {
             id: post.id,
@@ -181,7 +181,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Create a Gatsby page for each WordPress Category
       _.each(result.data.allWordpressCategory.edges, ({ node: cat }) => {
         createPage({
-          path: `/categories/${cat.slug}/`,
+          path: `/categories/${cat.slug}`,
           component: categoriesTemplate,
           context: {
             name: cat.name,
@@ -217,7 +217,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Create a Gatsby page for each WordPress tag
       _.each(result.data.allWordpressTag.edges, ({ node: tag }) => {
         createPage({
-          path: `/tags/${tag.slug}/`,
+          path: `/tags/${tag.slug}`,
           component: tagsTemplate,
           context: {
             name: tag.name,
@@ -264,7 +264,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode, trailingSlash: false })
     createNodeField({
       name: `slug`,
       node,
