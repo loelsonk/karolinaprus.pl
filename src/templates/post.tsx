@@ -32,7 +32,7 @@ export const BlogPostTemplate = ({
             <Wrapper>
               <p>
                 {date} - posted by{' '}
-                <Link to={`/author/${author.slug}`}>{author.name}</Link>
+                <Link to={`/author/${author.slug}/`}>{author.name}</Link>
               </p>
               {categories && categories.length ? (
                 <div>

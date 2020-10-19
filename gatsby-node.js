@@ -43,7 +43,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Call `createPage()` once per WordPress page
       _.each(pages, ({ node: page }) => {
         createPage({
-          path: `/${page.slug}`,
+          path: `/${page.slug}/`,
           component: pageTemplate,
           context: {
             id: page.id,
@@ -138,7 +138,7 @@ exports.createPages = ({ actions, graphql }) => {
       _.each(posts, ({ node: post }) => {
         // Create the Gatsby page for this WordPress post
         createPage({
-          path: `/blog/${post.slug}`,
+          path: `/blog/${post.slug}/`,
           component: postTemplate,
           context: {
             id: post.id,
@@ -151,7 +151,7 @@ exports.createPages = ({ actions, graphql }) => {
         createPage,
         items: posts,
         itemsPerPage: 9,
-        pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog` : `/blog/page`),
+        pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog/` : `/blog/page`),
         component: blogTemplate,
       })
     })
@@ -181,7 +181,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Create a Gatsby page for each WordPress Category
       _.each(result.data.allWordpressCategory.edges, ({ node: cat }) => {
         createPage({
-          path: `/categories/${cat.slug}`,
+          path: `/categories/${cat.slug}/`,
           component: categoriesTemplate,
           context: {
             name: cat.name,
@@ -217,7 +217,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Create a Gatsby page for each WordPress tag
       _.each(result.data.allWordpressTag.edges, ({ node: tag }) => {
         createPage({
-          path: `/tags/${tag.slug}`,
+          path: `/tags/${tag.slug}/`,
           component: tagsTemplate,
           context: {
             name: tag.name,
@@ -250,7 +250,7 @@ exports.createPages = ({ actions, graphql }) => {
 
       _.each(result.data.allWordpressWpUsers.edges, ({ node: author }) => {
         createPage({
-          path: `/author/${author.slug}`,
+          path: `/author/${author.slug}/`,
           component: authorTemplate,
           context: {
             id: author.id,
@@ -264,7 +264,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode, trailingSlash: false })
+    const value = createFilePath({ node, getNode, trailingSlash: true })
     createNodeField({
       name: `slug`,
       node,

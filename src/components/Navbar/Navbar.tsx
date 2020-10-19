@@ -55,7 +55,7 @@ export const Navbar = () => {
           {nodes.map(node => (
             <Link
               className="navbar-item"
-              to={`/${node.object_slug}`}
+              to={`/${node.object_slug}/`}
               key={node.object_slug}
             >
               {node.title}
